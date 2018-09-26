@@ -37,9 +37,6 @@ Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf.vim'
 Plug '/usr/local/opt/fzf'
 
-" Show indent line with a marker
-" Plug 'yggdroot/indentline'
-
 " Window max on '<leader>-w-o'
 Plug 'vim-scripts/ZoomWin'
 
@@ -187,6 +184,9 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 
 " Syntax support for md
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+
+" Markdown preview
+Plug 'iamcco/markdown-preview.vim'
 
 " Python style guide
 " Plug 'cburroughs/pep8.py'

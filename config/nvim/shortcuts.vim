@@ -83,7 +83,7 @@ nnoremap <silent>XX :NERDTreeToggle <CR>
 " ---------------------------------------------------
 
 " Show markdown preview
-nnoremap <leader>md :InstantMarkdownPreview <CR>
+nnoremap <leader>md :MarkdownPreview <CR>
 
 " ---------------------------------------------------
 "                        FZF

@@ -261,9 +261,7 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown',
 " ---------------------------------------------------
 "                     Markdown
 " ---------------------------------------------------
-
-" Disable autostart
-let g:instant_markdown_autostart = 0
+ let g:mkdp_auto_close = 0
 
 " ---------------------------------------------------
 "                     Limelight
