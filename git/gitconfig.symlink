@@ -60,4 +60,4 @@
     editor = nvim
     whitespace = cr-at-eol
 [credential]
-	helper = osxkeychain
+	helper = store

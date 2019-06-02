@@ -20,9 +20,11 @@ echo "=============================================="
 if [ ! -d "$HOME/.config" ]; then
     echo "Creating ~/.config"
     mkdir -p "$HOME/.config"
+else 
+    echo "Config folder alrealdy exist" 
 fi
 
-config_files=$( find "$DOTFILES/config" -d 1 2>/dev/null )
+config_files=$( find "$DOTFILES/config" -depth 1 2>/dev/null )
 for config in $config_files; do
     target="$HOME/.config/$( basename "$config" )"
     if [ -e "$target" ]; then

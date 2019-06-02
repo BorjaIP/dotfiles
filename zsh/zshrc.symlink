@@ -26,10 +26,6 @@ export GIT_EDITOR='nvim'
 
 export PATH=/usr/local/bin:$PATH
 
-# Add mongodb path
-export MONGO_PATH=/usr/local/Cellar/mongodb/3.6.5
-export PATH=$PATH:$MONGO_PATH/bin
-
 # Add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then
     export PATH=/usr/local/sbin:$PATH
@@ -82,7 +78,7 @@ export LESS_TERMCAP_mh=$(tput dim)
 
 # Add zplug and plugins
 if [ -z ${RELOAD}  ]; then
-    export ZPLUG_HOME=/usr/local/opt/zplug
+    export ZPLUG_HOME=~/.zplug
     source $ZPLUG_HOME/init.zsh
     zplug 'zplug/zplug', hook-build:'zplug --self-manage'
     zplug 'zsh-users/zsh-syntax-highlighting', defer:2

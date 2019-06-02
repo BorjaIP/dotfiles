@@ -130,41 +130,6 @@ Plug 'gko/vim-coloresque'
 Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 
 " ---------------------------------------------------
-"                      JavaScript
-" ---------------------------------------------------
-
-" JS syntax highlighting and improved indentation
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
-
-" Syntax file for JavaScript libraries
-Plug 'othree/javascript-libraries-syntax.vim'
-
-" Complete for JS
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
-
-" Syntax highlighting and indenting for JSX (React)
-Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'javascript'] }
-
-" Tools for developing with Node.js
-Plug 'moll/vim-node', { 'for': 'javascript' }
-
-" Syntax for vue
-Plug 'posva/vim-vue'
-
-" ---------------------------------------------------
-"                      TypeScript
-" ---------------------------------------------------
-
-" Syntax file and other settings for TypeScript
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-
-" Completion typescrpit
-Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }
-
-" Great asynchronous execution library for Vim (needed by tsuquyomi)
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-
-" ---------------------------------------------------
 "                       JSON
 " ---------------------------------------------------
 

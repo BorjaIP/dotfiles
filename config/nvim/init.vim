@@ -140,9 +140,6 @@ autocmd FileType java,html,javascript setlocal shiftwidth=2 tabstop=2 softtabsto
 " JSON support
 au! BufRead,BufNewFile *.json set filetype=json
 
-" Vue support
-autocmd FileType vue syntax sync fromstart
-
 " Configure Startify
 autocmd User Startified setlocal cursorline
 
@@ -162,27 +159,6 @@ let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 
-" Add special function for comments in Vue
-let g:ft = ''
-function! NERDCommenter_before()
-  if &ft == 'vue'
-    let g:ft = 'vue'
-    let stack = synstack(line('.'), col('.'))
-    if len(stack) > 0
-      let syn = synIDattr((stack)[0], 'name')
-      if len(syn) > 0
-        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
-      endif
-    endif
-  endif
-endfunction
-function! NERDCommenter_after()
-  if g:ft == 'vue'
-    setf vue
-    let g:ft = ''
-  endif
-endfunction
-
 " ---------------------------------------------------
 "                      FZF
 " ---------------------------------------------------
@@ -195,13 +171,6 @@ let g:fzf_layout = { 'down': '~25%' }
 
 " Complete with TAB
 let g:UltiSnipsExpandTrigger="<tab>"
-
-" ---------------------------------------------------
-"                     JS Libraries
-" ---------------------------------------------------
-
-" Syntax file for JavaScript libraries
-let g:used_javascript_libs = 'angularui, angularuirouter, react, vue'
 
 " ---------------------------------------------------
 "                     Deoplete
