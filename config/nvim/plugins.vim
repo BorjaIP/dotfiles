@@ -52,6 +52,9 @@ Plug 'vimwiki/vimwiki'
 " Shows git diff in the numbers line
 Plug 'airblade/vim-gitgutter'
 
+" Best Git wrapper of all time
+Plug 'tpope/vim-fugitive'
+
 " Resolving git merge and rebase conflicts
 Plug 'christoomey/vim-conflicted'
 
