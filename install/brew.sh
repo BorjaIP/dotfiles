@@ -15,7 +15,6 @@ echo -e "\\n\\nRunning fzf install script..."
 echo "=============================================="
 /usr/local/opt/fzf/install
 
-
 # After the install, install neovim python libraries
 echo -e "\\n\\nRunning Neovim Python install"
 echo "=============================================="

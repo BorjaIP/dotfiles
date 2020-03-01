@@ -10,6 +10,7 @@ alias reboot='sudo shutdown -r now'
 alias b="sudo brew"
 alias clean="brew cleanup && brew cask cleanup"
 alias update="brew cu -facy"
+
 # vim
 alias vi="nvim"
 alias vim="nvim"
