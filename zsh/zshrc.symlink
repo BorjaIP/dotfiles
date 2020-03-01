@@ -1,0 +1,121 @@
+#
+# 
+#                      ███████╗███████╗██╗  ██╗
+#                      ╚══███╔╝██╔════╝██║  ██║
+#                        ███╔╝ ███████╗███████║
+#                       ███╔╝  ╚════██║██╔══██║
+#                      ███████╗███████║██║  ██║
+#                      ╚══════╝╚══════╝╚═╝  ╚═╝
+
+
+################################################################
+#                                                              #
+#                            EXPORTS                           #
+#                                                              #
+################################################################
+
+export DOTFILES=$HOME/.dotfiles
+export ZSH=$DOTFILES/zsh
+
+command_exists() {
+    type "$1" > /dev/null 2>&1
+}
+
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
+
+export PATH=/usr/local/bin:$PATH
+
+# Add /usr/local/sbin
+if [[ -d /usr/local/sbin ]]; then
+    export PATH=/usr/local/sbin:$PATH
+fi
+
+# Adding path directory for custom scripts
+export PATH=$DOTFILES/bin:$PATH
+
+# Exports terminfo where colors are installed
+[[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
+
+# Define the code directory
+if [[ -d ~/code ]]; then
+    export CODE_DIR=~/code
+fi
+
+if [[ -a ~/.localrc ]]; then
+    source ~/.localrc
+fi
+
+# Check for custom bin directory and add to path
+if [[ -d ~/bin ]]; then
+    export PATH=~/bin:$PATH
+fi
+
+# Add colors for tmux and term
+if [ -z "$TMUX" ]; then
+   export TERM=xterm-256color-italic
+else
+   export TERM=tmux-256color-italic
+fi
+
+# Add color to man pages
+export MANROFFOPT='-c'
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
+
+################################################################
+#                                                              #
+#                          PLUGINS                             #
+#                                                              #
+################################################################
+
+# Add zplug and plugins
+if [ -z ${RELOAD}  ]; then
+    export ZPLUG_HOME=/usr/local/opt/zplug
+    source $ZPLUG_HOME/init.zsh
+    zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+    zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+    zplug 'zsh-users/zsh-autosuggestions'
+
+    if ! zplug check; then
+        printf "Install? [y/N]: "
+        if read -q; then
+            echo; zplug install
+        fi
+    fi
+
+    zplug load
+fi
+
+# Source all .zsh files inside of the zsh/ directory
+for config ($ZSH/**/*.zsh) source $config
+
+# Initialize autocomplete
+autoload -U compinit add-zsh-hook && compinit
+
+################################################################
+#                                                              #
+#                        FZF/BASE16                            #
+#                                                              #
+################################################################
+
+# Base16 shell setup
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+
+# Configure fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Use ripgrep for recursively searches directories for a regex pattern 
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+

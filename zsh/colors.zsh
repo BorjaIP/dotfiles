@@ -1,0 +1,95 @@
+################################################################
+#                                                              #
+#                          COLORS                              #
+#                                                              #
+################################################################
+
+BASE16_CONFIG=~/.vim/.base16
+
+# Based on: https://github.com/wincent/wincent/blob/94a0ae02/roles/dotfiles/files/.shells/colors
+
+color() {
+  local SCHEME="$1"
+  local BASE16_DIR=~/.config/base16-shell/scripts
+  local BASE16_CONFIG_PREVIOUS="${BASE16_CONFIG}.previous"
+  local STATUS=0
+
+  if [ $# -eq 0 ]; then
+    if [ -s "$BASE16_CONFIG" ]; then
+      cat ~/.vim/.base16
+      return
+    else
+      SCHEME=help
+    fi
+  fi
+
+  __color() {
+    SCHEME=$1
+    FILE="$BASE16_DIR/base16-$SCHEME.sh"
+    if [[ -e "$FILE" ]]; then
+      local BG=$(grep color_background= "$FILE" | cut -d \" -f2 | sed -e 's#/##g')
+      local BACKGROUND=dark
+      if [ "$LIGHT" -eq 1 ]; then
+        BACKGROUND=light
+      fi
+
+      if [ -e "$BASE16_CONFIG" ]; then
+        cp "$BASE16_CONFIG" "$BASE16_CONFIG_PREVIOUS"
+      fi
+
+      echo "$SCHEME" >! "$BASE16_CONFIG"
+      echo "$BACKGROUND" >> "$BASE16_CONFIG"
+      sh "$FILE"
+
+    else
+      echo "Scheme '$SCHEME' not found in $BASE16_DIR"
+      STATUS=1
+    fi
+  }
+
+  case "$SCHEME" in
+    help)
+      echo 'color [tomorrow-night|ocean|grayscale-light|...]'
+      echo
+      echo 'Available schemes:'
+      color ls
+      return
+      ;;
+    ls)
+      find "$BASE16_DIR" -name 'base16-*.sh' | \
+        sed -E 's|.+/base16-||' | \
+        sed -E 's/\.sh//' | \
+        column
+      ;;
+    -)
+      if [[ -s "$BASE16_CONFIG_PREVIOUS" ]]; then
+        local PREVIOUS_SCHEME=$(head -1 "$BASE16_CONFIG_PREVIOUS")
+        __color "$PREVIOUS_SCHEME"
+      else
+        echo "warning: no previous config found at $BASE16_CONFIG_PREVIOUS"
+        STATUS=1
+      fi
+      ;;
+    *)
+      __color "$SCHEME"
+      ;;
+  esac
+
+  unfunction __color
+  return $STATUS
+}
+
+function () {
+  if [[ -s "$BASE16_CONFIG" ]]; then
+    local SCHEME=$(head -1 "$BASE16_CONFIG")
+    local BACKGROUND=$(sed -n -e '2 p' "$BASE16_CONFIG")
+    if [ "$BACKGROUND" != 'dark' -a "$BACKGROUND" != 'light' ]; then
+      echo "warning: unknown background type in $BASE16_CONFIG"
+    fi
+    color "$SCHEME"
+  else
+    # Default
+    color material-darker 
+  fi
+}
+

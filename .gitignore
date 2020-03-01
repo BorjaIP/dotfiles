@@ -1,0 +1,9 @@
+.netrwhist
+npm-debug.log
+
+plug.vim.old
+
+config/nvim/plugged
+vim/vim.symlink/plugged/
+
+tmux/tmux_resurrect
