@@ -19,13 +19,10 @@ set -g default-command "login-shell"
 
 # Add support for truecolor
 # More info here: https://github.com/ninrod/tricks/blob/master/shell/tmux.md#the-standard-way-since-tmux-22
-# Tmux display things in 256 colors
-# set -g default-terminal "xterm-256color-italic"
-set -g default-terminal "tmux-256color"
 
-#  Enable terminal compability
-# set-option -ga terminal-overrides ",tmux-256color-italic:Tc"
-set -ga terminal-overrides ',xterm-256color:Tc'
+# Tmux display things in 256 colors
+set -g default-terminal "screen-256color"
+set-option -ga terminal-overrides ",st-256color:Tc"
 
 # Increase scrollback lines
 set -g history-limit 20000
@@ -84,7 +81,7 @@ bind C-a send-prefix
 bind r source-file ~/.tmux.conf \; display-message "Config Reloaded!"
 
 # Split window and fix path for tmux 1.9
-bind | split-window -h -c "#{pane_current_path}"
+bind ´ split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
 
 # Synchronize all panes in a window

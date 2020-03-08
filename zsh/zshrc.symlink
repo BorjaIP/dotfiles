@@ -53,9 +53,9 @@ fi
 
 # Add colors for tmux and term
 if [ -z "$TMUX" ]; then
-   export TERM=xterm-256color-italic
+   export TERM=xterm-256color
 else
-   export TERM=tmux-256color-italic
+   export TERM=screen-256color
 fi
 
 # Add color to man pages

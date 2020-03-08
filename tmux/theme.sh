@@ -37,28 +37,29 @@ set -g status-right-length 150
 set -g status-interval 5
 
 # Default statusbar colors
-set-option -g status-bg $base01
-set-option -g status-fg $base02
-set-option -g status-attr default
-
-set-window-option -g window-status-bg $base00
-set-window-option -g window-status-fg $base04
-set -g window-status-format " #I #W"
+set-option -g status-style bg=$base01
+set-option -g status-style fg=$base03
+set-option -g status default
 
 # Active window title colors
-set-window-option -g window-status-current-bg $base0C
-set-window-option -g window-status-current-fg $base01
+set-window-option -g window-status-style bg=$base01
+set-window-option -g window-status-style fg=$base06
+set -g window-status-format " #I #W"
+
+# Background window title colors
+set-window-option -g window-status-current-style bg=$base0C
+set-window-option -g window-status-current-style fg=$base03
 
 # Show only name in windows
 set-window-option -g  window-status-current-format " #[bold]#W "
 
 # Pane border colors
-set-window-option -g pane-active-border-fg $base0C
-set-window-option -g pane-border-fg $base03
+set-window-option -g pane-active-border-style fg=$base0C
+set-window-option -g pane-border-style fg=$base03
 
 # Message text
-set-option -g message-bg $base00
-set-option -g message-fg $base0C
+set-option -g message-style bg=$base00
+set-option -g message-style fg=$base0C
 
 # Pane number display
 set-option -g display-panes-active-colour $base0C
@@ -67,7 +68,7 @@ set-option -g display-panes-colour $base01
 # Clock
 set-window-option -g clock-mode-colour $base0C
 
-tm_session_name="#[default,bg=$base0E,fg=$base01]♟ #S "
+tm_session_name="#[default,bg=$base0C,fg=$base01] ❐ #S "
 set -g status-left "$tm_session_name"
 
 tm_tunes="#[bg=$base0D,fg=$base01] ♫ #(osascript -l JavaScript ~/.dotfiles/scripts/tunes.js)"
