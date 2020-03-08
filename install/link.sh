@@ -2,7 +2,7 @@
 
 DOTFILES=$HOME/.dotfiles
 
-echo -e "\\nCreating symlinks"
+echo -e "\\n\\nCreating general symlinks"
 echo "=============================================="
 linkables=$( find -H "$DOTFILES" -maxdepth 3 -name "*.symlink" )
 for file in $linkables ; do
@@ -15,7 +15,7 @@ for file in $linkables ; do
     fi
 done
 
-echo -e "\\n\\nInstalling to ~/.config"
+echo -e "\\n\\nCreating ~/.config symlinks"
 echo "=============================================="
 if [ ! -d "$HOME/.config" ]; then
     echo "Creating ~/.config"

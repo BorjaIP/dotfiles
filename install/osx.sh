@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo -e "\\n\\nSetting OS X settings"
+echo -e "\\n\\nOS X settings"
 echo "=============================================="
 
 echo "Only use UTF-8 in Terminal.app"

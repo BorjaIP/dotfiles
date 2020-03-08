@@ -5,32 +5,28 @@ command_exists() {
 }
 
 echo "=============================================="
-echo "              Installing dotfiles"
+echo "              Installing dotfiles "
 echo "=============================================="
-
-source install/link.sh
-
-source install/git.sh
 
 # Only perform macOS-specific install
 if [ "$(uname)" == "Darwin" ]; then
     echo -e "\\n\\nRunning on OSX"
-
+    # Install programs with brew
     source install/brew.sh
-
+    # Setup OS X settings
     source install/osx.sh
 fi
 
-echo "=============================================="
-echo "           Creating vim directories"
-echo "=============================================="
+# Create symbolic links
+source install/link.sh
 
-if ! command_exists zsh; then
-    echo "zsh not found. Please install and then re-run installation scripts"
-    exit 1
-elif ! [[ $SHELL =~ .*zsh.* ]]; then
-    echo "Configuring zsh as default shell"
-    chsh -s "$(command -v zsh)"
-fi
+# Options for git configuration
+source install/git.sh
 
-echo "Done. Reload your terminal."
+# ZSH configuration
+source install/zsh.sh
+
+# Plugins and extra configuration
+source install/extra.sh
+
+echo -e "\\n\\nDone. Reload your terminal.\\n\\n"

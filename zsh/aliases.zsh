@@ -21,7 +21,6 @@ alias uni="cd Documents/Universidad"
 
 # Aplications
 alias python='python2.7'
-alias pdf='zathura'
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`

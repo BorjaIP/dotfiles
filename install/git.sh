@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-printf "Setting up Git...\\n\\n"
+echo -e "\\n\\nSetting up Git"
 echo "=============================================="
 
 defaultName=$( git config --global user.name )
