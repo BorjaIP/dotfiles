@@ -41,7 +41,8 @@ alias rf="rm -rf"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # reload zsh config
-alias reload!='RELOAD=1 source ~/.zshrc'
+# alias reload!='RELOAD=1 source ~/.zshrc'
+alias reload="exec ${SHELL} -l"
 
 # Tmux aliases
 alias ta='tmux attach'

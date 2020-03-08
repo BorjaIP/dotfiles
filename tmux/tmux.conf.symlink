@@ -81,7 +81,7 @@ bind C-a send-prefix
 bind r source-file ~/.tmux.conf \; display-message "Config Reloaded!"
 
 # Split window and fix path for tmux 1.9
-bind ´ split-window -h -c "#{pane_current_path}"
+bind _ split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
 
 # Synchronize all panes in a window

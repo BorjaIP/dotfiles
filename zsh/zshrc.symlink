@@ -21,9 +21,11 @@ command_exists() {
     type "$1" > /dev/null 2>&1
 }
 
+# Change editor to NVIM
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 
+# Change path
 export PATH=/usr/local/bin:$PATH
 
 # Add /usr/local/sbin
@@ -34,18 +36,6 @@ fi
 # Adding path directory for custom scripts
 export PATH=$DOTFILES/bin:$PATH
 
-# Exports terminfo where colors are installed
-[[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
-
-# Define the code directory
-if [[ -d ~/code ]]; then
-    export CODE_DIR=~/code
-fi
-
-if [[ -a ~/.localrc ]]; then
-    source ~/.localrc
-fi
-
 # Check for custom bin directory and add to path
 if [[ -d ~/bin ]]; then
     export PATH=~/bin:$PATH
@@ -53,9 +43,9 @@ fi
 
 # Add colors for tmux and term
 if [ -z "$TMUX" ]; then
-   export TERM=xterm-256color
+    export TERM=xterm-256color
 else
-   export TERM=screen-256color
+    export TERM=screen-256color
 fi
 
 # Add color to man pages
@@ -110,7 +100,7 @@ autoload -U compinit add-zsh-hook && compinit
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
+    eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 
 # Configure fzf
