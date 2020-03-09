@@ -18,7 +18,6 @@ else
     echo -e "\\n\\nNeovim is already installed"
 fi
 
-
 # Install Base16 Theme
 if [ ! -d "$HOME/.config/base16-shell" ]; then
     echo -e "\\n\\nDownloading base16 theme"

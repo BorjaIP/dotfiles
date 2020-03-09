@@ -11,10 +11,15 @@ echo "=============================================="
 # Only perform macOS-specific install
 if [ "$(uname)" == "Darwin" ]; then
     echo -e "\\n\\nRunning on OSX"
+
     # Install programs with brew
     source install/brew.sh
+
     # Setup OS X settings
     source install/osx.sh
+
+    # Install fonts
+    cp $HOME./dotfiles/fonts/*.otf $HOME/Library/Fonts
 fi
 
 # Create symbolic links
