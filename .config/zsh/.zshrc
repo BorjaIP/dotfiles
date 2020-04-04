@@ -16,7 +16,7 @@
 
 
 # Adding path directory for custom scripts
-#export PATH=$DOTFILES/bin:$PATH
+PATH="$HOME/.local/bin${PATH:+:${PATH}}"
 
 # Add colors for tmux and term
 if [ -z "$TMUX" ]; then
@@ -53,10 +53,6 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 
 # Add ZSH configuration
 for config ($ZDOTDIR/**) source $config
-#[ -f "$ZDOTDIR/aliases" ] && source "$ZDOTDIR/aliases"
-#[ -f "$ZDOTDIR/colors" ] && source "$ZDOTDIR/colors"
-#[ -f "$ZDOTDIR/config" ] && source "$ZDOTDIR/config"
-#[ -f "$ZDOTDIR/prompt" ] && source "$ZDOTDIR/prompt"
 
 # Initialize autocomplete
 autoload -U compinit add-zsh-hook && compinit
