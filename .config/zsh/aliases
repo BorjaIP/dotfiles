@@ -5,11 +5,8 @@
 ################################################################
 
 # System custom
-alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
-alias reboot='sudo shutdown -r now'
-alias b="sudo brew"
-alias clean="brew cleanup && brew cask cleanup"
-alias update="brew cu -facy"
+alias p='sudo pacman'
+alias sdn='sudo shutdown now'
 
 # vim
 alias vi="nvim"
@@ -18,19 +15,26 @@ alias vim="nvim"
 # Config files
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
-# Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-    colorflag="--color=auto"
-else # macOS `ls`
-    colorflag="-G"
-fi
+# Enable color support
+# if [ -x /usr/bin/dircolors ]; then
+    # test -r ~/.dir_colors && eval "$(dircolors -b ~/.dir_colors)" || eval "&(dircolors -b)"
+    # alias ls='ls --color=auto --group-directories-first'
+    # alias grep='grep --color=auto'
+    # alias fgrep='fgrep --color=auto'
+    # alias egrep='egrep --color=auto'
+# fi
 
+# Enable color support
+alias ls='ls --color=always --group-directories-first'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+    
 # Commands files
 alias ..='cd ..'
-alias ls="ls ${colorflag}"
-alias l="ls -lah ${colorflag}"
-alias la="ls -AF ${colorflag}"
-alias ll="ls -lFh ${colorflag}"
+alias l="ls -lah"
+alias la="ls -AF"
+alias ll="ls -lFh"
 alias rf="rm -rf"
 
 

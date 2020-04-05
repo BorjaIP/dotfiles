@@ -85,8 +85,6 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 
 
 # Configure fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# Use ripgrep for recursively searches directories for a regex pattern 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_R_COMMAND='--sort --exact'
+. /usr/share/fzf/key-bindings.zsh
 

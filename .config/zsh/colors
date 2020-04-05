@@ -4,7 +4,7 @@
 #                                                              #
 ################################################################
 
-BASE16_CONFIG=~/.vim/.base16
+BASE16_CONFIG=~/.config/nvim/.base16
 
 # Based on: https://github.com/wincent/wincent/blob/94a0ae02/roles/dotfiles/files/.shells/colors
 
