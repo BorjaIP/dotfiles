@@ -16,7 +16,7 @@ color() {
 
   if [ $# -eq 0 ]; then
     if [ -s "$BASE16_CONFIG" ]; then
-      cat ~/.vim/.base16
+      cat $BASE16_CONFIG
       return
     else
       SCHEME=help
