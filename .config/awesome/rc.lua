@@ -41,7 +41,6 @@ local naughty           = require("naughty")
 local freedesktop       = require("freedesktop")
 
 -- Others
-local cycle_prev        = true
 local my_table          = awful.util.table or gears.table -- 4.{0,1} compatibility
 local dpi               = require("beautiful.xresources").apply_dpi
 
@@ -132,60 +131,6 @@ awful.layout.layouts = {
     --lain.layout.termfair.center,
 }
 
--- Create a wibox for each screen and add it
--- awful.util.taglist_buttons = my_table.join(
-    -- awful.button({ }, 1, function(t) t:view_only() end),
-    -- awful.button({ modkey }, 1, function(t)
-        -- if client.focus then
-            -- client.focus:move_to_tag(t)
-        -- end
-    -- end),
-    -- awful.button({ }, 3, awful.tag.viewtoggle),
-    -- awful.button({ modkey }, 3, function(t)
-        -- if client.focus then
-            -- client.focus:toggle_tag(t)
-        -- end
-    -- end),
-    -- awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-    -- awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
--- )
-
-awful.util.tasklist_buttons = my_table.join(
-    awful.button({ }, 1, function (c)
-        if c == client.focus then
-            c.minimized = true
-        else
-            --c:emit_signal("request::activate", "tasklist", {raise = true})
-
-            -- Without this, the following
-            -- :isvisible() makes no sense
-            c.minimized = false
-            if not c:isvisible() and c.first_tag then
-                c.first_tag:view_only()
-            end
-            -- This will also un-minimize
-            -- the client, if needed
-            client.focus = c
-            c:raise()
-        end
-    end),
-    -- awful.button({ }, 2, function (c) c:kill() end),
-    awful.button({ }, 3, function ()
-        local instance = nil
-
-        return function ()
-            if instance and instance.wibox.visible then
-                instance:hide()
-                instance = nil
-            else
-                instance = awful.menu.clients({theme = {width = dpi(250)}})
-            end
-        end
-    end),
-    awful.button({ }, 4, function () awful.client.focus.byidx(1) end),
-    awful.button({ }, 5, function () awful.client.focus.byidx(-1) end)
-)
-
 -- lain.layout.termfair.nmaster           = 3
 -- lain.layout.termfair.ncol              = 1
 -- lain.layout.termfair.center.nmaster    = 3
@@ -222,9 +167,8 @@ awful.util.mymainmenu = freedesktop.menu.build({
     }
 })
 
-
 -- hide menu when mouse leaves it
---awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function() awful.util.mymainmenu:hide() end)
+-- awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function() awful.util.mymainmenu:hide() end)
 
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 
@@ -258,7 +202,6 @@ screen.connect_signal("arrange", function (s)
         end
     end
 end)
-
 
 
 -----------------------------------------------
@@ -364,6 +307,4 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
--- possible workaround for tag preservation when switching back to default screen:
--- https://github.com/lcpz/awesome-copycats/issues/251
--- }}}
+

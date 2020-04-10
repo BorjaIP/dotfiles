@@ -4,8 +4,6 @@ local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
 local icons = require('themes.custom.icons.tags')
 
-local web_icon = wibox.widget.imagebox(icons.web)
-
 local tags = {
     {
         icon = icons.web,
@@ -50,7 +48,6 @@ function(s)
         awful.tag.add(
         i,
         {
-            --icon = wibox.container.margin(tag.icon, 0, 0, dpi(6), dpi(6)),
             icon = tag.icon,
             icon_only = true,
             layout = awful.layout.suit.tile,

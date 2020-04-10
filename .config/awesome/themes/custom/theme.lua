@@ -18,9 +18,13 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 -- Tags list
 local tags                                      = require("themes.custom.tags")
-local taglistbuttons                           = require("keys.buttons").taglistbuttons
+local taglistbuttons                            = require("keys.buttons").taglistbuttons
+
+-- Task list
+local tasklistbuttons                           = require("keys.buttons").tasklistbuttons
 
 -- Icons
+-- Source : https://fontawesome.com/cheatsheet
 local icons = require('themes.custom.icons')
 
 -- Load custom colors based on Base16
@@ -34,13 +38,12 @@ local base16_palette = {
 }
 local color = base16_palette[2]
 
+-- Theme options
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/custom"
 theme.wallpaper                                 = theme.confdir .. "/wall.png"
 theme.font                                      = "Noto Sans Regular 10"
-theme.taglist_font                              = "Noto Sans Regular 10"
 theme.tasklist_font                             = "Noto Sans Regular 10"
-
 
 -- Backgrounds
 theme.bg_normal                                 = color.base00 --"00000000" -- Trasnparent
@@ -177,6 +180,90 @@ theme.mpd = lain.widget.mpd({
     end
 })
 
+-- Taglist icons with overline
+local widgettag_overline = {
+{
+    {
+        {
+            {
+                left = 1,
+                right = 1,
+                top = 5,
+                widget = wibox.container.margin
+            },
+            id = "overline",
+            bg = theme.bg_normal,
+            shape = gears.shape.rectangle,
+            widget = wibox.container.background
+        },
+        {
+            {   -- Add icon images
+                id     = "icon_role",
+                widget = wibox.widget.imagebox,
+            }, -- Margin for image
+            margins = 3,
+            widget = wibox.container.margin
+        },
+        layout = wibox.layout.fixed.vertical,
+    },
+    left  = 10,
+    right = 10,
+    widget = wibox.container.margin,
+},
+    -- id = "background_role",
+    widget = wibox.container.background,
+    shape = gears.shape.rectangle,
+    create_callback = function(self, c3, index, objects)
+        local focused = false
+        for _, x in pairs(awful.screen.focused().selected_tags) do
+            if x.index == index then
+                focused = true
+                break
+            end
+        end
+        if focused then
+            self:get_children_by_id("overline")[1].bg = color.base08
+        else
+            self:get_children_by_id("overline")[1].bg = theme.bg_normal
+        end
+    end,
+    update_callback = function(self, c3, index, objects)
+        local focused = false
+        for _, x in pairs(awful.screen.focused().selected_tags) do
+            if x.index == index then
+                focused = true
+                break
+            end
+        end
+        if focused then
+            self:get_children_by_id("overline")[1].bg = color.base08
+        else
+            self:get_children_by_id("overline")[1].bg = theme.bg_normal
+        end
+    end
+}
+
+-- Taglist icons
+local widgettag = {
+{
+    {
+        {   -- Add icon images
+            id     = "icon_role",
+            widget = wibox.widget.imagebox,
+        }, -- Margin for image
+        margins = 4,
+        widget = wibox.container.margin,
+    },
+    left  = 10,
+    right = 10,
+    widget = wibox.container.margin,
+},
+    id = "background_role",
+    widget = wibox.container.background,
+    shape = gears.shape.rectangle,
+}
+
+
 function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
@@ -188,11 +275,9 @@ function theme.at_screen_connect(s)
     end
     gears.wallpaper.maximized(wallpaper, s, true)
 
-    -- Tags
-    --awful.tag(awful.util.tagnames, s, awful.layout.layouts)
-
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
+
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
@@ -207,13 +292,29 @@ function theme.at_screen_connect(s)
     s.mytaglist = awful.widget.taglist{
         screen = s, 
         filter = awful.widget.taglist.filter.all, 
-        --layout = { spacing = -12 },
+        widget_template = widgettag,
         buttons = taglistbuttons
     }
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s,awful.widget.tasklist.filter.currenttags,awful.util.tasklist_buttons)
-
+    s.mytasklist = awful.widget.tasklist{
+        screen = s,
+        filter = awful.widget.tasklist.filter.currenttags,
+        buttons = tasklistbuttons,
+        widget_template = {
+            {
+                -- id     = "icon_role",
+                -- widget  = wibox.widget.imagebox
+                awful.widget.clienticon,
+                margins = 5,
+                widget  = wibox.container.margin
+            },
+            margins = 5,
+            widget = wibox.layout.align.vertical,
+        },
+        update_function,
+    }
+    
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = 30, bg = theme.bg_normal, fg = theme.fg_normal })
 
@@ -227,9 +328,9 @@ function theme.at_screen_connect(s)
             s.mypromptbox,
             mpdicon,
             theme.mpd.widget,
-        },
-       -- s.mytasklist, -- Middle widget
-        nil,
+        }, -- Middle widget
+        s.mytasklist,
+        -- nil,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
@@ -237,11 +338,11 @@ function theme.at_screen_connect(s)
             --netdowninfo,
             --netupicon,
             --netupinfo.widget,
-            wibox.container.margin(mem_icon, 0, 0, dpi(5), dpi(5)),
+            wibox.container.margin(mem_icon, 4, 4, 4, 4),
             memory.widget,
-            wibox.container.margin(cpu_icon, 0, dpi(4), dpi(7), dpi(7)),
+            wibox.container.margin(cpu_icon, 4, 6, 6, 6),
             cpu.widget,
-            wibox.container.margin(vol_icon, 0, 0, dpi(6), dpi(6)),
+            wibox.container.margin(vol_icon, 4, 4, 4, 4),
             theme.volume.widget,
             mytextclock,
         },
