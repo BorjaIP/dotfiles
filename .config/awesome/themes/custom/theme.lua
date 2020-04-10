@@ -18,6 +18,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 -- Tags list
 local tags                                      = require("themes.custom.tags")
+local taglistbuttons                           = require("keys.buttons").taglistbuttons
 
 -- Icons
 local icons = require('themes.custom.icons')
@@ -207,7 +208,7 @@ function theme.at_screen_connect(s)
         screen = s, 
         filter = awful.widget.taglist.filter.all, 
         --layout = { spacing = -12 },
-        buttons = awful.util.taglist_buttons
+        buttons = taglistbuttons
     }
 
     -- Create a tasklist widget
