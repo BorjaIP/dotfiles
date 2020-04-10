@@ -40,11 +40,6 @@ local naughty           = require("naughty")
 --local menubar         = require("menubar")
 local freedesktop       = require("freedesktop")
 
--- Default variables
-local terminal          = os.getenv("TERMINAL") or "lxterminal"
-local editor            = os.getenv("EDITOR") or "nvim"
-local gui_editor        = os.getenv("GUI_EDITOR") or "gvim"
-
 -- Others
 local cycle_prev        = true
 local my_table          = awful.util.table or gears.table -- 4.{0,1} compatibility
