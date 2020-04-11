@@ -18,7 +18,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 -- Tags list
 local tags                                      = require("themes.custom.tags")
-local taglistbuttons                            = require("keys.buttons").taglistbuttons
+local TagList                                   = require('widget.taglist')
 
 -- Task list
 local TaskList                                  = require('widget.tasklist')
@@ -82,7 +82,7 @@ theme.tasklist_bg_urgent                        = theme.bg_urgent
 theme.tasklist_fg_normal                        = theme.fg_normal
 theme.tasklist_fg_focus                         = theme.fg_focus
 theme.tasklist_fg_urgent                        = theme.fg_normal
-
+theme.tasklist_plain_task_name                  = true
 
 -- Menu
 theme.menu_height                               = 20
@@ -93,13 +93,11 @@ theme.menu_width                                = 140
 theme.awesome_icon                              = icons.awesome
 theme.icon_theme                                = "Papirus Dark"
 
-
 -- Title bar
 theme.titlebar_bg_focus                         = color.base00
 theme.titlebar_fg_focus                         = color.base06
 theme.titlebar_bg_normal                        = color.base01
 theme.titlebar_fg_normal                        = color.base04
-
 
 --Layouts
 theme.layout_floating                           = icons.floating
@@ -107,7 +105,6 @@ theme.layout_tile                               = icons.tile
 theme.layout_tilebottom                         = icons.tilebottom
 theme.layout_tileleft                           = icons.tileleft
 theme.layout_tiletop                            = icons.tiletop
-
 
 -- Titlebar
 theme.titlebar_close_button_focus               = icons.close
@@ -188,26 +185,6 @@ theme.mpd = lain.widget.mpd({
     end
 })
 
--- Taglist icons
-local widgettag = {
-{
-    {
-        {   -- Add icon images
-            id     = "icon_role",
-            widget = wibox.widget.imagebox,
-        }, -- Margin for image
-        margins = 4,
-        widget = wibox.container.margin,
-    },
-    left  = 10,
-    right = 10,
-    widget = wibox.container.margin,
-},
-    id = "background_role",
-    widget = wibox.container.background,
-    shape = gears.shape.rectangle,
-}
-
 function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
@@ -232,14 +209,6 @@ function theme.at_screen_connect(s)
                            awful.button({}, 4, function () awful.layout.inc( 1) end),
                            awful.button({}, 5, function () awful.layout.inc(-1) end)))
     
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist{
-        screen = s, 
-        filter = awful.widget.taglist.filter.all, 
-        widget_template = widgettag,
-        buttons = taglistbuttons
-    }
-
     -- Create the wibox
     s.mywibox = awful.wibar(
       {
@@ -259,7 +228,7 @@ function theme.at_screen_connect(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mylayoutbox,
-            s.mytaglist,
+            TagList(s),
             s.mypromptbox,
             mpdicon,
             theme.mpd.widget,

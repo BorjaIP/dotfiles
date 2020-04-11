@@ -122,8 +122,8 @@ local function list_update(w, buttons, label, data, objects)
     local text, bg, bg_image, icon, args = label(o, tb)
     args = args or {}
 
-    -- The text might be invalid, so use pcall.
-    if text == nil or text == '' then
+     -- The text might be invalid, so use pcall.
+     if text == nil or text == '' then
       tbm:set_margins(0)
     else
       -- truncate when title is too long
@@ -194,15 +194,13 @@ local tasklist_buttons =  awful.util.table.join(
 )
 
 local taskList = function(s)
-  return awful.widget.tasklist(
-    s,
-    awful.widget.tasklist.filter.currenttags,
-    tasklist_buttons,
-    {},
-    list_update,
-    wibox.layout.fixed.horizontal()
-  )
+  return awful.widget.tasklist{
+        screen = s, 
+        filter = awful.widget.tasklist.filter.currenttags,
+        buttons = tasklist_buttons,
+        update_function = list_update,
+        layout = wibox.layout.fixed.horizontal()
+    }
 end
 
 return taskList
-
