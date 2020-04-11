@@ -41,7 +41,6 @@ local naughty           = require("naughty")
 local freedesktop       = require("freedesktop")
 
 -- Others
-local my_table          = awful.util.table or gears.table -- 4.{0,1} compatibility
 local dpi               = require("beautiful.xresources").apply_dpi
 
 -- Buttons
@@ -98,37 +97,23 @@ local function run_once(cmd_arr)
 end
 
 
+awful.util.terminal = terminal
+
+
 -----------------------------------------------
 --
 --                   Layout
 --               
 -----------------------------------------------
 
-awful.util.terminal = terminal
-
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    -- awful.layout.suit.fair,
-    -- awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    --awful.layout.suit.corner.nw,
-    --awful.layout.suit.corner.ne,
-    --awful.layout.suit.corner.sw,
-    --awful.layout.suit.corner.se,
-    --lain.layout.cascade,
-    --lain.layout.cascade.tile,
-    --lain.layout.centerwork,
-    --lain.layout.centerwork.horizontal,
-    --lain.layout.termfair,
-    --lain.layout.termfair.center,
+    awful.layout.suit.tile.top
+    --awful.layout.suit.spiral,
+    --awful.layout.suit.spiral.dwindle
 }
 
 -- lain.layout.termfair.nmaster           = 3
@@ -261,11 +246,11 @@ client.connect_signal("request::titlebars", function(c)
 
     -- Default
     -- buttons for the titlebar
-    local buttons = my_table.join(
-        -- awful.button({ }, 1, function()
-            -- c:emit_signal("request::activate", "titlebar", {raise = true})
-            -- awful.mouse.client.move(c)
-        -- end),
+    local buttons = awful.util.table.join(
+        awful.button({ }, 1, function()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
+            awful.mouse.client.move(c)
+        end),
         -- awful.button({ }, 2, function() c:kill() end),
         awful.button({ }, 3, function()
             c:emit_signal("request::activate", "titlebar", {raise = true})
@@ -289,8 +274,8 @@ client.connect_signal("request::titlebars", function(c)
         },
         { -- Right
             awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
+            --awful.titlebar.widget.stickybutton   (c),
+            --awful.titlebar.widget.ontopbutton    (c),
             awful.titlebar.widget.maximizedbutton(c),
             awful.titlebar.widget.closebutton    (c),
             layout = wibox.layout.fixed.horizontal()
@@ -300,9 +285,9 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", {raise = true})
-end)
+--client.connect_signal("mouse::enter", function(c)
+--    c:emit_signal("request::activate", "mouse_enter", {raise = true})
+--end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)

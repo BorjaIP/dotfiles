@@ -7,37 +7,30 @@ local icons = require('themes.custom.icons.tags')
 local tags = {
     {
         icon = icons.web,
-        --defaultApp = apps.default.browser,
         screen = 1
     },
     {
         icon = icons.code,
-        --defaultApp = apps.default.editor,
         screen = 1
     },
     {
         icon = icons.social,
-        --defaultApp = apps.default.social,
         screen = 1
     },
     {
         icon = icons.game,
-        --defaultApp = apps.default.game,
         screen = 1
     },
     {
         icon = icons.folder,
-        --defaultApp = apps.default.files,
         screen = 1
     },
     {
         icon = icons.music,
-        --defaultApp = apps.default.music,
         screen = 1
     },
     {
         icon = icons.lab,
-        --defaultApp = apps.default.rofi,
         screen = 1
     }
 }

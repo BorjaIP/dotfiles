@@ -21,11 +21,11 @@ local tags                                      = require("themes.custom.tags")
 local taglistbuttons                            = require("keys.buttons").taglistbuttons
 
 -- Task list
-local tasklistbuttons                           = require("keys.buttons").tasklistbuttons
+local TaskList                                  = require('widget.tasklist')
 
 -- Icons
 -- Source : https://fontawesome.com/cheatsheet
-local icons = require('themes.custom.icons')
+local icons                                     = require('themes.custom.icons')
 
 -- Load custom colors based on Base16
 -- http://chriskempson.com/projects/base16/
@@ -47,12 +47,12 @@ theme.tasklist_font                             = "Noto Sans Regular 10"
 
 -- Backgrounds
 theme.bg_normal                                 = color.base00 --"00000000" -- Trasnparent
-theme.bg_focus                                  = color.base02
-theme.bg_urgent                                 = color.base01
-theme.fg_normal                                 = color.base07
-theme.fg_focus                                  = color.base02
-theme.fg_urgent                                 = "#af1d18"
-theme.fg_minimize                               = "#ffffff"
+theme.bg_focus                                  = color.base01
+theme.bg_urgent                                 = color.base02
+theme.fg_normal                                 = color.base03
+theme.fg_focus                                  = color.base07
+theme.fg_urgent                                 = color.base08
+theme.fg_minimize                               = color.base03
 
 -- Border
 theme.border_width                              = 2
@@ -60,15 +60,39 @@ theme.border_normal                             = color.base01
 theme.border_focus                              = color.base00
 theme.border_marked                             = color.base02
 
+-- Taglist
+theme.taglist_bg_normal                         = theme.bg_normal
+theme.taglist_bg_focus =
+  'linear:0,0:0,' ..
+  dpi(28) ..
+    ':0,' ..
+      theme.bg_focus ..
+        ':0.90,' .. theme.bg_focus .. ':0.90,' .. color.base08 .. ':1,' .. color.base08
+
+-- Tasklist
+theme.tasklist_font                             = 'Roboto medium 11'
+theme.tasklist_bg_normal                        = theme.bg_normal
+theme.tasklist_bg_focus =
+  'linear:0,0:0,' ..
+  dpi(28) ..
+    ':0,' ..
+      theme.bg_focus ..
+        ':0.90,' .. theme.bg_focus .. ':0.90,' .. color.base08 .. ':1,' .. color.base08
+theme.tasklist_bg_urgent                        = theme.bg_urgent
+theme.tasklist_fg_normal                        = theme.fg_normal
+theme.tasklist_fg_focus                         = theme.fg_focus
+theme.tasklist_fg_urgent                        = theme.fg_normal
+
+
 -- Menu
 theme.menu_height                               = 20
 theme.menu_width                                = 140
 -- theme.menu_bg_normal                            = "#000000"
 -- theme.menu_bg_focus                             = "#000000"
 -- theme.menu_border_width                         = 6
-theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
--- theme.awesome_icon                              = theme.dir .. "/icons/awesome.png"
+theme.awesome_icon                              = icons.awesome
 theme.icon_theme                                = "Papirus Dark"
+
 
 -- Title bar
 theme.titlebar_bg_focus                         = color.base00
@@ -76,36 +100,20 @@ theme.titlebar_fg_focus                         = color.base06
 theme.titlebar_bg_normal                        = color.base01
 theme.titlebar_fg_normal                        = color.base04
 
+
 --Layouts
-theme.layout_tile                               = theme.confdir .. "/icons/tile.png"
-theme.layout_tilegaps                           = theme.confdir .. "/icons/tilegaps.png"
-theme.layout_tileleft                           = theme.confdir .. "/icons/tileleft.png"
-theme.layout_tilebottom                         = theme.confdir .. "/icons/tilebottom.png"
-theme.layout_tiletop                            = theme.confdir .. "/icons/tiletop.png"
-theme.layout_fairv                              = theme.confdir .. "/icons/fairv.png"
-theme.layout_fairh                              = theme.confdir .. "/icons/fairh.png"
-theme.layout_spiral                             = theme.confdir .. "/icons/spiral.png"
-theme.layout_dwindle                            = theme.confdir .. "/icons/dwindle.png"
-theme.layout_max                                = theme.confdir .. "/icons/max.png"
-theme.layout_fullscreen                         = theme.confdir .. "/icons/fullscreen.png"
-theme.layout_magnifier                          = theme.confdir .. "/icons/magnifier.png"
-theme.layout_floating                           = theme.confdir .. "/icons/floating.png"
+theme.layout_floating                           = icons.floating
+theme.layout_tile                               = icons.tile
+theme.layout_tilebottom                         = icons.tilebottom
+theme.layout_tileleft                           = icons.tileleft
+theme.layout_tiletop                            = icons.tiletop
+
 
 -- Titlebar
-theme.titlebar_close_button_focus               = theme.confdir .. "/icons/titlebar/close_focus.png"
-theme.titlebar_close_button_normal              = theme.confdir .. "/icons/titlebar/close_normal.png"
-theme.titlebar_minimize_button_normal           = theme.confdir .. "/icons/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus            = theme.confdir .. "/icons/titlebar/minimize_focus.png"
-theme.titlebar_maximized_button_focus_inactive  = theme.confdir .. "/icons/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
-theme.titlebar_ontop_button_focus_inactive      = theme.confdir .. "/icons/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_focus_active        = theme.confdir .. "/icons/titlebar/ontop_focus_active.svg"
-theme.titlebar_sticky_button_focus_inactive     = theme.confdir .. "/icons/titlebar/sticky_focus_inactive.svg"
-theme.titlebar_sticky_button_focus_active       = theme.confdir .. "/icons/titlebar/sticky_focus_active.svg"
--- theme.titlebar_floating_button_normal_inactive  = theme.confdir .. "/icons/titlebar/floating_normal_inactive.png"
--- theme.titlebar_floating_button_focus_inactive   = theme.confdir .. "/icons/titlebar/floating_focus_inactive.png"
--- theme.titlebar_floating_button_normal_active    = theme.confdir .. "/icons/titlebar/floating_normal_active.png"
--- theme.titlebar_floating_button_focus_active     = theme.confdir .. "/icons/titlebar/floating_focus_active.png"
+theme.titlebar_close_button_focus               = icons.close
+theme.titlebar_close_button_normal              = icons.close
+theme.titlebar_maximized_button_focus_inactive  = icons.plus
+theme.titlebar_maximized_button_focus_active    = icons.plus
 
 local markup = lain.util.markup
 
@@ -180,69 +188,6 @@ theme.mpd = lain.widget.mpd({
     end
 })
 
--- Taglist icons with overline
-local widgettag_overline = {
-{
-    {
-        {
-            {
-                left = 1,
-                right = 1,
-                top = 5,
-                widget = wibox.container.margin
-            },
-            id = "overline",
-            bg = theme.bg_normal,
-            shape = gears.shape.rectangle,
-            widget = wibox.container.background
-        },
-        {
-            {   -- Add icon images
-                id     = "icon_role",
-                widget = wibox.widget.imagebox,
-            }, -- Margin for image
-            margins = 3,
-            widget = wibox.container.margin
-        },
-        layout = wibox.layout.fixed.vertical,
-    },
-    left  = 10,
-    right = 10,
-    widget = wibox.container.margin,
-},
-    -- id = "background_role",
-    widget = wibox.container.background,
-    shape = gears.shape.rectangle,
-    create_callback = function(self, c3, index, objects)
-        local focused = false
-        for _, x in pairs(awful.screen.focused().selected_tags) do
-            if x.index == index then
-                focused = true
-                break
-            end
-        end
-        if focused then
-            self:get_children_by_id("overline")[1].bg = color.base08
-        else
-            self:get_children_by_id("overline")[1].bg = theme.bg_normal
-        end
-    end,
-    update_callback = function(self, c3, index, objects)
-        local focused = false
-        for _, x in pairs(awful.screen.focused().selected_tags) do
-            if x.index == index then
-                focused = true
-                break
-            end
-        end
-        if focused then
-            self:get_children_by_id("overline")[1].bg = color.base08
-        else
-            self:get_children_by_id("overline")[1].bg = theme.bg_normal
-        end
-    end
-}
-
 -- Taglist icons
 local widgettag = {
 {
@@ -262,7 +207,6 @@ local widgettag = {
     widget = wibox.container.background,
     shape = gears.shape.rectangle,
 }
-
 
 function theme.at_screen_connect(s)
     -- Quake application
@@ -296,27 +240,18 @@ function theme.at_screen_connect(s)
         buttons = taglistbuttons
     }
 
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist{
-        screen = s,
-        filter = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklistbuttons,
-        widget_template = {
-            {
-                -- id     = "icon_role",
-                -- widget  = wibox.widget.imagebox
-                awful.widget.clienticon,
-                margins = 5,
-                widget  = wibox.container.margin
-            },
-            margins = 5,
-            widget = wibox.layout.align.vertical,
-        },
-        update_function,
-    }
-    
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 30, bg = theme.bg_normal, fg = theme.fg_normal })
+    s.mywibox = awful.wibar(
+      {
+        ontop = true,
+        screen = s,
+        height = dpi(28),
+        width = s.geometry.width,
+        stretch = false,
+        bg = theme.bg_normal,
+        fg = theme.fg_normal,
+      }
+    )
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -329,7 +264,7 @@ function theme.at_screen_connect(s)
             mpdicon,
             theme.mpd.widget,
         }, -- Middle widget
-        s.mytasklist,
+        TaskList(s),
         -- nil,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
