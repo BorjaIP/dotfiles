@@ -64,6 +64,9 @@ nnoremap <C-s> :setlocal spell spelllang=es_es <CR>
 " Exit the terminal
 tnoremap jk <C-\><C-n>
 
+" Save file as sudo when no sudo permissions
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
 " ---------------------------------------------------
 "                        Goyo
 " ---------------------------------------------------

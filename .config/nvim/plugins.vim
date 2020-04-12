@@ -67,6 +67,9 @@ Plug 'christoomey/vim-conflicted'
 " Delete, change and add such surroundings in pairs
 Plug 'tpope/vim-surround'
 
+" For highlighting SCSS elements
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+
 " Autocomplete code for web
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx']}
 
@@ -79,6 +82,9 @@ Plug 'tpope/vim-ragtag'
 " Commenting pluggin
 Plug 'scrooloose/nerdcommenter'
 
+" Highlight colors
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
 " Auto pairs completion in brackets
 Plug 'jiangmiao/auto-pairs'
 
@@ -90,12 +96,6 @@ Plug 'junegunn/goyo.vim'
 
 " Hyperfocus-writing
 Plug 'junegunn/limelight.vim'
-
-" Solution for snippets (generate code)
-" Plug 'SirVer/ultisnips'
-
-" Snippets for all
-Plug 'honza/vim-snippets'
 
 " Asynchronous completion
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -114,20 +114,8 @@ Plug 'honza/vim-snippets'
 " HTML5 support
 Plug 'othree/html5.vim', { 'for': 'html' }
 
-" Add syntax highlighting, indenting and autocompletion for Less
-" Plug 'groenewege/vim-less', { 'for': 'less' }
-
 " Better syntax CSS
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-
-" For highlighting SCSS elements
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-
-" CSS show colors
-Plug 'gko/vim-coloresque'
-
-" Pug / Jade support
-" Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 
 " ---------------------------------------------------
 "                      JavaScript

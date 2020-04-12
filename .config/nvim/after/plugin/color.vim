@@ -18,9 +18,10 @@ function s:CheckColorScheme()
     else
       echoerr 'Bad scheme ' . s:config[0] . ' in ' . s:config_file
     endif
-  else " default
+  else " default color
     set background=dark
-    color base16-material-darker
+    " color base16-material-darker
+    color base16-ocean
   endif
 
   doautocmd ColorScheme

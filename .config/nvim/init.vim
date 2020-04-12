@@ -37,12 +37,8 @@ set fileencoding=utf-8
 
 " Explicitly tell vim that the terminal supports 256 colors
 set t_Co=256
-
-" Enable 24 bit color support if supported
-if (has('mac') && empty($TMUX) && has('termguicolors'))
-  set termguicolors
-endif
-
+" Enable 24 bit color
+set termguicolors
 " Copy and paste for vim
 set clipboard=unnamed
 " Case insensitive searching
@@ -169,6 +165,26 @@ let g:NERDCompactSexyComs = 1
 " ---------------------------------------------------
 
 let g:fzf_layout = { 'down': '~25%' }
+
+" ---------------------------------------------------
+"                     Hexokinase 
+" ---------------------------------------------------
+let g:Hexokinase_refreshEvents = ['InsertLeave']
+
+let g:Hexokinase_optInPatterns = [
+\     'full_hex',
+\     'triple_hex',
+\     'rgb',
+\     'rgba',
+\     'hsl',
+\     'hsla',
+\     'colour_names'
+\ ]
+
+let g:Hexokinase_highlighters = ['backgroundfull']
+
+" Reenable hexokinase on enter
+autocmd VimEnter * HexokinaseTurnOn
 
 " ---------------------------------------------------
 "                     UltiSnips
@@ -344,17 +360,18 @@ let g:startify_commands = [
       \ ]
 
 let g:startify_bookmarks = [
+      \ { 'a': '~/.config/awesome/rc.lua' },
       \ { 'c': '~/.config/nvim/init.vim' },
       \ { 'p': '~/.config/nvim/plugins.vim' },
       \ { 's': '~/.config/nvim/shortcuts.vim' },
-      \ { 'z': '~/.config/zsh' }
+      \ { 'z': '~/.config/zsh/.zshrc' }
       \ ]
 
 " ---------------------------------------------------
 "                     NERDTree
 " ---------------------------------------------------
 
-let g:WebDevIconsOS = 'Darwin'
+" let g:WebDevIconsOS = 'Darwin'
 
 " Enables folder icon highlighting using exact match
 let g:NERDTreeHighlightFolders = 1

@@ -29,7 +29,7 @@ local globalkeys = my_table.join(
               {description = "show help",       group = "awesome"}),
     awful.key({ modkey,           }, "w",       function () awful.util.mymainmenu:show() end,
               {description = "show main menu",  group = "awesome"}),
-    awful.key({ modkey }, "b",
+    awful.key({ modkey,           }, "b",
               function ()
                   for s in screen do
                       s.mywibox.visible = not s.mywibox.visible
@@ -84,20 +84,18 @@ local globalkeys = my_table.join(
     -----------------------------------------------
     -- Resize
     awful.key({ altkey, "Shift"   }, "l",       function () awful.tag.incmwfact( 0.05) end,
-              {description = "increase master width factor", group = "layout"}),
+              {description = "increase layout width factor", group = "layout"}),
     awful.key({ altkey, "Shift"   }, "h",       function () awful.tag.incmwfact(-0.05) end,
-              {description = "decrease master width factor", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "h",       function () awful.tag.incnmaster( 1, nil, true) end,
-              {description = "increase the number of master clients", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "l",       function () awful.tag.incnmaster(-1, nil, true) end,
+              {description = "decrease layout width factor", group = "layout"}),
+    awful.key({ altkey, "Control" }, "l",       function () awful.tag.incnmaster(-1, nil, true) end,
               {description = "decrease the number of master clients", group = "layout"}),
-    awful.key({ modkey, "Control" }, "h",       function () awful.tag.incncol( 1, nil, true) end,
-              {description = "increase the number of columns", group = "layout"}),
-    awful.key({ modkey, "Control" }, "l",       function () awful.tag.incncol(-1, nil, true) end,
-              {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ modkey,           }, "space",   function () awful.layout.inc( 1) end,
+    awful.key({ altkey, "Control" }, "h",       function () awful.tag.incnmaster( 1, nil, true) end,
+              {description = "increase the number of master clients", group = "layout"}),
+
+
+    awful.key({ altkey,           }, "space",   function () awful.layout.inc( 1) end,
               {description = "select next",     group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "space",   function () awful.layout.inc(-1) end,
+    awful.key({ altkey, "Shift"   }, "space",   function () awful.layout.inc(-1) end,
               {description = "select previous", group = "layout"}),
 
 
@@ -106,9 +104,12 @@ local globalkeys = my_table.join(
     --                Launcher
     --               
     -----------------------------------------------
-    -- User programs
+    -- Terminal
     awful.key({ modkey,           }, "Return",  function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
+    -- Dmenu
+    awful.key({ modkey,           }, "space",   function () awful.spawn(string.format("dmenu_run")) end,
+              {description = "show dmenu",      group = "launcher"}),
 
     -- Prompt
     awful.key({ modkey,           }, "r",                  function () awful.screen.focused().mypromptbox:run() end,
@@ -210,14 +211,6 @@ local globalkeys = my_table.join(
               -- {description = "show filesystem", group = "widgets"}),
     awful.key({ altkey,           }, "w",       function () if beautiful.weather then beautiful.weather.show(7) end end,
               {description = "show weather",    group = "widgets"})
-
-    --[[ dmenu
-    awful.key({ modkey }, "x", function ()
-            os.execute(string.format("dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
-            beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
-        end,
-        {description = "show dmenu", group = "launcher"})
-    --]]
 
 )
 

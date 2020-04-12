@@ -89,7 +89,8 @@ function () {
     color "$SCHEME"
   else
     # Default
-    color material-darker 
+    # color material-darker 
+    color ocean-night 
   fi
 }
 

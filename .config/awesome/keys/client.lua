@@ -63,20 +63,18 @@ clientkeys = my_table.join(
     --------------------------------------
     --      Layout manipulation
     --------------------------------------
-    awful.key({ modkey, "Shift"   }, "j",       function () awful.client.swap.byidx(  1) end,
+    awful.key({ altkey, "Shift"   }, "j",       function () awful.client.swap.byidx(  1) end,
               {description = "swap with next client by index", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "k",       function () awful.client.swap.byidx( -1) end,
+    awful.key({ altkey, "Shift"   }, "k",       function () awful.client.swap.byidx( -1) end,
               {description = "swap with previous client by index", group = "client"}),
-    awful.key({ modkey,           }, "u",       awful.client.urgent.jumpto,
-              {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey,           }, 't',       function (c) awful.titlebar.toggle(c) end,
-              {description = "toggle title bar", group = "client"}),
     
     --------------------------------------
     --      Client options
     --------------------------------------
     awful.key({ modkey,           }, "q",       function (c) c:kill() end,
               {description = "close window",    group = "client"}),
+    awful.key({ modkey,           }, 't',       function (c) awful.titlebar.toggle(c) end,
+              {description = "toggle title bar", group = "client"}),
     awful.key({ altkey, "Shift"   }, "m",       lain.util.magnify_client,
               {description = "magnify client",  group = "client"}),
     awful.key({ modkey,           }, "f",
@@ -85,7 +83,7 @@ clientkeys = my_table.join(
                   c:raise()
               end,
               {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Control" }, "space",   awful.client.floating.toggle,
+    awful.key({ altkey, "Control" }, "space",   awful.client.floating.toggle,
               {description = "toggle floating", group = "client"}),
     awful.key({ modkey,           }, "n",
               function (c)
