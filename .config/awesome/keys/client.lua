@@ -7,9 +7,8 @@ local client, table = client, table
 
 local modkey            = require("keys.mod").modkey
 local altkey            = require("keys.mod").altkey
-local my_table          = awful.util.table or gears.table -- 4.{0,1} compatibility
 
-clientkeys = my_table.join(
+clientkeys = awful.util.table.join(
     --------------------------------------
     --      Client focus position
     --------------------------------------

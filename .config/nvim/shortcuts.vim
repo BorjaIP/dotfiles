@@ -13,9 +13,8 @@
 " #                                                              #
 " ################################################################
 
-" ESC to jk in 'insert and visual mode'
+" ESC to jk in 'insert mode'
 imap jk <Esc>
-vmap jk <Esc>
 
 " Map leader
 let mapleader = "\<Space>" 
@@ -42,7 +41,7 @@ nnoremap <leader>eg :e! ~/.gitconfig <CR>
 nnoremap <leader>t :set hlsearch! hlsearch? <CR>
 
 " Reload vim
-nnoremap <leader>re :source $MYVIMRC <CR>
+nnoremap <leader>re :source $VIMRC <CR>
 
 " Select all in normal mode
 nnoremap <leader>% <esc>ggVG <CR>

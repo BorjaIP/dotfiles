@@ -123,6 +123,12 @@ filetype indent on
 " This will start Startify
 autocmd VimEnter * if !argc() | Startify | wincmd w | endif
 
+" Save vim configuration
+autocmd BufWritePost .init.vim source $MYVIMRC
+
+" Configure Startify
+autocmd User Startified setlocal cursorline
+
 " Remember cursor position between vim sessions
 autocmd BufReadPost *
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
@@ -135,14 +141,11 @@ autocmd BufRead * normal zz
 autocmd FileType sh setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType sh set keywordprg=man
 
-" JSON support
-au! BufRead,BufNewFile *.json set filetype=json
-
 " Java/HTML/JS support
 autocmd FileType java,html,javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-" Configure Startify
-autocmd User Startified setlocal cursorline
+" JSON support
+au! BufRead,BufNewFile *.json set filetype=json
 
 " ################################################################
 " #                                                              #

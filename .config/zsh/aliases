@@ -12,17 +12,8 @@ alias sdn='sudo shutdown now'
 alias vi="nvim"
 alias vim="nvim"
 
-# Config files
+# Manage config files with git bare repository
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-
-# Enable color support
-# if [ -x /usr/bin/dircolors ]; then
-    # test -r ~/.dir_colors && eval "$(dircolors -b ~/.dir_colors)" || eval "&(dircolors -b)"
-    # alias ls='ls --color=auto --group-directories-first'
-    # alias grep='grep --color=auto'
-    # alias fgrep='fgrep --color=auto'
-    # alias egrep='egrep --color=auto'
-# fi
 
 # Enable color support
 alias ls='ls --color=always --group-directories-first'
@@ -36,7 +27,6 @@ alias l="ls -lah"
 alias la="ls -AF"
 alias ll="ls -lFh"
 alias rf="rm -rf"
-
 
 # Tmux aliases
 alias ta='tmux attach'

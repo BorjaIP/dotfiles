@@ -9,13 +9,12 @@ local beautiful         = require('beautiful')
 local awesome, client, screen, tag = awesome, client, screen, tag
 local string, os, table = string, os, table
 
-local my_table          = awful.util.table or gears.table -- 4.{0,1} compatibility
-local terminal          = os.getenv("TERMINAL") or "lxterminal"
+local terminal          = "alacritty"
 local modkey            = require("keys.mod").modkey
 local altkey            = require("keys.mod").altkey
 
 
-local globalkeys = my_table.join(
+local globalkeys = awful.util.table.join(
     -----------------------------------------------
     --
     --                Awesome keys
@@ -36,17 +35,6 @@ local globalkeys = my_table.join(
                   end
               end,
               {description = "toggle wibox",    group = "awesome"}),
-
-    -- awful.key({ modkey }, "x",
-              -- function ()
-                  -- awful.prompt.run {
-                    -- prompt       = "Run Lua code: ",
-                    -- textbox      = awful.screen.focused().mypromptbox.widget,
-                    -- exe_callback = awful.util.eval,
-                    -- history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  -- }
-              -- end,
-              -- {description = "lua execute prompt", group = "awesome"}),
 
     -----------------------------------------------
     --
@@ -110,9 +98,8 @@ local globalkeys = my_table.join(
     -- Dmenu
     awful.key({ modkey,           }, "space",   function () awful.spawn(string.format("dmenu_run")) end,
               {description = "show dmenu",      group = "launcher"}),
-
     -- Prompt
-    awful.key({ modkey,           }, "r",                  function () awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey,           }, "r",       function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt",      group = "launcher"}),
 
 
@@ -227,7 +214,7 @@ for i = 1, 9 do
         descr_move = {description = "move focused client to tag #", group = "tag"}
         descr_toggle_focus = {description = "toggle focused client on tag #", group = "tag"}
     end
-    global_keys = my_table.join(global_keys,
+    global_keys = awful.util.table.join(global_keys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
                   function ()

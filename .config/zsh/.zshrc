@@ -10,46 +10,36 @@
 
 ################################################################
 #                                                              #
-#                            EXPORTS                           #
+#                            CONFIG                            #
 #                                                              #
 ################################################################
-
-
-# Adding path directory for custom scripts
-PATH="$HOME/.local/bin${PATH:+:${PATH}}"
 
 # Add colors for tmux and term
-if [ -z "$TMUX" ]; then
-    export TERM=xterm-256color
-else
+export TERM=xterm-256color
 
-    export TERM=screen-256color
-fi
+setopt NO_BG_NICE
+setopt NO_HUP
+setopt NO_LIST_BEEP
+setopt LOCAL_OPTIONS
+setopt LOCAL_TRAPS
+setopt PROMPT_SUBST
 
-# Add color to man pages
-export MANROFFOPT='-c'
-export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
-export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
-export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
-export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
-export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
-export LESS_TERMCAP_mr=$(tput rev)
-export LESS_TERMCAP_mh=$(tput dim)
+# History file configuration
+HISTFILE="$HISTFILE"
+HISTSIZE=10000
+SAVEHIST=10000
 
+# History
+setopt HIST_VERIFY
+setopt EXTENDED_HISTORY
+setopt HIST_REDUCE_BLANKS
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt INC_APPEND_HISTORY
+setopt APPEND_HISTORY
 
-################################################################
-#                                                              #
-#                          PLUGINS                             #
-#                                                              #
-################################################################
-
-# Use syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Use history substring search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+# Aliases
+setopt COMPLETE_ALIASES
 
 # Add ZSH configuration
 for config ($ZDOTDIR/**) source $config
@@ -70,21 +60,28 @@ zstyle ':completion:*' completer _expand _complete _files _correct _approximate
 # Highlight on tab
 zstyle ':completion:*' menu select
 
-
-################################################################
-#                                                              #
-#                        FZF/BASE16                            #
-#                                                              #
-################################################################
-
 # Base16 shell setup
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
     eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-
 # Configure fzf
-export FZF_CTRL_R_COMMAND='--sort --exact'
-. /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
+################################################################
+#                                                              #
+#                          PLUGINS                             #
+#                                                              #
+################################################################
+
+# Autosuggestion
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Use syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Use history substring search
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
