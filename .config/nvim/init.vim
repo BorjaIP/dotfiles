@@ -124,7 +124,7 @@ filetype indent on
 autocmd VimEnter * if !argc() | Startify | wincmd w | endif
 
 " Save vim configuration
-autocmd BufWritePost .init.vim source $MYVIMRC
+autocmd BufWritePost init.vim source $MYVIMRC
 
 " Configure Startify
 autocmd User Startified setlocal cursorline
