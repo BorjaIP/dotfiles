@@ -88,8 +88,7 @@ arch_aur(){
 
 clone() {
     # Check if $HOME/.dotfiles exists.
-    if [ -d "$HOME/.dotfiles" ] 
-    then
+    if [ -d "$HOME/.dotfiles" ]; then
         info "Directory ${HOME}/.dotfiles exists" 
     else
         msg "Clone directory"
@@ -105,7 +104,7 @@ clone() {
     [ -d .config-backup ] && info "This directory exists!" || mkdir -p .config-backup
     config checkout
 
-    if [ $? = 0 ] then
+    if [ $? = 0 ]; then
         info "Checked out config"
     else
         msg "Backing up pre-existing dot files"
