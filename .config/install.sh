@@ -24,7 +24,6 @@ arch_pacman() {
     msg "Installing packages"
     packages=( \
         neofetch
-        lxapparance
         fzf
         vlc
         go
@@ -61,10 +60,14 @@ install_aur(){
 arch_aur(){
     # anything bellow needs to run unprivileged, mostly because of makepkg
     [ $UID = 0 ] && return
-
-    msg "Installing yay"
-    install_aur
-
+    
+    if ! [ -x "$(command -v yay)" ]; then
+        msg "Installing yay"
+        install_aur
+    else 
+        info "Yay is installed"
+    fi
+    
     msg "Installing AUR packages"
     aur_packages=( \
         nerd-font-inconsolata
@@ -84,30 +87,38 @@ arch_aur(){
 }
 
 clone() {
-
-    git clone --bare https://github.com/BorjaIP/dotfiles.git $HOME/.dotfiles
-
+    # Check if $HOME/.dotfiles exists.
+    if [ -d "$HOME/.dotfiles" ] 
+    then
+        info "Directory ${HOME}/.dotfiles exists" 
+    else
+        msg "Clone directory"
+        git clone --bare https://github.com/BorjaIP/dotfiles.git $HOME/.dotfiles
+    fi
+    
+    # Create config command to pull the repository
     function config {
         /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
     }
-
-    mkdir -p .config-backup
+    
+    # Create folder backup
+    [ -d .config-backup ] && info "This directory exists!" || mkdir -p .config-backup
     config checkout
 
-    if [ $? = 0 ]; then
-    msg "Checked out config"
+    if [ $? = 0 ] then
+        info "Checked out config"
     else
-        info "Backing up pre-existing dot files"
+        msg "Backing up pre-existing dot files"
         config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
-    fi;
+    fi
 
     config checkout
     config config status.showUntrackedFiles no
+    
 }
 
 
 clone
-
 arch_pacman
 arch_aur
 
