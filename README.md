@@ -19,7 +19,7 @@ This config repo is designed for Manjaro Linux based on Arch Linux.
 
 
 ```bash
-curl -Lks https://github.com/BorjaIP/dotfiles/blob/master/.config/install.sh | /bin/bash
+curl -Lks https://raw.githubusercontent.com/BorjaIP/dotfiles/master/.config/install.sh | /bin/bash
 ```
 
 
