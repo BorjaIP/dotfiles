@@ -1,6 +1,12 @@
-#!/usr/bin/bash
+#!/bin/sh
 
-error () {
+# Variables
+dotfiles_dir="$HOME/.dotfiles"
+backup_dir="$HOME/.dotfiles-backup"
+
+#### Helper functions ####
+
+error() {
     printf "$(tput bold)$(tput setaf 1) -> $1$(tput sgr0)\n" >&2
 }
 
@@ -17,11 +23,54 @@ die() {
     exit 1
 }
 
+#### FUNCTIONS ####
+
+clone() {
+
+    # Check if $dotfiles_dir exists.
+    [ -d "$dotfiles_dir" ] && info "Directory $dotfiles_dir exists" || ( msg "Clone directory" && git clone --bare https://github.com/BorjaIP/dotfiles.git $dotfiles_dir )    
+
+    # Create config command to pull the repository
+    function config {
+        /usr/bin/git --git-dir=$dotfiles_dir --work-tree=$HOME $@
+    }
+
+    # Enable the sparseCheckout option 
+    config config core.sparseCheckout true
+
+    # Create the file for ignore README.md
+    echo -e "/*\n!README.md" >> $dotfiles_dir/info/sparse-checkout
+
+    # Create folder backup
+    [ -d "$backup_dir" ] && info "Directory $backup_dir exists" || mkdir -p "$backup_dir"
+    
+    if config checkout; then
+        info "Checked out config"
+    else
+        msg "Backing up pre-existing dot files"
+	for f in $(config --no-pager diff --name-only master 2>&1); do
+	      target="$backup_dir/$f"
+	      d=$(dirname "$target")
+	      [ -d "$d" ] || mkdir -p "$d" 
+	      mv "$f" "$target"
+	done
+    fi
+
+    config checkout || die "Failed to checkout files"
+    #config submodule init
+    #config submodule update --init --recursive 
+    config config --local status.showUntrackedFiles no
+}
+
+resources() {
+    # Base16 theme
+    [ -d "$HOME/.config/base16-shell" ] && info "Base16 is already installed" || ( msg "Installing base16" && git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell )
+}
+
 arch_pacman() {
     root=''
     [ $UID = 0 ] || root='sudo'
 
-    msg "Installing packages"
     packages=( \
         neofetch
         fzf
@@ -32,33 +81,28 @@ arch_pacman() {
         flameshot
     )
 
-     # on a fresh install update prior to querying
-    $root pacman -Syu
-
     to_install=()
     for pack in $packages; do
         pacman -Qq $pack > /dev/null 2>&1 || to_install+=("$pack")
     done
 
     if [ "${#to_install}" -gt 0 ]; then
-        $root pacman -Sy $to_install
+        msg "Installing packages"
+        $root pacman --noconfirm --needed -S $to_install
     else
         info "All official packages are installed"
     fi
 
 }
 
-install_aur(){
-    # install yay for AUR packages
+install_aur() {
+    # Install yay for AUR packages
     git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-    cd ..
-    rm -rf yay
+    cd yay && makepkg -si && cd .. && rm -rf yay
 }
 
-arch_aur(){
-    # anything bellow needs to run unprivileged, mostly because of makepkg
+arch_aur() {
+    # Anything bellow needs to run unprivileged, mostly because of makepkg
     [ $UID = 0 ] && return
     
     if ! [ -x "$(command -v yay)" ]; then
@@ -68,7 +112,6 @@ arch_aur(){
         info "Yay is installed"
     fi
     
-    msg "Installing AUR packages"
     aur_packages=( \
         nerd-font-inconsolata
         vs-codium-bin
@@ -80,44 +123,38 @@ arch_aur(){
     done
 
     if [ "${#to_install}" -gt 0 ]; then
-        $root yay -Sy $to_install
+        msg "Installing AUR packages"
+        $root yay --noconfirm --needed -S $to_install
     else
         info "All AUR packages are installed"
     fi
 }
 
-clone() {
-    # Check if $HOME/.dotfiles exists.
-    if [ -d "$HOME/.dotfiles" ]; then
-        info "Directory ${HOME}/.dotfiles exists" 
-    else
-        msg "Clone directory"
-        git clone --bare https://github.com/BorjaIP/dotfiles.git $HOME/.dotfiles
-    fi
+update() {
+    root=''
+    [ $UID = 0 ] || root='sudo'
     
-    # Create config command to pull the repository
-    function config {
-        /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
-    }
+    # Update pacman
+    $root pacman -Syu --noconfirm && $root pacman -Syyu --noconfirm && $root pacman -Syyuw --noconfirm
     
-    # Create folder backup
-    [ -d .config-backup ] && info "This directory exists!" || mkdir -p .config-backup
-    config checkout
-
-    if [ $? = 0 ]; then
-        info "Checked out config"
-    else
-        msg "Backing up pre-existing dot files"
-        config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
-    fi
-
-    config checkout
-    config config status.showUntrackedFiles no
-    
+    # Update yay
+    yay -Syu --noconfirm && yay -Syyu --noconfirm 
 }
 
+finalize() {
+    msg "All done!"
+    exit
+}
 
+# First clone the repository
 clone
+
+# Install resources and other config files
+resources
+
+# Install packages
 arch_pacman
 arch_aur
 
+# Close 
+finalize
