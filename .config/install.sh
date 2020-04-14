@@ -40,7 +40,10 @@ clone() {
 
     # Create the file for ignore README.md
     echo -e "/*\n!README.md" >> $dotfiles_dir/info/sparse-checkout
-
+    
+    # Omit pager results
+    config config pager.branch false
+    
     # Create folder backup
     [ -d "$backup_dir" ] && info "Directory $backup_dir exists" || mkdir -p "$backup_dir"
     
@@ -48,7 +51,8 @@ clone() {
         info "Checked out config"
     else
         msg "Backing up pre-existing dot files"
-	for f in $(config --no-pager diff --name-only master 2>&1); do
+	# For diff use --> config --no-pager diff --name-only master 2>&1
+	for f in $(config checkout 2>&1 | egrep "\s+\." | awk {'print $1'}); do
 	      target="$backup_dir/$f"
 	      d=$(dirname "$target")
 	      [ -d "$d" ] || mkdir -p "$d" 
@@ -60,6 +64,7 @@ clone() {
     #config submodule init
     #config submodule update --init --recursive 
     config config --local status.showUntrackedFiles no
+    config config pager.branch true
 }
 
 resources() {
@@ -98,7 +103,7 @@ arch_pacman() {
 install_aur() {
     # Install yay for AUR packages
     git clone https://aur.archlinux.org/yay.git
-    cd yay && makepkg -si && cd .. && rm -rf yay
+    cd yay && makepkg -si --noconfirm && cd .. && rm -rf yay
 }
 
 arch_aur() {
