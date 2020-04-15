@@ -115,13 +115,13 @@ arch_aur() {
     )
 
     to_install=()
-    for pack in $packages; do
+    for pack in "${aur_packages[@]}"; do
         yay -Qq $pack > /dev/null 2>&1 || to_install+=("$pack")
     done
 
     if [ "${#to_install}" -gt 0 ]; then
         msg "Installing AUR packages"
-        $root yay --noconfirm --needed -S $to_install
+        pacmanyay --noconfirm --needed -S ${to_install[@]}
     else
         info "All AUR packages are installed"
     fi
