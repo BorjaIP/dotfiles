@@ -67,9 +67,12 @@ clone() {
     config config pager.branch true
 }
 
-resources() {
+install_tools() {
     # Base16 theme
     [ -d "$HOME/.config/base16-shell" ] && info "Base16 is already installed" || ( msg "Installing base16" && git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell )
+    
+    # Dmenu
+    cd .config/dmenu && sudo make install
 }
 
 arch_pacman() {
@@ -143,8 +146,8 @@ finalize() {
 # First clone the repository
 clone
 
-# Install resources and other config files
-resources
+# Install resources/tools and other config files
+install_tools
 
 # Install packages
 arch_pacman
