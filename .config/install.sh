@@ -77,6 +77,7 @@ arch_pacman() {
     [ $UID = 0 ] || root='sudo'
 
     packages=( \
+    	yay
         neofetch
         fzf
         vlc
@@ -84,41 +85,29 @@ arch_pacman() {
         alacritty
         neovim
         flameshot
+	lxappearance
     )
 
     to_install=()
-    for pack in $packages; do
+    for pack in "${packages[@]}"; do
         pacman -Qq $pack > /dev/null 2>&1 || to_install+=("$pack")
     done
 
     if [ "${#to_install}" -gt 0 ]; then
         msg "Installing packages"
-        $root pacman --noconfirm --needed -S $to_install
+        $root pacman --noconfirm --needed -S ${to_install[@]}
     else
         info "All official packages are installed"
     fi
 
 }
 
-install_aur() {
-    # Install yay for AUR packages
-    git clone https://aur.archlinux.org/yay.git
-    cd yay && makepkg -si --noconfirm && cd .. && rm -rf yay
-}
-
 arch_aur() {
     # Anything bellow needs to run unprivileged, mostly because of makepkg
     [ $UID = 0 ] && return
-    
-    if ! [ -x "$(command -v yay)" ]; then
-        msg "Installing yay"
-        install_aur
-    else 
-        info "Yay is installed"
-    fi
-    
+        
     aur_packages=( \
-        nerd-font-inconsolata
+        nerd-fonts-inconsolata
         vs-codium-bin
     )
 
@@ -160,6 +149,9 @@ resources
 # Install packages
 arch_pacman
 arch_aur
+
+# Update the system
+update
 
 # Close 
 finalize
