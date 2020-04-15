@@ -68,11 +68,15 @@ clone() {
 }
 
 install_tools() {
+    # Add some color to pacman
+    grep "^Color" /etc/pacman.conf >/dev/null || sed -i "s/^#Color$/Color/" /etc/pacman.conf
+    grep "ILoveCandy" /etc/pacman.conf >/dev/null || sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
+
     # Base16 theme
     [ -d "$HOME/.config/base16-shell" ] && info "Base16 is already installed" || ( msg "Installing base16" && git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell )
     
     # Dmenu
-    cd .config/dmenu && sudo make install
+    [ -x "$(command -v dmenu)" ] || ( msg "Installing Dmenu" && cd .config/dmenu && sudo make install )
 }
 
 arch_pacman() {
@@ -121,7 +125,7 @@ arch_aur() {
 
     if [ "${#to_install}" -gt 0 ]; then
         msg "Installing AUR packages"
-        pacmanyay --noconfirm --needed -S ${to_install[@]}
+        yay --noconfirm --needed -S ${to_install[@]}
     else
         info "All AUR packages are installed"
     fi
@@ -130,6 +134,9 @@ arch_aur() {
 update() {
     root=''
     [ $UID = 0 ] || root='sudo'
+    
+    # Create mirrors
+    $root pacman-mirrors -f
     
     # Update pacman
     $root pacman -Syu --noconfirm && $root pacman -Syyu --noconfirm && $root pacman -Syyuw --noconfirm
