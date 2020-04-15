@@ -115,7 +115,7 @@ arch_aur() {
         
     aur_packages=( \
         nerd-fonts-inconsolata
-        vs-codium-bin
+        vscodium-bin
     )
 
     to_install=()
