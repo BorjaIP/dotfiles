@@ -7,30 +7,38 @@ local icons = require('themes.custom.icons.tags')
 local tags = {
     {
         icon = icons.web,
+        defaultApp = 'firefox',
+        layout = awful.layout.suit.tile,
         screen = 1
     },
     {
         icon = icons.code,
+        layout = awful.layout.suit.tile,
         screen = 1
     },
     {
         icon = icons.social,
+        layout = awful.layout.suit.floating,
         screen = 1
     },
     {
         icon = icons.game,
+        layout = awful.layout.suit.floating,
         screen = 1
     },
     {
         icon = icons.folder,
+        layout = awful.layout.suit.floating,
         screen = 1
     },
     {
         icon = icons.music,
+        layout = awful.layout.suit.tile,
         screen = 1
     },
     {
-        icon = icons.lab,
+        icon = icons.terminal,
+        layout = awful.layout.suit.tile,
         screen = 1
     }
 }
@@ -43,10 +51,11 @@ function(s)
         {
             icon = tag.icon,
             icon_only = true,
-            layout = awful.layout.suit.tile,
+            layout = tag.layout,
             gap_single_client = true,
-            gap = 4,
+            gap = 3,
             screen = s,
+            defaultApp = tag.defaultApp,
             selected = i == 1
         }
         )

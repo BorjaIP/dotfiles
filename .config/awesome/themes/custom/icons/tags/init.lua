@@ -7,5 +7,5 @@ return {
   game = dir .. '/games.svg',
   social = dir .. '/forum.svg',
   music = dir .. '/music.svg',
-  lab = dir .. '/terminal.svg',  
+  terminal = dir .. '/terminal.svg',  
 }

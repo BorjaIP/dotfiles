@@ -41,7 +41,7 @@ local color = base16_palette[2]
 -- Theme options
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/custom"
-theme.wallpaper                                 = theme.confdir .. "/wall.png"
+theme.wallpaper                                 = "/media/data/Wallpapers/pink_universe.jpg"
 theme.font                                      = "Noto Sans Regular 10"
 theme.tasklist_font                             = "Noto Sans Regular 10"
 
@@ -55,9 +55,9 @@ theme.fg_urgent                                 = color.base08
 theme.fg_minimize                               = color.base03
 
 -- Border
-theme.border_width                              = 2
+theme.border_width                              = dpi(0.5)
 theme.border_normal                             = color.base01
-theme.border_focus                              = color.base00
+theme.border_focus                              = color.base0E
 theme.border_marked                             = color.base02
 
 -- Taglist
