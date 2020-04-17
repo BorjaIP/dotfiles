@@ -28,6 +28,8 @@ local globalkeys = awful.util.table.join(
               {description = "show help",       group = "awesome"}),
     awful.key({ modkey,           }, "w",       function () awful.util.mymainmenu:show() end,
               {description = "show main menu",  group = "awesome"}),
+    awful.key({ modkey,           }, "y",       function () awful.spawn(string.format("dm-tool lock")) end,
+              {description = "lock screen",  group = "awesome"}),
     awful.key({ modkey,           }, "b",
               function ()
                   for s in screen do

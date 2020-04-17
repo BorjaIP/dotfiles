@@ -55,9 +55,9 @@ theme.fg_urgent                                 = color.base08
 theme.fg_minimize                               = color.base03
 
 -- Border
-theme.border_width                              = dpi(0.5)
+theme.border_width                              = dpi(1) 
 theme.border_normal                             = color.base01
-theme.border_focus                              = color.base0E
+theme.border_focus                              = color.base08
 theme.border_marked                             = color.base02
 
 -- Taglist

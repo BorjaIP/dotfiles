@@ -10,6 +10,8 @@ export ZDOTDIR="$HOME"/.config/zsh
 export HISTFILE="$XDG_DATA_HOME"/zsh/history
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export MYVIMRC="$XDG_CONFIG_HOME"/nvim/init.vim
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 
 # Default programs
 export EDITOR="nvim"

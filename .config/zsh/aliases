@@ -8,6 +8,7 @@
 alias p='sudo pacman'
 alias sdn='sudo shutdown now'
 alias pclean='sudo pacman -Rcns $(pacman -Qdtq)'
+alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
 
 # vim
 alias vi="nvim"
