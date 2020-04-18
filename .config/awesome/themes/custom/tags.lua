@@ -2,7 +2,7 @@ local awful = require('awful')
 local gears = require('gears')
 local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
-local icons = require('themes.custom.icons.tags')
+local icons = require('themes.custom.icons')
 
 local tags = {
     {

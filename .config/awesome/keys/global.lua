@@ -18,7 +18,7 @@ local globalkeys = awful.util.table.join(
     -----------------------------------------------
     --
     --                Awesome keys
-    --               
+    --
     -----------------------------------------------
     awful.key({ modkey, "Control" }, "r",       awesome.restart,
               {description = "reload awesome",  group = "awesome"}),
@@ -41,7 +41,7 @@ local globalkeys = awful.util.table.join(
     -----------------------------------------------
     --
     --                Screen
-    --               
+    --
     -----------------------------------------------
     awful.key({ modkey, "Control" }, "j",       function () awful.screen.focus_relative( 1) end,
               {description = "focus the next screen", group = "screen"}),
@@ -51,7 +51,7 @@ local globalkeys = awful.util.table.join(
     -----------------------------------------------
     --
     --                Tags
-    --               
+    --
     -----------------------------------------------
     -- Tag browsing
     awful.key({ modkey,           }, "j",       awful.tag.viewprev,
@@ -70,7 +70,7 @@ local globalkeys = awful.util.table.join(
     -----------------------------------------------
     --
     --                Layout
-    --               
+    --
     -----------------------------------------------
     -- Resize
     awful.key({ altkey, "Shift"   }, "l",       function () awful.tag.incmwfact( 0.05) end,
@@ -92,7 +92,7 @@ local globalkeys = awful.util.table.join(
     -----------------------------------------------
     --
     --                Launcher
-    --               
+    --
     -----------------------------------------------
     -- Terminal
     awful.key({ modkey,           }, "Return",  function () awful.spawn(terminal) end,
@@ -108,7 +108,7 @@ local globalkeys = awful.util.table.join(
     -----------------------------------------------
     --
     --                Hotkeys
-    --               
+    --
     -----------------------------------------------
     -- Copy primary to clipboard (terminals to gtk)
     awful.key({ modkey            }, "c",       function () awful.spawn.with_shell("xsel | xsel -i -b") end,
@@ -118,8 +118,7 @@ local globalkeys = awful.util.table.join(
               {description = "copy gtk to terminal", group = "hotkeys"}),
 
     -- Take a screenshot
-    -- https://github.com/lcpz/dots/blob/master/bin/screenshot
-    awful.key({ altkey,           }, "p",       function() os.execute("screenshot") end,
+    awful.key({ altkey,           }, "p",       function() awful.spawn(string.format("flameshot gui")) end,
               {description = "take a screenshot", group = "hotkeys"}),
 
     -- Brightness
@@ -152,7 +151,7 @@ local globalkeys = awful.util.table.join(
     -----------------------------------------------
     --
     --                Widgets
-    --               
+    --
     -----------------------------------------------
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
@@ -194,10 +193,6 @@ local globalkeys = awful.util.table.join(
               {description = "mpc on/off",      group = "widgets"}),
 
     -- Widgets popups
-    awful.key({ altkey,           }, "c",       function () if beautiful.cal then beautiful.cal.show(7) end end,
-              {description = "show calendar",   group = "widgets"}),
-    -- awful.key({ altkey,           }, "h",       function () if beautiful.fs then beautiful.fs.show(7) end end,
-              -- {description = "show filesystem", group = "widgets"}),
     awful.key({ altkey,           }, "w",       function () if beautiful.weather then beautiful.weather.show(7) end end,
               {description = "show weather",    group = "widgets"})
 

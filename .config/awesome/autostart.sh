@@ -27,7 +27,7 @@ fi
 # Network monitor
 run nm-applet
 # Blur and transparency
-run compton
+run compton -b
 # Thunar run faster
 run thunar --daemon
 run xfsettingsd

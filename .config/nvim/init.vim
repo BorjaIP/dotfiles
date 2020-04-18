@@ -27,8 +27,6 @@ source ~/.config/nvim/shortcuts.vim
 " #                                                              #
 " ################################################################
 
-" Use Vim defaults
-set nocompatible
 " Add mouse in all modes
 set mouse=a
 " Encoding displayed and written to file in utf-8
@@ -46,8 +44,6 @@ set clipboard+=unnamedplus
 set ignorecase
 " Case-sensitive if expresson contains a capital letter
 set smartcase
-" Highlight search results
-" set hlsearch
 " Set incremental search, like modern browsers
 set incsearch
 " Don't redraw while executing macros
@@ -56,6 +52,10 @@ set nolazyredraw
 set noswapfile
 " Show cursorline
 set cursorline
+" Fix splitting
+set splitbelow splitright
+" Autoreload files if it changed
+set autoread
 
 " ################################################################
 " #                                                              #
@@ -79,8 +79,6 @@ set number relativenumber
 set showmatch
 " Bracket blinking.
 set matchtime=2
-" Set terminal title
-set title
 " Show incomplete commands
 set showcmd
 
@@ -95,13 +93,9 @@ set tabstop=4
 " Default shift width for indents
 set shiftwidth=4
 " Edit as if the tabs are 4 characters wide
-set softtabstop=6
+set softtabstop=4
 " Round indent to a multiple of 'shiftwidth'
 set shiftround
-
-" Toggle invisible characters (tabs)
-set list listchars=tab:\|\
-set list
 
 " ################################################################
 " #                                                              #
@@ -118,7 +112,7 @@ filetype indent on
 autocmd VimEnter * if !argc() | Startify | wincmd w | endif
 
 " Save vim configuration
-autocmd BufWritePost *.vim source $MYVIMRC
+" autocmd BufWritePost *.vim source $MYVIMRC
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e

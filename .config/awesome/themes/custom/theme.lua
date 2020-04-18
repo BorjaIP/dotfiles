@@ -185,6 +185,9 @@ theme.mpd = lain.widget.mpd({
     end
 })
 
+local systray = wibox.widget.systray()
+      systray:set_base_size(24)
+
 function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
@@ -204,10 +207,7 @@ function theme.at_screen_connect(s)
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(my_table.join(
                            awful.button({}, 1, function () awful.layout.inc( 1) end),
-                           -- awful.button({}, 2, function () awful.layout.set( awful.layout.layouts[1] ) end),
-                           awful.button({}, 3, function () awful.layout.inc(-1) end),
-                           awful.button({}, 4, function () awful.layout.inc( 1) end),
-                           awful.button({}, 5, function () awful.layout.inc(-1) end)))
+                           awful.button({}, 3, function () awful.layout.inc(-1) end)))
 
     -- Create the wibox
     s.mywibox = awful.wibar(
@@ -235,11 +235,7 @@ function theme.at_screen_connect(s)
         -- nil,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
-            --netdownicon,
-            --netdowninfo,
-            --netupicon,
-            --netupinfo.widget,
+            wibox.container.margin(systray, dpi(10), dpi(10), dpi(2), dpi(1)),
             wibox.container.margin(mem_icon, dpi(5), dpi(5), dpi(7), dpi(4)),
             memory.widget,
             wibox.container.margin(cpu_icon, dpi(5), dpi(5), dpi(7), dpi(6)),

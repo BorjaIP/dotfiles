@@ -4,6 +4,17 @@ return {
   awesome = dir .. '/awesome.png',
   close = dir .. '/close.svg',
   plus = dir .. '/plus.svg',
+  -- Tags
+  web = dir .. '/tags/firefox.svg',
+  code = dir .. '/tags/code.svg',
+  folder = dir .. '/tags/folder.svg',
+  game = dir .. '/tags/games.svg',
+  social = dir .. '/tags/forum.svg',
+  music = dir .. '/tags/music.svg',
+  terminal = dir .. '/tags/terminal.svg',
+  flask = dir .. '/tags/flask.svg',
+  code_braces = dir .. '/tags/code-braces.svg',
+  google = dir .. '/tags/google-controller.svg',
   -- Widgets
   volume = dir .. '/widgets/volume-high.svg',
   memory = dir .. '/widgets/memory.svg',

@@ -5,13 +5,12 @@ local table, client, tag, mouse = table, client, tag, mouse
 
 local modkey            = require("keys.mod").modkey
 local altkey            = require("keys.mod").altkey
-local my_table          = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 
 -----------------------------------------------
 --
 --                Mouse Bindings
---               
+--
 -----------------------------------------------
 -- Button 1 = Left click
 -- Button 2 = Central
@@ -23,13 +22,13 @@ local my_table          = awful.util.table or gears.table -- 4.{0,1} compatibili
 -- Button 8 = Back button
 -- Button 9 = Forward button
 
-local globalbuttons = my_table.join(
+local globalbuttons = awful.util.table.join(
     awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end),
     awful.button({ modkey }, 8, function() awful.tag.viewprev() end),
     awful.button({ modkey }, 9, function() awful.tag.viewnext() end)
 )
 
-local clientbuttons = my_table.join(
+local clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c)
         c:emit_signal("request::activate", "mouse_click", {raise = true})
     end),
@@ -45,7 +44,7 @@ local clientbuttons = my_table.join(
     awful.button({ modkey }, 9, function(t) awful.tag.viewnext(t.screen) end)
 )
 
-return { 
-    globalbuttons = globalbuttons, 
+return {
+    globalbuttons = globalbuttons,
     clientbuttons = clientbuttons
-} 
+}
