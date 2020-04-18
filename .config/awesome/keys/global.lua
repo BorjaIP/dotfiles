@@ -103,6 +103,9 @@ local globalkeys = awful.util.table.join(
     -- Prompt
     awful.key({ modkey,           }, "r",       function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt",      group = "launcher"}),
+    -- Settings
+    awful.key({ modkey,           }, "a",       function () awful.spawn(string.format("xfce4-settings-manager")) end,
+              {description = "run prompt",      group = "launcher"}),
 
 
     -----------------------------------------------
