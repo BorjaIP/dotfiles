@@ -2,11 +2,11 @@
 
          █████╗ ██╗    ██╗███████╗███████╗ ██████╗ ███╗   ███╗███████╗
         ██╔══██╗██║    ██║██╔════╝██╔════╝██╔═══██╗████╗ ████║██╔════╝
-        ███████║██║ █╗ ██║█████╗  ███████╗██║   ██║██╔████╔██║█████╗  
-        ██╔══██║██║███╗██║██╔══╝  ╚════██║██║   ██║██║╚██╔╝██║██╔══╝  
+        ███████║██║ █╗ ██║█████╗  ███████╗██║   ██║██╔████╔██║█████╗
+        ██╔══██║██║███╗██║██╔══╝  ╚════██║██║   ██║██║╚██╔╝██║██╔══╝
         ██║  ██║╚███╔███╔╝███████╗███████║╚██████╔╝██║ ╚═╝ ██║███████╗
         ╚═╝  ╚═╝ ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝
-                                                              
+
 ]]--
 
 
@@ -103,7 +103,7 @@ awful.util.terminal = terminal
 -----------------------------------------------
 --
 --                   Layout
---               
+--
 -----------------------------------------------
 
 awful.layout.layouts = {
@@ -130,7 +130,7 @@ awful.layout.layouts = {
 -----------------------------------------------
 --
 --                   Menu
---               
+--
 -----------------------------------------------
 -- Create a launcher widget and a main menu
 local myawesomemenu = {
@@ -161,7 +161,7 @@ awful.util.mymainmenu = freedesktop.menu.build({
 -----------------------------------------------
 --
 --                   Screen
---               
+--
 -----------------------------------------------
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
@@ -192,7 +192,7 @@ end)
 -----------------------------------------------
 --
 --                   Rules
---               
+--
 -----------------------------------------------
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
@@ -220,7 +220,7 @@ awful.rules.rules = {
 -----------------------------------------------
 --
 --                   Signals
---               
+--
 -----------------------------------------------
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
@@ -292,4 +292,6 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
+-- Autostart applications
+awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 

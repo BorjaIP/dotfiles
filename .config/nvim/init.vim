@@ -29,7 +29,8 @@ source ~/.config/nvim/shortcuts.vim
 
 " Use Vim defaults
 set nocompatible
-
+" Add mouse in all modes
+set mouse=a
 " Encoding displayed and written to file in utf-8
 scriptencoding utf-8
 set encoding=utf-8
@@ -40,13 +41,13 @@ set t_Co=256
 " Enable 24 bit color
 set termguicolors
 " Copy and paste for vim
-set clipboard=unnamed
+set clipboard+=unnamedplus
 " Case insensitive searching
 set ignorecase
 " Case-sensitive if expresson contains a capital letter
 set smartcase
 " Highlight search results
-set hlsearch
+" set hlsearch
 " Set incremental search, like modern browsers
 set incsearch
 " Don't redraw while executing macros
@@ -72,13 +73,6 @@ syntax on
 highlight SpecialKey ctermfg=236
 highlight NonText ctermfg=236
 
-" Make comments and HTML attributes italic
-highlight Comment cterm=italic
-highlight htmlArg cterm=italic
-highlight xmlAttrib cterm=italic
-highlight Type cterm=italic
-highlight Normal ctermbg=none
-
 " Show line numbers
 set number relativenumber
 " Show matching brackets.
@@ -101,12 +95,12 @@ set tabstop=4
 " Default shift width for indents
 set shiftwidth=4
 " Edit as if the tabs are 4 characters wide
-set softtabstop=6 
+set softtabstop=6
 " Round indent to a multiple of 'shiftwidth'
 set shiftround
 
 " Toggle invisible characters (tabs)
-set list listchars=tab:\|\ 
+set list listchars=tab:\|\
 set list
 
 " ################################################################
@@ -124,10 +118,10 @@ filetype indent on
 autocmd VimEnter * if !argc() | Startify | wincmd w | endif
 
 " Save vim configuration
-autocmd BufWritePost init.vim source $MYVIMRC
+autocmd BufWritePost *.vim source $MYVIMRC
 
-" Configure Startify
-autocmd User Startified setlocal cursorline
+" Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
 
 " Remember cursor position between vim sessions
 autocmd BufReadPost *
@@ -137,7 +131,10 @@ autocmd BufReadPost *
 " Center buffer around cursor when opening files
 autocmd BufRead * normal zz
 
-" BASH / ZSH support
+" Configure Startify
+autocmd User Startified setlocal cursorline
+
+" Sh files support
 autocmd FileType sh setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType sh set keywordprg=man
 
@@ -170,9 +167,9 @@ let g:NERDCompactSexyComs = 1
 let g:fzf_layout = { 'down': '~25%' }
 
 " ---------------------------------------------------
-"                     Hexokinase 
+"                     Hexokinase
 " ---------------------------------------------------
-let g:Hexokinase_refreshEvents = ['InsertLeave']
+let g:Hexokinase_refreshEvents = ['TextChanged', 'InsertLeave']
 
 let g:Hexokinase_optInPatterns = [
 \     'full_hex',
@@ -190,49 +187,11 @@ let g:Hexokinase_highlighters = ['backgroundfull']
 autocmd VimEnter * HexokinaseTurnOn
 
 " ---------------------------------------------------
-"                     UltiSnips
-" ---------------------------------------------------
-
-" Complete with TAB
-let g:UltiSnipsExpandTrigger="<tab>"
-
-" ---------------------------------------------------
-"                     JS Libraries
-" ---------------------------------------------------
-
-" Syntax file for JavaScript libraries
-let g:used_javascript_libs = 'angularui, angularuirouter, react, vue'
-
-" ---------------------------------------------------
-"                     Deoplete
-" ---------------------------------------------------
-
-" Enable autocomplete
-let g:deoplete#enable_at_startup = 1
-
-" ---------------------------------------------------
 "                       JSON
 " ---------------------------------------------------
 
 " Show correct syntax on JSON
 let g:vim_json_syntax_conceal = 0
-
-" ---------------------------------------------------
-"                       Emmet
-" ---------------------------------------------------
-
-let g:user_emmet_settings = {
-      \   'javascript.jsx': {
-      \   'extends': 'jsx',
-      \  },
-      \}
-
-" ---------------------------------------------------
-"                      Tsuquyomi
-" ---------------------------------------------------
-
-"  Method's signature in the popup menu
-let g:tsuquyomi_disable_default_mappings = 1
 
 " ---------------------------------------------------
 "                     Signify
@@ -250,7 +209,7 @@ let g:signify_sign_change = '!'
 
 " Show path for VimWiki and use markdown for this
 let g:vimwiki_list = [{'path': '~/Vimwiki/',
-      \ 'syntax': 'markdown', 
+      \ 'syntax': 'markdown',
       \ 'ext': '.md'}]
 
 " Extensions and syntax
@@ -264,13 +223,6 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown',
  let g:mkdp_auto_close = 0
 
 " ---------------------------------------------------
-"                     Limelight
-" ---------------------------------------------------
-
-" Highlight in Goyo mode
-let g:limelight_conceal_ctermfg = 240
-
-" ---------------------------------------------------
 "                       Goyo
 " ---------------------------------------------------
 
@@ -282,7 +234,6 @@ function! s:goyo_enter()
   set noshowmode
   set noshowcmd
   set scrolloff=999
-  Limelight
 endfunction
 
 function! s:goyo_leave()
@@ -291,7 +242,6 @@ function! s:goyo_leave()
   set showmode
   set showcmd
   set scrolloff=5
-  Limelight!
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -330,7 +280,7 @@ let g:ale_fixers['python'] = ['autopep8', 'yapf']
 " let g:ale_javascript_prettier_use_local_config = 1
 
 " ---------------------------------------------------
-"                  	 Startify
+"                   Startify
 " ---------------------------------------------------
 
 " Don't change to directory when selecting a file
@@ -373,8 +323,6 @@ let g:startify_bookmarks = [
 " ---------------------------------------------------
 "                     NERDTree
 " ---------------------------------------------------
-
-" let g:WebDevIconsOS = 'Darwin'
 
 " Enables folder icon highlighting using exact match
 let g:NERDTreeHighlightFolders = 1

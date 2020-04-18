@@ -1,4 +1,4 @@
---[[ 
+--[[
 
     Base16 Styling Guidelines:
     # base00 - Default Background
@@ -23,7 +23,7 @@
 return {
     -- Default Dark
     default_dark = {
-            base00      = "#000000", 
+            base00      = "#000000",
             base01      = "#282828",
             base02      = "#383838",
             base03      = "#585858",

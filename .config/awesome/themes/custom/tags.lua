@@ -28,11 +28,13 @@ local tags = {
     },
     {
         icon = icons.folder,
+        defaultApp = 'thunar',
         layout = awful.layout.suit.floating,
         screen = 1
     },
     {
         icon = icons.music,
+        defaultApp = 'spotify',
         layout = awful.layout.suit.tile,
         screen = 1
     },

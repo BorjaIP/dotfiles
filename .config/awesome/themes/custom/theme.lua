@@ -1,8 +1,8 @@
 --[[
              ████████╗██╗  ██╗███████╗███╗   ███╗███████╗
              ╚══██╔══╝██║  ██║██╔════╝████╗ ████║██╔════╝
-                ██║   ███████║█████╗  ██╔████╔██║█████╗  
-                ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║██╔══╝  
+                ██║   ███████║█████╗  ██╔████╔██║█████╗
+                ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║██╔══╝
                 ██║   ██║  ██║███████╗██║ ╚═╝ ██║███████╗
                 ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝
 --]]
@@ -55,7 +55,7 @@ theme.fg_urgent                                 = color.base08
 theme.fg_minimize                               = color.base03
 
 -- Border
-theme.border_width                              = dpi(1) 
+theme.border_width                              = dpi(1)
 theme.border_normal                             = color.base01
 theme.border_focus                              = color.base08
 theme.border_marked                             = color.base02
@@ -64,7 +64,7 @@ theme.border_marked                             = color.base02
 theme.taglist_bg_normal                         = theme.bg_normal
 theme.taglist_bg_focus =
   'linear:0,0:0,' ..
-  dpi(28) ..
+  dpi(30) ..
     ':0,' ..
       theme.bg_focus ..
         ':0.90,' .. theme.bg_focus .. ':0.90,' .. color.base08 .. ':1,' .. color.base08
@@ -74,7 +74,7 @@ theme.tasklist_font                             = 'Roboto medium 11'
 theme.tasklist_bg_normal                        = theme.bg_normal
 theme.tasklist_bg_focus =
   'linear:0,0:0,' ..
-  dpi(28) ..
+  dpi(30) ..
     ':0,' ..
       theme.bg_focus ..
         ':0.90,' .. theme.bg_focus .. ':0.90,' .. color.base08 .. ':1,' .. color.base08
@@ -116,7 +116,7 @@ local markup = lain.util.markup
 
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
-local mytextclock = wibox.widget.textclock(markup(color.base04, "%A %d %B ") .. markup(color.base04, "|") .. markup(color.base04, " %H:%M "))
+local mytextclock = wibox.widget.textclock(markup(color.base04, "%A %d %B ") .. markup(color.base04, " | ") .. markup(color.base04, " %H:%M " .. markup(color.base04, "  |  ")))
 mytextclock.font = theme.font
 
 -- Calendar
@@ -137,7 +137,7 @@ theme.volume = lain.widget.alsa({
             volume_now.level = volume_now.level .. "M"
         end
 
-        widget:set_markup(markup.fontfg(theme.font, color.base04, volume_now.level .. "% "))
+        widget:set_markup(markup.fontfg(theme.font, color.base04, volume_now.level .. "% " .. markup(color.base04, " | ")))
     end
 })
 
@@ -145,7 +145,7 @@ theme.volume = lain.widget.alsa({
 local cpu_icon = wibox.widget.imagebox(icons.cpu)
 local cpu = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, color.base04, cpu_now.usage .. "% "))
+        widget:set_markup(markup.fontfg(theme.font, color.base04, cpu_now.usage .. "% " .. markup(color.base04, " | ")))
     end
 })
 
@@ -153,7 +153,7 @@ local cpu = lain.widget.cpu({
 local mem_icon = wibox.widget.imagebox(icons.memory)
 local memory = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, color.base04, mem_now.used .. "M "))
+        widget:set_markup(markup.fontfg(theme.font, color.base04, mem_now.used .. "M " .. markup(color.base04, " | ")))
     end
 })
 
@@ -208,11 +208,10 @@ function theme.at_screen_connect(s)
                            awful.button({}, 3, function () awful.layout.inc(-1) end),
                            awful.button({}, 4, function () awful.layout.inc( 1) end),
                            awful.button({}, 5, function () awful.layout.inc(-1) end)))
-    
+
     -- Create the wibox
     s.mywibox = awful.wibar(
       {
-        ontop = true,
         screen = s,
         height = dpi(28),
         width = s.geometry.width,
@@ -227,7 +226,6 @@ function theme.at_screen_connect(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            s.mylayoutbox,
             TagList(s),
             s.mypromptbox,
             mpdicon,
@@ -242,13 +240,14 @@ function theme.at_screen_connect(s)
             --netdowninfo,
             --netupicon,
             --netupinfo.widget,
-            wibox.container.margin(mem_icon, 4, 4, 4, 4),
+            wibox.container.margin(mem_icon, dpi(5), dpi(5), dpi(7), dpi(4)),
             memory.widget,
-            wibox.container.margin(cpu_icon, 4, 6, 6, 6),
+            wibox.container.margin(cpu_icon, dpi(5), dpi(5), dpi(7), dpi(6)),
             cpu.widget,
-            wibox.container.margin(vol_icon, 4, 4, 4, 4),
+            wibox.container.margin(vol_icon, dpi(5), dpi(5), dpi(7), dpi(4)),
             theme.volume.widget,
             mytextclock,
+            s.mylayoutbox,
         },
     }
 end

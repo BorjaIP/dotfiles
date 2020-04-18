@@ -94,13 +94,6 @@ Plug 'w0rp/ale'
 " Goyo
 Plug 'junegunn/goyo.vim'
 
-" Hyperfocus-writing
-Plug 'junegunn/limelight.vim'
-
-" Asynchronous completion
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-
 " ################################################################
 " #                                                              #
 " #                          LENGUAGES                           #
