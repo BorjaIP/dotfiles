@@ -23,16 +23,16 @@ local widget_tags = {
     {
         {
             {   -- Add icon images
-                id     = "icon_role",
-                widget = wibox.widget.imagebox,
-            }, -- Margin for image
+                id      = "icon_role",
+                widget  = wibox.widget.imagebox,
+            }, -- Margin for resize icons
             margins = 4,
-            widget = wibox.container.margin,
-        },
-        left  = 10,
-        right = 10,
-        widget = wibox.container.margin,
-    },
+            widget  = wibox.container.margin,
+        },  -- Margin between tags
+        left    = 10,
+        right   = 10,
+        widget  = wibox.container.margin,
+    },  -- Show indicators
     id = "background_role",
     widget = wibox.container.background,
     shape = gears.shape.rectangle,
@@ -40,8 +40,8 @@ local widget_tags = {
 
 local tagList = function(s)
   return awful.widget.taglist{
-        screen = s, 
-        filter = awful.widget.taglist.filter.all, 
+        screen = s,
+        filter = awful.widget.taglist.filter.all,
         widget_template = widget_tags,
         buttons = taglist_buttons
     }

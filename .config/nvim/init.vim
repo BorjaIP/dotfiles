@@ -76,7 +76,7 @@ highlight NonText ctermfg=236
 " Show line numbers
 set number relativenumber
 " Show matching brackets.
-set showmatch
+" set showmatch
 " Bracket blinking.
 set matchtime=2
 " Show incomplete commands

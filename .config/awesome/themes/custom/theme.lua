@@ -14,7 +14,6 @@ local wibox                                     = require("wibox")
 local dpi                                       = require("beautiful.xresources").apply_dpi
 
 local os = os
-local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 -- Tags list
 local tags                                      = require("themes.custom.tags")
@@ -112,6 +111,9 @@ theme.titlebar_close_button_normal              = icons.close
 theme.titlebar_maximized_button_focus_inactive  = icons.plus
 theme.titlebar_maximized_button_focus_active    = icons.plus
 
+-- Systray
+theme.systray_icon_spacing = dpi(6)
+
 local markup = lain.util.markup
 
 -- Textclock
@@ -130,8 +132,15 @@ theme.cal = lain.widget.cal({
 })
 
 -- ALSA volume
-local vol_icon = wibox.widget.imagebox(icons.volume)
-theme.volume = lain.widget.alsa({
+local vol_icon = {
+    {
+        image   = icons.volume,
+        widget  = wibox.widget.imagebox
+    },
+	margins = dpi(6),
+	widget = wibox.container.margin
+}
+local volume = lain.widget.alsa({
     settings = function()
         if volume_now.status == "off" then
             volume_now.level = volume_now.level .. "M"
@@ -142,7 +151,14 @@ theme.volume = lain.widget.alsa({
 })
 
 -- CPU
-local cpu_icon = wibox.widget.imagebox(icons.cpu)
+local cpu_icon = {
+    {
+        image   = icons.cpu,
+        widget  = wibox.widget.imagebox
+    },
+	margins = dpi(6),
+	widget = wibox.container.margin
+}
 local cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, color.base04, cpu_now.usage .. "% " .. markup(color.base04, " | ")))
@@ -150,16 +166,23 @@ local cpu = lain.widget.cpu({
 })
 
 -- MEM
-local mem_icon = wibox.widget.imagebox(icons.memory)
+local mem_icon = {
+    {
+        image   = icons.memory,
+        widget  = wibox.widget.imagebox
+    },
+	margins = dpi(6),
+	widget = wibox.container.margin
+}
 local memory = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, color.base04, mem_now.used .. "M " .. markup(color.base04, " | ")))
+        widget:set_markup(markup.fontfg(theme.font, color.base04, mem_now.perc .. "% " .. markup(color.base04, " | ")))
     end
 })
 
 -- MPD
 local mpdicon = wibox.widget.imagebox()
-theme.mpd = lain.widget.mpd({
+local mpd = lain.widget.mpd({
     settings = function()
         mpd_notification_preset = {
             text = string.format("%s [%s] - %s\n%s", mpd_now.artist,
@@ -185,8 +208,52 @@ theme.mpd = lain.widget.mpd({
     end
 })
 
-local systray = wibox.widget.systray()
-      systray:set_base_size(24)
+-- Wifi/Ethernet connection
+local wifi_icon = wibox.widget.imagebox()
+local eth_icon = wibox.widget.imagebox()
+local net = lain.widget.net {
+    notify = "on",
+    wifi_state = "on",
+    eth_state = "on",
+    settings = function()
+        local eth0 = net_now.devices.eth0
+        if eth0 then
+            if eth0.ethernet then
+                eth_icon:set_image(ethernet_icon_filename)
+            else
+                eth_icon:set_image()
+            end
+        end
+
+        local wlan0 = net_now.devices.wlan0
+        if wlan0 then
+            if wlan0.wifi then
+                local signal = wlan0.signal
+                if signal < -83 then
+                    wifi_icon:set_image(wifi_weak_filename)
+                elseif signal < -70 then
+                    wifi_icon:set_image(wifi_mid_filename)
+                elseif signal < -53 then
+                    wifi_icon:set_image(wifi_good_filename)
+                elseif signal >= -53 then
+                    wifi_icon:set_image(wifi_great_filename)
+                end
+            else
+                wifi_icon:set_image()
+            end
+        end
+    end
+}
+
+-- Systray ( applications icons )
+local systray = {
+    wibox.widget {
+		base_size = dpi(20),
+		widget = wibox.widget.systray
+	},
+	margins = dpi(6),
+	widget = wibox.container.margin
+}
 
 function theme.at_screen_connect(s)
     -- Quake application
@@ -205,7 +272,7 @@ function theme.at_screen_connect(s)
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(my_table.join(
+    s.mylayoutbox:buttons( awful.util.table.join(
                            awful.button({}, 1, function () awful.layout.inc( 1) end),
                            awful.button({}, 3, function () awful.layout.inc(-1) end)))
 
@@ -229,19 +296,19 @@ function theme.at_screen_connect(s)
             TagList(s),
             s.mypromptbox,
             mpdicon,
-            theme.mpd.widget,
+            mpd,
         }, -- Middle widget
         TaskList(s),
-        -- nil,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.container.margin(systray, dpi(10), dpi(10), dpi(2), dpi(1)),
-            wibox.container.margin(mem_icon, dpi(5), dpi(5), dpi(7), dpi(4)),
-            memory.widget,
-            wibox.container.margin(cpu_icon, dpi(5), dpi(5), dpi(7), dpi(6)),
-            cpu.widget,
-            wibox.container.margin(vol_icon, dpi(5), dpi(5), dpi(7), dpi(4)),
-            theme.volume.widget,
+			systray,
+            net,
+            mem_icon,
+            memory,
+            cpu_icon,
+            cpu,
+            vol_icon,
+            volume,
             mytextclock,
             s.mylayoutbox,
         },

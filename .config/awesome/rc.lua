@@ -34,7 +34,7 @@ local beautiful         = require("beautiful")
 local lain              = require("lain")
 
 -- Notification library
-local naughty           = require("naughty")
+-- local naughty           = require("naughty")
 
 -- Menu
 --local menubar         = require("menubar")
@@ -115,16 +115,6 @@ awful.layout.layouts = {
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle
 }
-
--- lain.layout.termfair.nmaster           = 3
--- lain.layout.termfair.ncol              = 1
--- lain.layout.termfair.center.nmaster    = 3
--- lain.layout.termfair.center.ncol       = 1
--- lain.layout.cascade.tile.offset_x      = 2      --dpi(2)
--- lain.layout.cascade.tile.offset_y      = 32     --dpi(32)
--- lain.layout.cascade.tile.extra_padding = 5      --dpi(5)
--- lain.layout.cascade.tile.nmaster       = 5
--- lain.layout.cascade.tile.ncol          = 2
 
 
 -----------------------------------------------
