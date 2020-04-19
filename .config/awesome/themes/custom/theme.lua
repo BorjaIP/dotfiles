@@ -22,14 +22,18 @@ local TagList                                   = require('widget.taglist')
 -- Task list
 local TaskList                                  = require('widget.tasklist')
 
--- Icons
+-- =========================================
+--                  Icons
+-- =========================================
 -- Source : https://fontawesome.com/cheatsheet
 local icons                                     = require('themes.custom.icons')
 
+-- =========================================
+--                  Base 16
+-- =========================================
 -- Load custom colors based on Base16
 -- http://chriskempson.com/projects/base16/
 local base16_colors                             = require("themes.custom.base16-colors")
-
 local base16_palette = {
     base16_colors.default_dark,
     base16_colors.ocean,
@@ -37,15 +41,19 @@ local base16_palette = {
 }
 local color = base16_palette[2]
 
--- Theme options
+-- =========================================
+--              Theme options
+-- =========================================
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/custom"
 theme.wallpaper                                 = "/media/data/Wallpapers/pink_universe.jpg"
 theme.font                                      = "Noto Sans Regular 10"
-theme.tasklist_font                             = "Noto Sans Regular 10"
 
--- Backgrounds
-theme.bg_normal                                 = color.base00 --"00000000" -- Trasnparent
+-- =========================================
+--                Backgrounds
+-- =========================================
+theme.transparent                               = "00000000"
+theme.bg_normal                                 = color.base00
 theme.bg_focus                                  = color.base01
 theme.bg_urgent                                 = color.base02
 theme.fg_normal                                 = color.base03
@@ -53,13 +61,17 @@ theme.fg_focus                                  = color.base07
 theme.fg_urgent                                 = color.base08
 theme.fg_minimize                               = color.base03
 
--- Border
+-- =========================================
+--                  Border
+-- =========================================
 theme.border_width                              = dpi(1)
 theme.border_normal                             = color.base01
 theme.border_focus                              = color.base08
 theme.border_marked                             = color.base02
 
--- Taglist
+-- =========================================
+--                  Taglist
+-- =========================================
 theme.taglist_bg_normal                         = theme.bg_normal
 theme.taglist_bg_focus =
   'linear:0,0:0,' ..
@@ -68,7 +80,10 @@ theme.taglist_bg_focus =
       theme.bg_focus ..
         ':0.90,' .. theme.bg_focus .. ':0.90,' .. color.base08 .. ':1,' .. color.base08
 
--- Tasklist
+-- =========================================
+--                  Tasklist
+-- =========================================
+theme.tasklist_font                             = theme.font
 theme.tasklist_font                             = 'Roboto medium 11'
 theme.tasklist_bg_normal                        = theme.bg_normal
 theme.tasklist_bg_focus =
@@ -82,6 +97,17 @@ theme.tasklist_fg_normal                        = theme.fg_normal
 theme.tasklist_fg_focus                         = theme.fg_focus
 theme.tasklist_fg_urgent                        = theme.fg_normal
 theme.tasklist_plain_task_name                  = true
+
+-- =========================================
+--              Notifications
+-- =========================================
+theme.notification_font = theme.font
+theme.notification_bg = theme.bg_focus
+theme.notification_fg = theme.fg_focus
+theme.notification_border_width = dpi(0)
+theme.notification_margin = dpi(16)
+theme.notification_icon_size = dpi(32)
+theme.notification_border_color = theme.border_focus
 
 -- Menu
 theme.menu_height                               = 20

@@ -34,7 +34,10 @@ local beautiful         = require("beautiful")
 local lain              = require("lain")
 
 -- Notification library
--- local naughty           = require("naughty")
+local naughty           = require("naughty")
+
+-- Notifications
+require("module.notifications")
 
 -- Menu
 --local menubar         = require("menubar")
@@ -61,33 +64,6 @@ beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 
------------------------------------------------
---
---                Error handling
---
------------------------------------------------
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
-if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
-end
-
--- Handle runtime errors after startup
-do
-    local in_error = false
-    awesome.connect_signal("debug::error", function (err)
-        if in_error then return end
-        in_error = true
-
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = tostring(err) })
-        in_error = false
-    end)
-end
-
 -- Autostart windowless processes
 -- This function will run once every time Awesome is started
 local function run_once(cmd_arr)
@@ -99,13 +75,9 @@ end
 
 awful.util.terminal = terminal
 
-
------------------------------------------------
---
---                   Layout
---
------------------------------------------------
-
+-- =========================================
+--                  Layout
+-- =========================================
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
@@ -116,12 +88,9 @@ awful.layout.layouts = {
     --awful.layout.suit.spiral.dwindle
 }
 
-
------------------------------------------------
---
---                   Menu
---
------------------------------------------------
+-- =========================================
+--                  Menu
+-- =========================================
 -- Create a launcher widget and a main menu
 local myawesomemenu = {
     { "hotkeys", function() return false, hotkeys_popup.show_help end },
@@ -147,12 +116,9 @@ awful.util.mymainmenu = freedesktop.menu.build({
 
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 
-
------------------------------------------------
---
---                   Screen
---
------------------------------------------------
+-- =========================================
+--                  Screen
+-- =========================================
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
     -- Wallpaper
@@ -178,12 +144,9 @@ screen.connect_signal("arrange", function (s)
     end
 end)
 
-
------------------------------------------------
---
---                   Rules
---
------------------------------------------------
+-- =========================================
+--                  Rules
+-- =========================================
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -207,11 +170,9 @@ awful.rules.rules = {
 }
 
 
------------------------------------------------
---
---                   Signals
---
------------------------------------------------
+-- =========================================
+--                  Signals
+-- =========================================
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
@@ -226,6 +187,17 @@ client.connect_signal("manage", function (c)
     end
 end)
 
+-- Enable sloppy focus, so that focus follows mouse.
+--client.connect_signal("mouse::enter", function(c)
+--    c:emit_signal("request::activate", "mouse_enter", {raise = true})
+--end)
+
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- =========================================
+--                  Titlebar
+-- =========================================
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
     -- Custom
@@ -274,14 +246,9 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
--- Enable sloppy focus, so that focus follows mouse.
---client.connect_signal("mouse::enter", function(c)
---    c:emit_signal("request::activate", "mouse_enter", {raise = true})
---end)
-
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-
+-- =========================================
+--              Applications
+-- =========================================
 -- Autostart applications
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 
