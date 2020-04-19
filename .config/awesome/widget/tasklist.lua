@@ -7,6 +7,9 @@ local dpi                                       = require('beautiful').xresource
 local clickable_container                       = require('widget.clickable-container')
 local capi                                      = {button = _G.button}
 
+-- =========================================
+--              Auxiliar method
+-- =========================================
 --- Common method to create buttons.
 -- @tab buttons
 -- @param object
@@ -39,6 +42,9 @@ local function create_buttons(buttons, object)
   end
 end
 
+-- =========================================
+--              Auxiliar method
+-- =========================================
 local function list_update(w, buttons, label, data, objects)
   -- update the widgets, creating them if needed
   w:reset()
@@ -159,6 +165,9 @@ local function list_update(w, buttons, label, data, objects)
   end
 end
 
+-- =========================================
+--             Tasklist Buttons
+-- =========================================
 local tasklist_buttons =  awful.util.table.join(
     awful.button({ }, 1, function (c)
         if c == client.focus then
@@ -193,9 +202,12 @@ local tasklist_buttons =  awful.util.table.join(
     end)
 )
 
+-- =========================================
+--                Tasklist
+-- =========================================
 local taskList = function(s)
   return awful.widget.tasklist{
-        screen = s, 
+        screen = s,
         filter = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
         update_function = list_update,

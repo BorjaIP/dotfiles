@@ -4,6 +4,9 @@ local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
 local icons = require('themes.custom.icons')
 
+-- =========================================
+--              Tags Icons
+-- =========================================
 local tags = {
     {
         icon = icons.web,
@@ -45,6 +48,10 @@ local tags = {
     }
 }
 
+-- =========================================
+--              Screen Tags
+-- =========================================
+-- Windows in each tag
 awful.screen.connect_for_each_screen(
 function(s)
     for i, tag in pairs(tags) do

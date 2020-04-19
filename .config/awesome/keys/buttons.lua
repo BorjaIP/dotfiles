@@ -1,17 +1,11 @@
 local awful             = require("awful")
                           require("awful.autofocus")
--- Required variables
-local table, client, tag, mouse = table, client, tag, mouse
-
 local modkey            = require("keys.mod").modkey
 local altkey            = require("keys.mod").altkey
 
-
------------------------------------------------
---
---                Mouse Bindings
---
------------------------------------------------
+-- =========================================
+--              Mouse Bindings
+-- =========================================
 -- Button 1 = Left click
 -- Button 2 = Central
 -- Button 3 = Right click

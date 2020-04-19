@@ -10,53 +10,51 @@
 ]]--
 
 
------------------------------------------------
---
---             Variable definitions
---
------------------------------------------------
+-- =========================================
+--          Variable Definitions
+-- =========================================
 -- Required libraries
 local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
 local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
 
 -- Standard awesome library
 local gears             = require("gears")
+local beautiful         = require("beautiful")
 local awful             = require("awful")
                           require("awful.autofocus")
+local dpi               = require("beautiful.xresources").apply_dpi
 
 -- Widget and layout library
 local wibox             = require("wibox")
 local hotkeys_popup     = require("awful.hotkeys_popup").widget
                           require("awful.hotkeys_popup.keys")
 
--- Theme handling library
-local beautiful         = require("beautiful")
-local lain              = require("lain")
-
--- Notification library
-local naughty           = require("naughty")
-
--- Notifications
-require("module.notifications")
-
 -- Menu
 --local menubar         = require("menubar")
 local freedesktop       = require("freedesktop")
 
--- Others
-local dpi               = require("beautiful.xresources").apply_dpi
+-- =========================================
+--               Notifications
+-- =========================================
+require("module.notifications")
 
--- Buttons
-local clientbuttons     = require("keys.buttons").clientbuttons
-local globalbuttons     = require("keys.buttons").globalbuttons
-root.buttons(globalbuttons)
+-- =========================================
+--                  Buttons
+-- =========================================
+local buttons            = require("keys.buttons")
+root.buttons(buttons.globalbuttons)
 
--- Keys
+-- =========================================
+--                  Keys
+-- =========================================
 local clientkeys        = require("keys.client")
 local globalkeys        = require("keys.global")
+-- local keys              = require("keys")
 root.keys(globalkeys)
 
--- Themes
+-- =========================================
+--                  Themes
+-- =========================================
 local themes            = { "custom" }
 local chosen_theme      = themes[1]
 beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
@@ -144,6 +142,10 @@ screen.connect_signal("arrange", function (s)
     end
 end)
 
+-- Screen geometry
+screen_width = awful.screen.focused().geometry.width
+screen_height = awful.screen.focused().geometry.height
+
 -- =========================================
 --                  Rules
 -- =========================================
@@ -151,22 +153,74 @@ end)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons,
-                     size_hints_honor = false, -- Remove gaps between terminals
-                     screen = awful.screen.preferred,
-                     -- callback = awful.client.setslave,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+      properties = { border_width       = beautiful.border_width,
+                     border_color       = beautiful.border_normal,
+                     focus              = awful.client.focus.filter,
+                     raise              = true,
+                     keys               = clientkeys,
+                     buttons            = buttons.clientbuttons,
+                     size_hints_honor   = false, -- Remove gaps between terminals
+                     screen             = awful.screen.preferred,
+                     -- callback           = awful.client.setslave,
+                     placement          = awful.placement.no_overlap+awful.placement.no_offscreen,
      }
     },
 
     -- Titlebars
-    { rule_any = { type = { "normal", "dialog" } },
-      properties = { titlebars_enabled = false } }
+    { rule_any      = { type = { "normal", "dialog" } },
+      properties    = { titlebars_enabled = false } },
+
+    -- Firefox
+    { rule          = { instance = "firefox" },
+      properties    = {
+          tag       =  "1",
+          maximized = true
+      }
+    },
+
+    -- Thunar
+    { rule          = { instance = "thunar" },
+      properties    = {
+          honor_padding = true,
+          honor_workarea=true,
+          x         = screen_width * 0.25,
+          y         = screen_width * 0.15,
+          width     = screen_width * 0.5,
+          height    = screen_height * 0.5
+      }
+    },
+
+    -- Mailspring
+    { rule          = { instance = "mailspring" },
+      properties    = {
+          tag       = "3",
+          screen    = 2,
+          floating  = true,
+          width     = screen_width * 0.7,
+          height    = screen_height * 0.7
+      }
+    },
+
+    -- Transmission
+    { rule          = { instance = "transmission" },
+      properties    = {
+          tag       = "5",
+          screen    = 2,
+          floating  = true,
+          width     = screen_width * 0.5,
+          height    = screen_height * 0.6
+      }
+    },
+
+    --
+    { rule          = { instance = "gcr-prompter" },
+      properties    = {
+          floating  = true,
+          width     = screen_width * 0.4,
+          height    = screen_width * 0.4
+      }
+    },
+
 }
 
 

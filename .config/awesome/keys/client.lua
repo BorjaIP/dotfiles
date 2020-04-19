@@ -1,17 +1,16 @@
-local awful             = require("awful")
-                          require("awful.autofocus")
 local lain              = require("lain")
-
--- Required variables
-local client, table = client, table
-
 local modkey            = require("keys.mod").modkey
 local altkey            = require("keys.mod").altkey
+local awful             = require("awful")
+                          require("awful.autofocus")
 
+-- =========================================
+--              Client Keys
+-- =========================================
 clientkeys = awful.util.table.join(
-    --------------------------------------
-    --      Client focus position
-    --------------------------------------
+    -- =========================================
+    --          Client focus position
+    -- =========================================
     awful.key({ altkey,           }, "j",
               function()
                   awful.client.focus.global_bydirection("down")
@@ -59,17 +58,17 @@ clientkeys = awful.util.table.join(
               -- end,
               -- {description = "focus previous by index", group = "client"}),
 
-    --------------------------------------
-    --      Layout manipulation
-    --------------------------------------
+    -- =========================================
+    --          Layout manipulation
+    -- =========================================
     awful.key({ altkey, "Shift"   }, "j",       function () awful.client.swap.byidx(  1) end,
               {description = "swap with next client by index", group = "client"}),
     awful.key({ altkey, "Shift"   }, "k",       function () awful.client.swap.byidx( -1) end,
               {description = "swap with previous client by index", group = "client"}),
-    
-    --------------------------------------
-    --      Client options
-    --------------------------------------
+
+    -- =========================================
+    --              Client options
+    -- =========================================
     awful.key({ modkey,           }, "q",       function (c) c:kill() end,
               {description = "close window",    group = "client"}),
     awful.key({ modkey,           }, 't',       function (c) awful.titlebar.toggle(c) end,
@@ -109,5 +108,6 @@ clientkeys = awful.util.table.join(
               {description = "restore minimized", group = "client"})
 )
 
-
 return clientkeys
+
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

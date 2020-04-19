@@ -4,6 +4,9 @@ local gears                                     = require('gears')
 local dpi                                       = require('beautiful').xresources.apply_dpi
 
 
+-- =========================================
+--              Taglist Buttons
+-- =========================================
 local taglist_buttons = awful.util.table.join(
     awful.button({ }, 1, function(t) t:view_only() end),
     awful.button({ modkey }, 1, function(t)
@@ -19,6 +22,9 @@ local taglist_buttons = awful.util.table.join(
     end)
 )
 
+-- =========================================
+--              Taglist Icons
+-- =========================================
 local widget_tags = {
     {
         {
@@ -38,6 +44,9 @@ local widget_tags = {
     shape = gears.shape.rectangle,
 }
 
+-- =========================================
+--                  Taglist
+-- =========================================
 local tagList = function(s)
   return awful.widget.taglist{
         screen = s,

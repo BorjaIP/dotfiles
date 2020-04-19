@@ -1,5 +1,8 @@
 local dir = os.getenv('HOME') .. '/.config/awesome/themes/custom/icons'
 
+-- =========================================
+--                  Icons
+-- =========================================
 return {
   awesome = dir .. '/awesome.png',
   close = dir .. '/close.svg',

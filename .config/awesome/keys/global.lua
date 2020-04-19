@@ -4,22 +4,18 @@ local hotkeys_popup     = require("awful.hotkeys_popup").widget
                           require("awful.hotkeys_popup.keys")
 local lain              = require("lain")
 local beautiful         = require('beautiful')
-
--- Required variables
-local awesome, client, screen, tag = awesome, client, screen, tag
-local string, os, table = string, os, table
-
-local terminal          = "alacritty"
 local modkey            = require("keys.mod").modkey
 local altkey            = require("keys.mod").altkey
+local terminal          = "alacritty"
 
 
+-- =========================================
+--              Global Keys
+-- =========================================
 local globalkeys = awful.util.table.join(
-    -----------------------------------------------
-    --
-    --                Awesome keys
-    --
-    -----------------------------------------------
+    -- =========================================
+    --              Awesome Keys
+    -- =========================================
     awful.key({ modkey, "Control" }, "r",       awesome.restart,
               {description = "reload awesome",  group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q",       awesome.quit,
@@ -29,7 +25,7 @@ local globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "w",       function () awful.util.mymainmenu:show() end,
               {description = "show main menu",  group = "awesome"}),
     awful.key({ modkey,           }, "y",       function () awful.spawn(string.format("dm-tool lock")) end,
-              {description = "lock screen",  group = "awesome"}),
+              {description = "lock screen",     group = "awesome"}),
     awful.key({ modkey,           }, "b",
               function ()
                   for s in screen do
@@ -38,21 +34,17 @@ local globalkeys = awful.util.table.join(
               end,
               {description = "toggle wibox",    group = "awesome"}),
 
-    -----------------------------------------------
-    --
-    --                Screen
-    --
-    -----------------------------------------------
+    -- =========================================
+    --                  Screen
+    -- =========================================
     awful.key({ modkey, "Control" }, "j",       function () awful.screen.focus_relative( 1) end,
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey, "Control" }, "k",       function () awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
 
-    -----------------------------------------------
-    --
-    --                Tags
-    --
-    -----------------------------------------------
+    -- =========================================
+    --                  Tags
+    -- =========================================
     -- Tag browsing
     awful.key({ modkey,           }, "j",       awful.tag.viewprev,
               {description = "view previous",   group = "tag"}),
@@ -67,11 +59,9 @@ local globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Right",   function () lain.util.tag_view_nonempty(1) end,
               {description = "view  previous nonempty", group = "tag"}),
 
-    -----------------------------------------------
-    --
-    --                Layout
-    --
-    -----------------------------------------------
+    -- =========================================
+    --                  Layout
+    -- =========================================
     -- Resize
     awful.key({ altkey, "Shift"   }, "l",       function () awful.tag.incmwfact( 0.05) end,
               {description = "increase layout width factor", group = "layout"}),
@@ -88,12 +78,9 @@ local globalkeys = awful.util.table.join(
     awful.key({ altkey, "Shift"   }, "space",   function () awful.layout.inc(-1) end,
               {description = "select previous", group = "layout"}),
 
-
-    -----------------------------------------------
-    --
-    --                Launcher
-    --
-    -----------------------------------------------
+    -- =========================================
+    --                  Launcher
+    -- =========================================
     -- Terminal
     awful.key({ modkey,           }, "Return",  function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
@@ -107,12 +94,9 @@ local globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "a",       function () awful.spawn(string.format("xfce4-settings-manager")) end,
               {description = "run prompt",      group = "launcher"}),
 
-
-    -----------------------------------------------
-    --
-    --                Hotkeys
-    --
-    -----------------------------------------------
+    -- =========================================
+    --                  Hotkeys
+    -- =========================================
     -- Copy primary to clipboard (terminals to gtk)
     awful.key({ modkey            }, "c",       function () awful.spawn.with_shell("xsel | xsel -i -b") end,
               {description = "copy terminal to gtk", group = "hotkeys"}),
@@ -151,11 +135,9 @@ local globalkeys = awful.util.table.join(
               {description = "toggle mute",     group = "hotkeys"}),
 
 
-    -----------------------------------------------
-    --
-    --                Widgets
-    --
-    -----------------------------------------------
+    -- =========================================
+    --                  Widgets
+    -- =========================================
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
               function ()
@@ -193,15 +175,13 @@ local globalkeys = awful.util.table.join(
                   end
                   naughty.notify(common)
               end,
-              {description = "mpc on/off",      group = "widgets"}),
-
-    -- Widgets popups
-    awful.key({ altkey,           }, "w",       function () if beautiful.weather then beautiful.weather.show(7) end end,
-              {description = "show weather",    group = "widgets"})
+              {description = "mpc on/off",      group = "widgets"})
 
 )
 
-
+-- =========================================
+--                Number Keys
+-- =========================================
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
