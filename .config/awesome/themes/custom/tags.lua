@@ -1,8 +1,8 @@
-local awful = require('awful')
-local gears = require('gears')
+local awful = require("awful")
+local gears = require("gears")
 local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
-local icons = require('themes.custom.icons')
+local icons = require("themes.custom.icons")
 
 -- =========================================
 --              Tags Icons
@@ -10,7 +10,7 @@ local icons = require('themes.custom.icons')
 local tags = {
     {
         icon = icons.web,
-        defaultApp = 'firefox',
+        defaultApp = "firefox",
         layout = awful.layout.suit.tile,
         screen = 1
     },
@@ -31,13 +31,13 @@ local tags = {
     },
     {
         icon = icons.folder,
-        defaultApp = 'thunar',
+        defaultApp = "thunar",
         layout = awful.layout.suit.floating,
         screen = 1
     },
     {
         icon = icons.music,
-        defaultApp = 'spotify',
+        defaultApp = "spotify",
         layout = awful.layout.suit.tile,
         screen = 1
     },

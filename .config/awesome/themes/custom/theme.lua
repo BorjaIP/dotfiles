@@ -140,11 +140,16 @@ theme.titlebar_maximized_button_focus_active    = icons.plus
 -- Systray
 theme.systray_icon_spacing = dpi(6)
 
+-- =========================================
+--                  Widgets
+-- =========================================
+theme.textclock_fg                              = theme.fg_focus
+
 local markup = lain.util.markup
 
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
-local mytextclock = wibox.widget.textclock(markup(color.base04, "%A %d %B ") .. markup(color.base04, " | ") .. markup(color.base04, " %H:%M " .. markup(color.base04, "  |  ")))
+local mytextclock = wibox.widget.textclock(markup(theme.textclock_fg, "%A %d %B ") .. markup(theme.textclock_fg, " | ") .. markup(theme.textclock_fg, " %H:%M " .. markup(theme.textclock_fg, "  |  ")))
 mytextclock.font = theme.font
 
 -- Calendar

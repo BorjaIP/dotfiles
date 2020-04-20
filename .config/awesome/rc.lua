@@ -18,20 +18,24 @@ local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
 local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
 
 -- Standard awesome library
-local gears             = require("gears")
-local beautiful         = require("beautiful")
-local awful             = require("awful")
-                          require("awful.autofocus")
-local dpi               = require("beautiful.xresources").apply_dpi
+local gears = require("gears")
+local awful = require("awful")
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local dpi = require("beautiful.xresources").apply_dpi
+local hotkeys_popup = require("awful.hotkeys_popup").widget
 
--- Widget and layout library
-local wibox             = require("wibox")
-local hotkeys_popup     = require("awful.hotkeys_popup").widget
-                          require("awful.hotkeys_popup.keys")
+require("awful.autofocus")
+require("awful.hotkeys_popup.keys")
 
 -- Menu
 --local menubar         = require("menubar")
-local freedesktop       = require("freedesktop")
+local freedesktop = require("freedesktop")
+
+-- =========================================
+--               Notifications
+-- =========================================
+require("module.rules")
 
 -- =========================================
 --               Notifications
@@ -41,15 +45,12 @@ require("module.notifications")
 -- =========================================
 --                  Buttons
 -- =========================================
-local buttons            = require("keys.buttons")
-root.buttons(buttons.globalbuttons)
+root.buttons(require("keys.buttons").globalbuttons)
 
 -- =========================================
 --                  Keys
 -- =========================================
-local clientkeys        = require("keys.client")
-local globalkeys        = require("keys.global")
--- local keys              = require("keys")
+local globalkeys = require("keys.global")
 root.keys(globalkeys)
 
 -- =========================================
@@ -69,7 +70,6 @@ local function run_once(cmd_arr)
         awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd))
     end
 end
-
 
 awful.util.terminal = terminal
 
@@ -142,87 +142,6 @@ screen.connect_signal("arrange", function (s)
     end
 end)
 
--- Screen geometry
-screen_width = awful.screen.focused().geometry.width
-screen_height = awful.screen.focused().geometry.height
-
--- =========================================
---                  Rules
--- =========================================
--- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width       = beautiful.border_width,
-                     border_color       = beautiful.border_normal,
-                     focus              = awful.client.focus.filter,
-                     raise              = true,
-                     keys               = clientkeys,
-                     buttons            = buttons.clientbuttons,
-                     size_hints_honor   = false, -- Remove gaps between terminals
-                     screen             = awful.screen.preferred,
-                     -- callback           = awful.client.setslave,
-                     placement          = awful.placement.no_overlap+awful.placement.no_offscreen,
-     }
-    },
-
-    -- Titlebars
-    { rule_any      = { type = { "normal", "dialog" } },
-      properties    = { titlebars_enabled = false } },
-
-    -- Firefox
-    { rule          = { instance = "firefox" },
-      properties    = {
-          tag       =  "1",
-          maximized = true
-      }
-    },
-
-    -- Thunar
-    { rule          = { instance = "thunar" },
-      properties    = {
-          honor_padding = true,
-          honor_workarea=true,
-          x         = screen_width * 0.25,
-          y         = screen_width * 0.15,
-          width     = screen_width * 0.5,
-          height    = screen_height * 0.5
-      }
-    },
-
-    -- Mailspring
-    { rule          = { instance = "mailspring" },
-      properties    = {
-          tag       = "3",
-          screen    = 2,
-          floating  = true,
-          width     = screen_width * 0.7,
-          height    = screen_height * 0.7
-      }
-    },
-
-    -- Transmission
-    { rule          = { instance = "transmission" },
-      properties    = {
-          tag       = "5",
-          screen    = 2,
-          floating  = true,
-          width     = screen_width * 0.5,
-          height    = screen_height * 0.6
-      }
-    },
-
-    --
-    { rule          = { instance = "gcr-prompter" },
-      properties    = {
-          floating  = true,
-          width     = screen_width * 0.4,
-          height    = screen_width * 0.4
-      }
-    },
-
-}
-
 
 -- =========================================
 --                  Signals
@@ -262,7 +181,7 @@ client.connect_signal("request::titlebars", function(c)
 
     -- Default
     -- buttons for the titlebar
-    local buttons = awful.util.table.join(
+    local buttons = gears.table.join(
         awful.button({ }, 1, function()
             c:emit_signal("request::activate", "titlebar", {raise = true})
             awful.mouse.client.move(c)

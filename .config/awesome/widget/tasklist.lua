@@ -1,11 +1,11 @@
-local awful                                     = require('awful')
-local wibox                                     = require('wibox')
-local gears                                     = require('gears')
-local beautiful                                 = require('beautiful')
-local icons                                     = require('themes.custom.icons')
-local dpi                                       = require('beautiful').xresources.apply_dpi
-local clickable_container                       = require('widget.clickable-container')
-local capi                                      = {button = _G.button}
+local awful = require("awful")
+local wibox = require("wibox")
+local gears= require("gears")
+local icons = require("themes.custom.icons")
+local beautiful= require("beautiful")
+local dpi = require("beautiful").xresources.apply_dpi
+local clickable_container = require("widget.clickable-container")
+local capi = {button = _G.button}
 
 -- =========================================
 --              Auxiliar method
@@ -24,15 +24,15 @@ local function create_buttons(buttons, object)
       -- argument.
       local btn = capi.button {modifiers = b.modifiers, button = b.button}
       btn:connect_signal(
-        'press',
+        "press",
         function()
-          b:emit_signal('press', object)
+          b:emit_signal("press", object)
         end
       )
       btn:connect_signal(
-        'release',
+        "release",
         function()
-          b:emit_signal('release', object)
+          b:emit_signal("release", object)
         end
       )
       btns[#btns + 1] = btn
@@ -110,8 +110,8 @@ local function list_update(w, buttons, label, data, objects)
       -- Tooltip to display whole title, if it was truncated
       tt = awful.tooltip({
         objects = {tb},
-        mode = 'outside',
-        align = 'bottom',
+        mode = "outside",
+        align = "bottom",
         delay_show = 1,
       })
 
@@ -133,20 +133,20 @@ local function list_update(w, buttons, label, data, objects)
       tbm:set_margins(0)
     else
       -- truncate when title is too long
-      local textOnly = text:match('>(.-)<')
+      local textOnly = text:match(">(.-)<")
       if (textOnly:len() > 24) then
-        text = text:gsub('>(.-)<', '>' .. textOnly:sub(1, 21) .. '...<')
+        text = text:gsub(">(.-)<", ">" .. textOnly:sub(1, 21) .. "...<")
         tt:set_text(textOnly)
         tt:add_to_object(tb)
       else
         tt:remove_from_object(tb)
       end
       if not tb:set_markup_silently(text) then
-        tb:set_markup('<i>&lt;Invalid text&gt;</i>')
+        tb:set_markup("<i>&lt;Invalid text&gt;</i>")
       end
     end
     bgb:set_bg(bg)
-    if type(bg_image) == 'function' then
+    if type(bg_image) == "function" then
       -- TODO: Why does this pass nil as an argument?
       bg_image = bg_image(tb, o, nil, objects, i)
     end
@@ -168,7 +168,7 @@ end
 -- =========================================
 --             Tasklist Buttons
 -- =========================================
-local tasklist_buttons =  awful.util.table.join(
+local tasklist_buttons =  gears.table.join(
     awful.button({ }, 1, function (c)
         if c == client.focus then
             c.minimized = true

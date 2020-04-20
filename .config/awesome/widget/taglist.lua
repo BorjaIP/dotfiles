@@ -1,13 +1,13 @@
-local awful                                     = require('awful')
-local wibox                                     = require('wibox')
-local gears                                     = require('gears')
-local dpi                                       = require('beautiful').xresources.apply_dpi
+local awful = require("awful")
+local wibox = require("wibox")
+local gears = require("gears")
+local dpi = require("beautiful").xresources.apply_dpi
 
 
 -- =========================================
 --              Taglist Buttons
 -- =========================================
-local taglist_buttons = awful.util.table.join(
+local taglist_buttons = gears.table.join(
     awful.button({ }, 1, function(t) t:view_only() end),
     awful.button({ modkey }, 1, function(t)
         if client.focus then
@@ -32,11 +32,11 @@ local widget_tags = {
                 id      = "icon_role",
                 widget  = wibox.widget.imagebox,
             }, -- Margin for resize icons
-            margins = 4,
+            margins = dpi(6),
             widget  = wibox.container.margin,
         },  -- Margin between tags
-        left    = 10,
-        right   = 10,
+        left    = dpi(8),
+        right   = dpi(8),
         widget  = wibox.container.margin,
     },  -- Show indicators
     id = "background_role",
