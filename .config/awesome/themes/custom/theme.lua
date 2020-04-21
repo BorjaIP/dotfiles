@@ -7,33 +7,37 @@
                 ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝
 --]]
 
-local gears                                     = require("gears")
-local lain                                      = require("lain")
-local awful                                     = require("awful")
-local wibox                                     = require("wibox")
-local dpi                                       = require("beautiful.xresources").apply_dpi
-
+local gears = require("gears")
+local lain = require("lain")
+local awful = require("awful")
+local wibox = require("wibox")
+local dpi = require("beautiful.xresources").apply_dpi
 local os = os
 
--- Tags list
-local tags                                      = require("themes.custom.tags")
-local TagList                                   = require('widget.taglist')
+-- local widgets = require("widget.widgets")
+-- =========================================
+--                  Tagslist
+-- =========================================
+local tags = require("themes.custom.tags")
+local TagList = require('widget.taglist')
 
--- Task list
-local TaskList                                  = require('widget.tasklist')
+-- =========================================
+--                  Tasklist
+-- =========================================
+local TaskList = require('widget.tasklist')
 
 -- =========================================
 --                  Icons
 -- =========================================
 -- Source : https://fontawesome.com/cheatsheet
-local icons                                     = require('themes.custom.icons')
+local icons = require('themes.custom.icons')
 
 -- =========================================
 --                  Base 16
 -- =========================================
 -- Load custom colors based on Base16
 -- http://chriskempson.com/projects/base16/
-local base16_colors                             = require("themes.custom.base16-colors")
+local base16_colors = require("themes.custom.base16-colors")
 local base16_palette = {
     base16_colors.default_dark,
     base16_colors.ocean,
@@ -44,35 +48,35 @@ local color = base16_palette[2]
 -- =========================================
 --              Theme options
 -- =========================================
-local theme                                     = {}
-theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/custom"
-theme.wallpaper                                 = "/media/data/Wallpapers/pink_universe.jpg"
-theme.font                                      = "Noto Sans Regular 10"
+local theme = {}
+theme.confdir = os.getenv("HOME") .. "/.config/awesome/themes/custom"
+theme.wallpaper = "/media/data/Wallpapers/pink_universe.jpg"
+theme.font = "Noto Sans Regular 10"
 
 -- =========================================
 --                Backgrounds
 -- =========================================
-theme.transparent                               = "00000000"
-theme.bg_normal                                 = color.base00
-theme.bg_focus                                  = color.base01
-theme.bg_urgent                                 = color.base02
-theme.fg_normal                                 = color.base03
-theme.fg_focus                                  = color.base07
-theme.fg_urgent                                 = color.base08
-theme.fg_minimize                               = color.base03
+theme.transparent = "00000000"
+theme.bg_normal = color.base00
+theme.bg_focus = color.base01
+theme.bg_urgent = color.base02
+theme.fg_normal = color.base03
+theme.fg_focus = color.base07
+theme.fg_urgent = color.base08
+theme.fg_minimize = color.base03
 
 -- =========================================
 --                  Border
 -- =========================================
-theme.border_width                              = dpi(1)
-theme.border_normal                             = color.base01
-theme.border_focus                              = color.base08
-theme.border_marked                             = color.base02
+theme.border_width = dpi(1)
+theme.border_normal = color.base01
+theme.border_focus = color.base08
+theme.border_marked = color.base02
 
 -- =========================================
 --                  Taglist
 -- =========================================
-theme.taglist_bg_normal                         = theme.bg_normal
+theme.taglist_bg_normal = theme.bg_normal
 theme.taglist_bg_focus =
   'linear:0,0:0,' ..
   dpi(30) ..
@@ -83,20 +87,20 @@ theme.taglist_bg_focus =
 -- =========================================
 --                  Tasklist
 -- =========================================
-theme.tasklist_font                             = theme.font
-theme.tasklist_font                             = 'Roboto medium 11'
-theme.tasklist_bg_normal                        = theme.bg_normal
+theme.tasklist_font = theme.font
+theme.tasklist_font = 'Roboto medium 11'
+theme.tasklist_bg_normal = theme.bg_normal
 theme.tasklist_bg_focus =
   'linear:0,0:0,' ..
   dpi(30) ..
     ':0,' ..
       theme.bg_focus ..
         ':0.90,' .. theme.bg_focus .. ':0.90,' .. color.base08 .. ':1,' .. color.base08
-theme.tasklist_bg_urgent                        = theme.bg_urgent
-theme.tasklist_fg_normal                        = theme.fg_normal
-theme.tasklist_fg_focus                         = theme.fg_focus
-theme.tasklist_fg_urgent                        = theme.fg_normal
-theme.tasklist_plain_task_name                  = true
+theme.tasklist_bg_urgent = theme.bg_urgent
+theme.tasklist_fg_normal = theme.fg_normal
+theme.tasklist_fg_focus = theme.fg_focus
+theme.tasklist_fg_urgent = theme.fg_normal
+theme.tasklist_plain_task_name = true
 
 -- =========================================
 --              Notifications
@@ -110,32 +114,32 @@ theme.notification_icon_size = dpi(32)
 theme.notification_border_color = theme.border_focus
 
 -- Menu
-theme.menu_height                               = 20
-theme.menu_width                                = 140
+theme.menu_height = 20
+theme.menu_width = 140
 -- theme.menu_bg_normal                            = "#000000"
 -- theme.menu_bg_focus                             = "#000000"
 -- theme.menu_border_width                         = 6
-theme.awesome_icon                              = icons.awesome
-theme.icon_theme                                = "Papirus Dark"
+theme.awesome_icon = icons.awesome
+theme.icon_theme = "Papirus Dark"
 
 -- Title bar
-theme.titlebar_bg_focus                         = color.base00
-theme.titlebar_fg_focus                         = color.base06
-theme.titlebar_bg_normal                        = color.base01
-theme.titlebar_fg_normal                        = color.base04
+theme.titlebar_bg_focus = color.base00
+theme.titlebar_fg_focus = color.base06
+theme.titlebar_bg_normal = color.base01
+theme.titlebar_fg_normal = color.base04
 
 --Layouts
-theme.layout_floating                           = icons.floating
-theme.layout_tile                               = icons.tile
-theme.layout_tilebottom                         = icons.tilebottom
-theme.layout_tileleft                           = icons.tileleft
-theme.layout_tiletop                            = icons.tiletop
+theme.layout_floating = icons.floating
+theme.layout_tile = icons.tile
+theme.layout_tilebottom = icons.tilebottom
+theme.layout_tileleft = icons.tileleft
+theme.layout_tiletop = icons.tiletop
 
 -- Titlebar
-theme.titlebar_close_button_focus               = icons.close
-theme.titlebar_close_button_normal              = icons.close
-theme.titlebar_maximized_button_focus_inactive  = icons.plus
-theme.titlebar_maximized_button_focus_active    = icons.plus
+theme.titlebar_close_button_focus = icons.close
+theme.titlebar_close_button_normal = icons.close
+theme.titlebar_maximized_button_focus_inactive = icons.plus
+theme.titlebar_maximized_button_focus_active = icons.plus
 
 -- Systray
 theme.systray_icon_spacing = dpi(6)
@@ -143,7 +147,7 @@ theme.systray_icon_spacing = dpi(6)
 -- =========================================
 --                  Widgets
 -- =========================================
-theme.textclock_fg                              = theme.fg_focus
+theme.textclock_fg = theme.fg_focus
 
 local markup = lain.util.markup
 
@@ -168,8 +172,8 @@ local vol_icon = {
         image   = icons.volume,
         widget  = wibox.widget.imagebox
     },
-	margins = dpi(6),
-	widget = wibox.container.margin
+    margins = dpi(6),
+    widget = wibox.container.margin
 }
 local volume = lain.widget.alsa({
     settings = function()
@@ -339,7 +343,9 @@ function theme.at_screen_connect(s)
             cpu_icon,
             cpu,
             vol_icon,
+            -- widgets.vol_icon,
             volume,
+            -- widgets.mytextclock,
             mytextclock,
             s.mylayoutbox,
         },

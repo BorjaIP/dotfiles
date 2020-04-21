@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# This file runs when a Display Manager logs you into a graphical session.
+# I out all the variables in .zshenv and autorun
+
+[[ -f ~/.zshenv ]] && source ~/.zshenv
+
+# For autostart use Awesome autostart script

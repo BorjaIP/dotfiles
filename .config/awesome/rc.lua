@@ -50,8 +50,7 @@ root.buttons(require("keys.buttons").globalbuttons)
 -- =========================================
 --                  Keys
 -- =========================================
-local globalkeys = require("keys.global")
-root.keys(globalkeys)
+root.keys(require("keys.global"))
 
 -- =========================================
 --                  Themes
