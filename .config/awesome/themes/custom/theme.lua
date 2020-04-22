@@ -14,7 +14,12 @@ local wibox = require("wibox")
 local dpi = require("beautiful.xresources").apply_dpi
 local os = os
 
--- local widgets = require("widget.widgets")
+
+-- =========================================
+--                  Widgets
+-- =========================================
+require("widget.widgets")
+
 -- =========================================
 --                  Tagslist
 -- =========================================
@@ -113,7 +118,9 @@ theme.notification_margin = dpi(16)
 theme.notification_icon_size = dpi(32)
 theme.notification_border_color = theme.border_focus
 
--- Menu
+-- =========================================
+--                  Menu
+-- =========================================
 theme.menu_height = 20
 theme.menu_width = 140
 -- theme.menu_bg_normal                            = "#000000"
@@ -122,38 +129,47 @@ theme.menu_width = 140
 theme.awesome_icon = icons.awesome
 theme.icon_theme = "Papirus Dark"
 
--- Title bar
+-- =========================================
+--                Title bar
+-- =========================================
 theme.titlebar_bg_focus = color.base00
 theme.titlebar_fg_focus = color.base06
 theme.titlebar_bg_normal = color.base01
 theme.titlebar_fg_normal = color.base04
+theme.titlebar_close_button_focus = icons.close
+theme.titlebar_close_button_normal = icons.close
+theme.titlebar_maximized_button_focus_inactive = icons.plus
+theme.titlebar_maximized_button_focus_active = icons.plus
 
---Layouts
+-- =========================================
+--                  Layouts
+-- =========================================
 theme.layout_floating = icons.floating
 theme.layout_tile = icons.tile
 theme.layout_tilebottom = icons.tilebottom
 theme.layout_tileleft = icons.tileleft
 theme.layout_tiletop = icons.tiletop
 
--- Titlebar
-theme.titlebar_close_button_focus = icons.close
-theme.titlebar_close_button_normal = icons.close
-theme.titlebar_maximized_button_focus_inactive = icons.plus
-theme.titlebar_maximized_button_focus_active = icons.plus
-
--- Systray
+-- =========================================
+--                  Systray
+-- =========================================
+-- Systray ( applications icons )
 theme.systray_icon_spacing = dpi(6)
+local systray = {
+    wibox.widget {
+		base_size = dpi(20),
+		widget = wibox.widget.systray
+	},
+	margins = dpi(6),
+	widget = wibox.container.margin
+}
 
--- =========================================
---                  Widgets
--- =========================================
-theme.textclock_fg = theme.fg_focus
 
 local markup = lain.util.markup
 
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
-local mytextclock = wibox.widget.textclock(markup(theme.textclock_fg, "%A %d %B ") .. markup(theme.textclock_fg, " | ") .. markup(theme.textclock_fg, " %H:%M " .. markup(theme.textclock_fg, "  |  ")))
+local mytextclock = wibox.widget.textclock(markup(theme.fg_focus, "%A %d %B ") .. markup(theme.fg_focus, " | ") .. markup(theme.fg_focus, " %H:%M " .. markup(theme.fg_focus, "  |  ")))
 mytextclock.font = theme.font
 
 -- Calendar
@@ -165,130 +181,6 @@ theme.cal = lain.widget.cal({
         bg   = theme.bg_normal
     }
 })
-
--- ALSA volume
-local vol_icon = {
-    {
-        image   = icons.volume,
-        widget  = wibox.widget.imagebox
-    },
-    margins = dpi(6),
-    widget = wibox.container.margin
-}
-local volume = lain.widget.alsa({
-    settings = function()
-        if volume_now.status == "off" then
-            volume_now.level = volume_now.level .. "M"
-        end
-
-        widget:set_markup(markup.fontfg(theme.font, color.base04, volume_now.level .. "% " .. markup(color.base04, " | ")))
-    end
-})
-
--- CPU
-local cpu_icon = {
-    {
-        image   = icons.cpu,
-        widget  = wibox.widget.imagebox
-    },
-	margins = dpi(6),
-	widget = wibox.container.margin
-}
-local cpu = lain.widget.cpu({
-    settings = function()
-        widget:set_markup(markup.fontfg(theme.font, color.base04, cpu_now.usage .. "% " .. markup(color.base04, " | ")))
-    end
-})
-
--- MEM
-local mem_icon = {
-    {
-        image   = icons.memory,
-        widget  = wibox.widget.imagebox
-    },
-	margins = dpi(6),
-	widget = wibox.container.margin
-}
-local memory = lain.widget.mem({
-    settings = function()
-        widget:set_markup(markup.fontfg(theme.font, color.base04, mem_now.perc .. "% " .. markup(color.base04, " | ")))
-    end
-})
-
--- MPD
-local mpdicon = wibox.widget.imagebox()
-local mpd = lain.widget.mpd({
-    settings = function()
-        mpd_notification_preset = {
-            text = string.format("%s [%s] - %s\n%s", mpd_now.artist,
-                   mpd_now.album, mpd_now.date, mpd_now.title)
-        }
-
-        if mpd_now.state == "play" then
-            artist = mpd_now.artist .. " > "
-            title  = mpd_now.title .. " "
-            mpdicon:set_image(icons.note_on)
-        elseif mpd_now.state == "pause" then
-            artist = "mpd "
-            title  = "paused "
-        else
-            artist = ""
-            title  = ""
-            --mpdicon:set_image() -- not working in 4.0
-            mpdicon._private.image = nil
-            mpdicon:emit_signal("widget::redraw_needed")
-            mpdicon:emit_signal("widget::layout_changed")
-        end
-        widget:set_markup(markup.fontfg(theme.font, "#e54c62", artist) .. markup.fontfg(theme.font, "#b2b2b2", title))
-    end
-})
-
--- Wifi/Ethernet connection
-local wifi_icon = wibox.widget.imagebox()
-local eth_icon = wibox.widget.imagebox()
-local net = lain.widget.net {
-    notify = "on",
-    wifi_state = "on",
-    eth_state = "on",
-    settings = function()
-        local eth0 = net_now.devices.eth0
-        if eth0 then
-            if eth0.ethernet then
-                eth_icon:set_image(ethernet_icon_filename)
-            else
-                eth_icon:set_image()
-            end
-        end
-
-        local wlan0 = net_now.devices.wlan0
-        if wlan0 then
-            if wlan0.wifi then
-                local signal = wlan0.signal
-                if signal < -83 then
-                    wifi_icon:set_image(wifi_weak_filename)
-                elseif signal < -70 then
-                    wifi_icon:set_image(wifi_mid_filename)
-                elseif signal < -53 then
-                    wifi_icon:set_image(wifi_good_filename)
-                elseif signal >= -53 then
-                    wifi_icon:set_image(wifi_great_filename)
-                end
-            else
-                wifi_icon:set_image()
-            end
-        end
-    end
-}
-
--- Systray ( applications icons )
-local systray = {
-    wibox.widget {
-		base_size = dpi(20),
-		widget = wibox.widget.systray
-	},
-	margins = dpi(6),
-	widget = wibox.container.margin
-}
 
 function theme.at_screen_connect(s)
     -- Quake application
@@ -343,9 +235,7 @@ function theme.at_screen_connect(s)
             cpu_icon,
             cpu,
             vol_icon,
-            -- widgets.vol_icon,
             volume,
-            -- widgets.mytextclock,
             mytextclock,
             s.mylayoutbox,
         },
