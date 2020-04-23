@@ -27,35 +27,23 @@ source ~/.config/nvim/shortcuts.vim
 " #                                                              #
 " ################################################################
 
-" Add mouse in all modes
-set mouse=a
-" Encoding displayed and written to file in utf-8
-scriptencoding utf-8
-set encoding=utf-8
-set fileencoding=utf-8
+scriptencoding utf-8            " Encoding displayed and written to file in utf-8
+set t_Co=256                    " Explicitly tell vim that the terminal supports 256 colors
+set mouse=a                     " Add mouse in all modes
+set termguicolors               " Enable 24 bit color
+set clipboard+=unnamedplus      " Copy and paste for vim
+set ignorecase                  " Case insensitive searching
+set smartcase                   " Case-sensitive if expresson contains a capital letter
+set incsearch                   " Set incremental search, like modern browsers
+set nolazyredraw                " Don't redraw while executing macros
+set cursorline                  " Show cursorline
+set splitbelow splitright       " Fix splitting
+set autoread                    " Autoread files if it changed
+set noswapfile                  " Disable swap files
+set nobackup                    " Disable backup
+set undodir                     " List of directory names for undo (default '$XDG_DATA_HOME/nvim/undo')
+set undofile                    " Saves undo history
 
-" Explicitly tell vim that the terminal supports 256 colors
-set t_Co=256
-" Enable 24 bit color
-set termguicolors
-" Copy and paste for vim
-set clipboard+=unnamedplus
-" Case insensitive searching
-set ignorecase
-" Case-sensitive if expresson contains a capital letter
-set smartcase
-" Set incremental search, like modern browsers
-set incsearch
-" Don't redraw while executing macros
-set nolazyredraw
-" Disable swap files
-set noswapfile
-" Show cursorline
-set cursorline
-" Fix splitting
-set splitbelow splitright
-" Autoreload files if it changed
-set autoread
 
 " ################################################################
 " #                                                              #
@@ -63,39 +51,22 @@ set autoread
 " #                                                              #
 " ################################################################
 
-" The current buffer can be put to the background without writing to disk
-set hidden
-
-" Enable syntax highlighting
-syntax on
-
 " Make the highlighting of tabs and other non-text less annoying
 highlight SpecialKey ctermfg=236
 highlight NonText ctermfg=236
 
-" Show line numbers
-set number relativenumber
-" Show matching brackets.
-" set showmatch
-" Bracket blinking.
-set matchtime=2
-" Show incomplete commands
-set showcmd
+syntax on                       " Enable syntax highlighting
+set hidden                      " The current buffer can be put to the background without writing to disk
+set relativenumber              " Show line numbers
+set autoindent                  " Remember indentation of previous line
+set expandtab                   " Replace tabs with ${tabstop} spaces
+set tabstop=4                   " Tabs are 4 spaces
+set shiftwidth=4                " Default shift width for indents
+set softtabstop=4               " Edit as if the tabs are 4 characters wide
+set shiftround                  " Round indent to a multiple of 'shiftwidth'
+set showmatch                   " Show matching brackets.
+" set colorcolumn=80              " Show column
 
-" Remember indentation of previous line
-set autoindent
-" A tab as the first character on a line is shiftwidth
-set smarttab
-" Replace tabs with ${tabstop} spaces
-set expandtab
-" Tabs are 4 spaces
-set tabstop=4
-" Default shift width for indents
-set shiftwidth=4
-" Edit as if the tabs are 4 characters wide
-set softtabstop=4
-" Round indent to a multiple of 'shiftwidth'
-set shiftround
 
 " ################################################################
 " #                                                              #

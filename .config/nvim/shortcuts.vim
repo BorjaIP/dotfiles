@@ -56,6 +56,9 @@ nnoremap S :%s//gI<Left><Left><Left>
 nnoremap <leader>es :setlocal spell! spelllang=es_es <CR>
 nnoremap <leader>en :setlocal spell! spelllang=en_en <CR>
 
+nnoremap <leader>u :UndotreeShow<CR>
+
+
 " Exit the terminal
 tnoremap jk <C-\><C-n>
 

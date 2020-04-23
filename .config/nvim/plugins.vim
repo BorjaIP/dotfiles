@@ -40,14 +40,11 @@ Plug '/usr/local/opt/fzf'
 " Window max on '<leader>-w-o'
 Plug 'vim-scripts/ZoomWin'
 
-" Tmux integration for vim
-Plug 'benmills/vimux'
+" Visualizes undo history
+Plug 'mbbill/undotree'
 
 " Indicate added, modified and removed lines
 Plug 'mhinz/vim-signify'
-
-" Personal wiki
-Plug 'vimwiki/vimwiki'
 
 " Shows git diff in the numbers line
 Plug 'airblade/vim-gitgutter'
