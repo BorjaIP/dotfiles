@@ -42,7 +42,6 @@ fi
 
 run nm-applet           # Network monitor
 run compton -b          # Blur and transparency
-run thunar --daemon     # Thunar run faster
 run light-locker        # Locker for DM
 # run pa-applet         # PulseAudio control applet
 # run blueman-applet    # Bluetooth control
