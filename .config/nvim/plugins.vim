@@ -9,12 +9,6 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
-" ################################################################
-" #                                                              #
-" #                            SYSTEM                            #
-" #                                                              #
-" ################################################################
-
 " Base16 themes
 Plug 'chriskempson/base16-vim'
 
@@ -22,6 +16,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'tsony-tsonev/nerdtree-git-plugin'
 
 " Lightline (Bottom line)
 Plug 'itchyny/lightline.vim'
@@ -35,7 +30,6 @@ Plug 'mhinz/vim-startify'
 
 " Fuzzy finder files in vim (add path from brew)
 Plug 'junegunn/fzf.vim'
-Plug '/usr/local/opt/fzf'
 
 " Window max on '<leader>-w-o'
 Plug 'vim-scripts/ZoomWin'
@@ -43,38 +37,17 @@ Plug 'vim-scripts/ZoomWin'
 " Visualizes undo history
 Plug 'mbbill/undotree'
 
-" Indicate added, modified and removed lines
-Plug 'mhinz/vim-signify'
-
 " Shows git diff in the numbers line
 Plug 'airblade/vim-gitgutter'
 
 " Best Git wrapper of all time
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 
 " Resolving git merge and rebase conflicts
-Plug 'christoomey/vim-conflicted'
-
-" ################################################################
-" #                                                              #
-" #                          CODING                              #
-" #                                                              #
-" ################################################################
+" Plug 'christoomey/vim-conflicted'
 
 " Delete, change and add such surroundings in pairs
 Plug 'tpope/vim-surround'
-
-" For highlighting SCSS elements
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-
-" Autocomplete code for web
-Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx']}
-
-" Match tags in html, similar to paren support
-Plug 'gregsexton/MatchTag', { 'for': 'html' }
-
-" Endings for html, xml, etc.
-Plug 'tpope/vim-ragtag'
 
 " Commenting pluggin
 Plug 'scrooloose/nerdcommenter'
@@ -82,91 +55,31 @@ Plug 'scrooloose/nerdcommenter'
 " Highlight colors
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
-" Auto pairs completion in brackets
-Plug 'jiangmiao/auto-pairs'
-
-" ALE (Asynchronous Lint Engine)
-Plug 'w0rp/ale'
-
 " Goyo
 Plug 'junegunn/goyo.vim'
 
-" ################################################################
-" #                                                              #
-" #                          LENGUAGES                           #
-" #                                                              #
-" ################################################################
+" ALE (Asynchronous Lint Engine)
+Plug 'dense-analysis/ale'
 
-" ---------------------------------------------------
-"                 HTML/CSS/TEMPLATES
-" ---------------------------------------------------
+" Auto pairs completion in brackets
+Plug 'jiangmiao/auto-pairs'
 
-" HTML5 support
-Plug 'othree/html5.vim', { 'for': 'html' }
+" Autocomplete code for web
+" Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx']}
 
-" Better syntax CSS
-Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+" Match tags in html, similar to paren support
+" Plug 'gregsexton/MatchTag', { 'for': 'html' }
 
-" ---------------------------------------------------
-"                      JavaScript
-" ---------------------------------------------------
+" Endings for html, xml, etc.
+" Plug 'tpope/vim-ragtag'
 
-" JS syntax highlighting and improved indentation
-" Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
-
-" Syntax file for JavaScript libraries
-" Plug 'othree/javascript-libraries-syntax.vim'
-
-" Complete for JS
-" Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
-
-" Syntax highlighting and indenting for JSX (React)
-" Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'javascript'] }
-
-" Tools for developing with Node.js
-" Plug 'moll/vim-node', { 'for': 'javascript' }
-
-" Syntax for vue
-" Plug 'posva/vim-vue'
-
-" ---------------------------------------------------
-"                      TypeScript
-" ---------------------------------------------------
-
-" Syntax file and other settings for TypeScript
-" Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-
-" Completion typescrpit
-" Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }
-
-" Great asynchronous execution library for Vim (needed by tsuquyomi)"
-" Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-
-" ---------------------------------------------------
-"                       JSON
-" ---------------------------------------------------
-
-" Friendly and syntax JSON
-Plug 'elzr/vim-json', { 'for': 'json' }
-
-" ---------------------------------------------------
-"                        GO
-" ---------------------------------------------------
-
-" Go language support for Vim
-" Plug 'fatih/vim-go', { 'for': 'go' }
-
-" ---------------------------------------------------
-"                     MARKDOWN
-" ---------------------------------------------------
+" Syntax highlight and indentation suppor for multiple lenguages
+Plug 'sheerun/vim-polyglot'
 
 " Syntax support for md
-Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+" Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 
 " Markdown preview
-Plug 'iamcco/markdown-preview.vim'
-
-" Python style guide
-" Plug 'cburroughs/pep8.py'
+" Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
