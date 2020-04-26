@@ -1,8 +1,16 @@
+#                 _________  ___      ___ ___  ________  ___  ________
+#                |\   ___  \|\  \    /  /|\  \|\   ___ \|\  \|\   __  \
+#                \ \  \\ \  \ \  \  /  / | \  \ \  \_|\ \ \  \ \  \|\  \
+#                 \ \  \\ \  \ \  \/  / / \ \  \ \  \ \\ \ \  \ \   __  \
+#                  \ \  \\ \  \ \    / /   \ \  \ \  \_\\ \ \  \ \  \ \  \
+#                   \ \__\\ \__\ \__/ /     \ \__\ \_______\ \__\ \__\ \__\
+#                    \|__| \|__|\|__|/       \|__|\|_______|\|__|\|__|\|__|
+
+
 #
-# /home/borja/.config/nvidia/settings/.nvidia-settings-rc
+# .config/nvidia/settings/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA X Server Settings utility
-# Generated on Thu Apr 16 19:41:45 2020
 #
 
 # ConfigProperties:

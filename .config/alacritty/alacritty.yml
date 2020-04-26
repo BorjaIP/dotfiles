@@ -1,3 +1,14 @@
+#                 ________  ___       ________  ________  ________  ___  __________ __________   ___    ___
+#                |\   __  \|\  \     |\   __  \|\   ____\|\   __  \|\  \|\___   ___\\___   ___\ |\  \  /  /|
+#                \ \  \|\  \ \  \    \ \  \|\  \ \  \___|\ \  \|\  \ \  \|___ \  \_\|___ \  \_| \ \  \/  / /
+#                 \ \   __  \ \  \    \ \   __  \ \  \    \ \   _  _\ \  \   \ \  \     \ \  \   \ \    / /
+#                  \ \  \ \  \ \  \____\ \  \ \  \ \  \____\ \  \\  \\ \  \   \ \  \     \ \  \   \/  /  /
+#                   \ \__\ \__\ \_______\ \__\ \__\ \_______\ \__\\ _\\ \__\   \ \__\     \ \__\__/  / /
+#                    \|__|\|__|\|_______|\|__|\|__|\|_______|\|__|\|__|\|__|    \|__|      \|__|\___/ /
+#                                                                                              \|___|/
+
+
+# ------------------------------------------------------------------------------
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Any items in the `env` entry below will be added as
@@ -92,7 +103,7 @@ window:
 font:
   normal:
     family: Inconsolata Nerd Font Mono
-    # style: 
+    # style:
   #bold:
     #family: JetBrains Mono
     #style:
@@ -174,7 +185,7 @@ colors:
   #
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
-  
+
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
     text: '0x2b303b'
@@ -273,7 +284,7 @@ cursor:
   #   - _ Underline
   #   - | Beam
   style: Block
-  
+
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
   # unfocused_hollow: true
@@ -373,7 +384,7 @@ live_config_reload: true
 # mouse_bindings:
   # - { mouse: Middle, action: Copy }
   # - { mouse: Middle, action: PasteSelection }
-  
+
 # Key bindings
 #
 # Key bindings are specified as a list of objects. For example, this is the
@@ -514,4 +525,4 @@ key_bindings:
   #- { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
   #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
   #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
-  
+

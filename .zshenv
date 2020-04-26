@@ -1,3 +1,12 @@
+#                 ________  ________  ___  ___  _______   _________  ___      ___
+#                |\_____  \|\   ____\|\  \|\  \|\  ___ \ |\   ___  \|\  \    /  /|
+#                 \|___/  /\ \  \___|\ \  \\\  \ \   __/|\ \  \\ \  \ \  \  /  / /
+#                     /  / /\ \_____  \ \   __  \ \  \_|/_\ \  \\ \  \ \  \/  / /
+#                    /  /_/__\|____|\  \ \  \ \  \ \  \_|\ \ \  \\ \  \ \    / /
+#                   |\________\____\_\  \ \__\ \__\ \_______\ \__\\ \__\ \__/ /
+#                    \|_______|\_________\|__|\|__|\|_______|\|__| \|__|\|__|/
+#                             \|_________|
+
 
 # Adding path directory for custom scripts
 PATH="$HOME/.local/bin${PATH:+:${PATH}}"
@@ -35,3 +44,4 @@ export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
 export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 1)
 export LESS_TERMCAP_ue=$(tput sgr0)
 export LESS_TERMCAP_me=$(tput sgr0)
+

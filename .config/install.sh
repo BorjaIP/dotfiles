@@ -4,7 +4,9 @@
 dotfiles_dir="$HOME/.dotfiles"
 backup_dir="$HOME/.dotfiles-backup"
 
-#### Helper functions ####
+# ------------------------------------------------------------------------------
+#                            Helper functions
+# ------------------------------------------------------------------------------
 
 error() {
     printf "$(tput bold)$(tput setaf 1) -> $1$(tput sgr0)\n" >&2
@@ -23,30 +25,32 @@ die() {
     exit 1
 }
 
-#### FUNCTIONS ####
+# ------------------------------------------------------------------------------
+#                               Functions
+# ------------------------------------------------------------------------------
 
 clone() {
 
     # Check if $dotfiles_dir exists.
-    [ -d "$dotfiles_dir" ] && info "Directory $dotfiles_dir exists" || ( msg "Clone directory" && git clone --bare https://github.com/BorjaIP/dotfiles.git $dotfiles_dir )    
+    [ -d "$dotfiles_dir" ] && info "Directory $dotfiles_dir exists" || ( msg "Clone directory" && git clone --bare https://github.com/BorjaIP/dotfiles.git $dotfiles_dir )
 
     # Create config command to pull the repository
     function config {
         /usr/bin/git --git-dir=$dotfiles_dir --work-tree=$HOME $@
     }
 
-    # Enable the sparseCheckout option 
+    # Enable the sparseCheckout option
     config config core.sparseCheckout true
 
     # Create the file for ignore README.md
     echo -e "/*\n!README.md" >> $dotfiles_dir/info/sparse-checkout
-    
+
     # Omit pager results
     config config pager.branch false
-    
+
     # Create folder backup
     [ -d "$backup_dir" ] && info "Directory $backup_dir exists" || mkdir -p "$backup_dir"
-    
+
     if config checkout; then
         info "Checked out config"
     else
@@ -55,14 +59,14 @@ clone() {
 	for f in $(config checkout 2>&1 | egrep "\s+\." | awk {'print $1'}); do
 	      target="$backup_dir/$f"
 	      d=$(dirname "$target")
-	      [ -d "$d" ] || mkdir -p "$d" 
+	      [ -d "$d" ] || mkdir -p "$d"
 	      mv "$f" "$target"
 	done
     fi
 
     config checkout || die "Failed to checkout files"
     #config submodule init
-    #config submodule update --init --recursive 
+    #config submodule update --init --recursive
     config config --local status.showUntrackedFiles no
     config config pager.branch true
 }
@@ -74,7 +78,7 @@ install_tools() {
 
     # Base16 theme
     [ -d "$HOME/.config/base16-shell" ] && info "Base16 is already installed" || ( msg "Installing base16" && git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell )
-    
+
     # Dmenu
     [ -x "$(command -v dmenu)" ] || ( msg "Installing Dmenu" && cd .config/dmenu && sudo make install )
 }
@@ -112,7 +116,7 @@ arch_pacman() {
 arch_aur() {
     # Anything bellow needs to run unprivileged, mostly because of makepkg
     [ $UID = 0 ] && return
-        
+
     aur_packages=( \
         nerd-fonts-inconsolata
         vscodium-bin
@@ -134,15 +138,15 @@ arch_aur() {
 update() {
     root=''
     [ $UID = 0 ] || root='sudo'
-    
+
     # Create mirrors
     $root pacman-mirrors -f
-    
+
     # Update pacman
     $root pacman -Syu --noconfirm && $root pacman -Syyu --noconfirm && $root pacman -Syyuw --noconfirm
-    
+
     # Update yay
-    yay -Syu --noconfirm && yay -Syyu --noconfirm 
+    yay -Syu --noconfirm && yay -Syyu --noconfirm
 }
 
 finalize() {
@@ -163,5 +167,5 @@ arch_aur
 # Update the system
 update
 
-# Close 
+# Close
 finalize

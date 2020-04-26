@@ -1,8 +1,24 @@
 #!/bin/sh
 
+#                 ___    ___ ________  ________  ________  ________ ___  ___       _______
+#                |\  \  /  /|\   __  \|\   __  \|\   __  \|\  _____\\  \|\  \     |\  ___ \
+#                \ \  \/  / | \  \|\  \ \  \|\  \ \  \|\  \ \  \__/\ \  \ \  \    \ \   __/|
+#                 \ \    / / \ \   ____\ \   _  _\ \  \\\  \ \   __\\ \  \ \  \    \ \  \_|/__
+#                  /     \/   \ \  \___|\ \  \\  \\ \  \\\  \ \  \_| \ \  \ \  \____\ \  \_|\ \
+#                 /  /\   \    \ \__\    \ \__\\ _\\ \_______\ \__\   \ \__\ \_______\ \_______\
+#                /__/ /\ __\    \|__|     \|__|\|__|\|_______|\|__|    \|__|\|_______|\|_______|
+#                |__|/ \|__|
+
+
 # This file runs when a Display Manager logs you into a graphical session.
 # I out all the variables in .zshenv and autorun
 
 [[ -f ~/.zshenv ]] && source ~/.zshenv
+
+# Mouse control
+if (command -v ratbagd && ! pgrep ratbagd); then
+    ratbagctl "Logitech MX Master 2S" button 6 action set button 3 && \
+    ratbagctl "Logitech MX Master 2S" button 2 action set special ratchet-mode-switch
+fi
 
 # For autostart use Awesome autostart script

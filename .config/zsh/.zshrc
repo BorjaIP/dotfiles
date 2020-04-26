@@ -1,18 +1,16 @@
-#
-# 
-#                      ███████╗███████╗██╗  ██╗
-#                      ╚══███╔╝██╔════╝██║  ██║
-#                        ███╔╝ ███████╗███████║
-#                       ███╔╝  ╚════██║██╔══██║
-#                      ███████╗███████║██║  ██║
-#                      ╚══════╝╚══════╝╚═╝  ╚═╝
+#                 ________  ________  ___  ___
+#                |\_____  \|\   ____\|\  \|\  \
+#                 \|___/  /\ \  \___|\ \  \\\  \
+#                     /  / /\ \_____  \ \   __  \
+#                    /  /_/__\|____|\  \ \  \ \  \
+#                   |\________\____\_\  \ \__\ \__\
+#                    \|_______|\_________\|__|\|__|
+#                             \|_________|
 
 
-################################################################
-#                                                              #
-#                            CONFIG                            #
-#                                                              #
-################################################################
+# -----------------------------------------------------------------------------
+#                                   CONFIG
+# -----------------------------------------------------------------------------
 
 # Add colors for tmux and term
 export TERM=xterm-256color
@@ -52,7 +50,7 @@ compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # Pasting with tabs doesn't perform completion
-zstyle ':completion:*' insert-tab pending	
+zstyle ':completion:*' insert-tab pending
 
 # Default to file completion
 zstyle ':completion:*' completer _expand _complete _files _correct _approximate
@@ -68,7 +66,7 @@ if [[ "${terminfo[khome]}" != "" ]]; then
   bindkey "${terminfo[khome]}" beginning-of-line                # [Home] - Go to beginning of line
 fi
 bindkey '^[[8~' end-of-line                                     # End key
-bindkey '^[[F' end-of-line                                     # End key
+bindkey '^[[F' end-of-line                                      # End key
 if [[ "${terminfo[kend]}" != "" ]]; then
   bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
 fi
@@ -89,11 +87,9 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
-################################################################
-#                                                              #
-#                          PLUGINS                             #
-#                                                              #
-################################################################
+# -----------------------------------------------------------------------------
+#                                    PLUGINS
+# -----------------------------------------------------------------------------
 
 # Autosuggestion
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

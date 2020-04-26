@@ -1,10 +1,10 @@
-
-"             ███╗   ██╗██╗   ██╗██╗███╗   ███╗
-"             ████╗  ██║██║   ██║██║████╗ ████║
-"             ██╔██╗ ██║██║   ██║██║██╔████╔██║
-"             ██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║
-"             ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║
-"             ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
+"                _________  ___      ___ ___  _____ _______
+"               |\   ___  \|\  \    /  /|\  \|\   _ \  _   \
+"               \ \  \\ \  \ \  \  /  / | \  \ \  \\\__\ \  \
+"                \ \  \\ \  \ \  \/  / / \ \  \ \  \\|__| \  \
+"                 \ \  \\ \  \ \    / /   \ \  \ \  \    \ \  \
+"                  \ \__\\ \__\ \__/ /     \ \__\ \__\    \ \__\
+"                   \|__| \|__|\|__|/       \|__|\|__|     \|__|
 
 
 " -----------------------------------------------------------------------------
@@ -49,9 +49,9 @@ set shiftround                  " Round indent to a multiple of 'shiftwidth'
 " set colorcolumn=80              " Show column
 
 " Filetypes
-filetype on
-filetype plugin on
-filetype plugin indent on
+filetype on                     " File type detection
+filetype plugin indent on       " Add plugin indent changes
+" filetype plugin on              " Ignore plugin indent changes
 
 " This will start Startify
 autocmd VimEnter * if !argc() | Startify | wincmd w | endif
