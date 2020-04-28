@@ -1,16 +1,15 @@
 #!/bin/sh
-
-# Dmenu script for editing config files.
+# Dmenu script for editing some of my more frequently edited config files.
 
 options=("
-    alacritty
-    awesome
-    compton
-    neovim
-    vifm
-    xresources
-    zsh
-    quit
+alacritty
+awesome
+compton
+neovim
+vifm
+xresources
+zsh
+quit
 ")
 
 choice=$(echo -e "${options[@]}" | dmenu -i -p "Edit config file: ")
@@ -26,7 +25,7 @@ case "$choice" in
         choice="$HOME/.config/awesome/rc.lua"
         ;;
     compton)
-        choice="$HOME/.config/compton.conf"
+        choice="$HOME/.config/compton/compton.conf"
         ;;
     neovim)
         choice="$HOME/.config/nvim/init.vim"
@@ -38,7 +37,7 @@ case "$choice" in
         choice="$HOME/.Xresources"
         ;;
     zsh)
-        choice="$HOME/zsh/.zshrc"
+        choice="$HOME/.config/zsh/.zshrc"
         ;;
     *)
         exit 1
