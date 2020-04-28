@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# Dmenu script for editing config files.
+
+options=("
+    alacritty
+    awesome
+    compton
+    neovim
+    vifm
+    xresources
+    zsh
+    quit
+")
+
+choice=$(echo -e "${options[@]}" | dmenu -i -p "Edit config file: ")
+
+case "$choice" in
+    quit)
+        echo "Program terminated." && exit 1
+        ;;
+    alacritty)
+        choice="$HOME/.config/alacritty/alacritty.yml"
+        ;;
+    awesome)
+        choice="$HOME/.config/awesome/rc.lua"
+        ;;
+    compton)
+        choice="$HOME/.config/compton.conf"
+        ;;
+    neovim)
+        choice="$HOME/.config/nvim/init.vim"
+        ;;
+    vifm)
+        choice="$HOME/.config/vifm/vifmrc"
+        ;;
+    xresources)
+        choice="$HOME/.Xresources"
+        ;;
+    zsh)
+        choice="$HOME/zsh/.zshrc"
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+alacritty -e nvim "$choice"
