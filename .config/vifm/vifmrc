@@ -354,6 +354,19 @@ command! reload :write | restart
 "                                Key Maps
 " ------------------------------------------------------------------------------
 
+" Map leader
+let mapleader = " "
+
+" Remap splits
+noremap <space>w <C-w>
+
+" Map move cursor
+noremap H 0
+noremap L $
+noremap J 5j
+noremap K 5k
+
+
 " Start shell in current directory
 nnoremap s :shell<cr>
 
@@ -371,6 +384,20 @@ nnoremap O :!vscodium %f<cr>
 
 " Open file in the background using its default program
 nnoremap gb :file &<cr>l
+
+" Mappings for faster renaming
+nnoremap I cw<c-a>
+nnoremap cc cw<c-u>
+nnoremap A cw
+
+" Open console in current directory
+nnoremap ,t :!xterm &<cr>
+
+" Open editor to edit vifmrc and apply settings after returning to vifm
+nnoremap ,c :write | edit $MYVIFMRC | restart<cr>
+
+" Toggle wrap setting on ,w key
+nnoremap ,w :set wrap!<cr>
 
 " Interaction with system clipboard
 if has('win')
@@ -391,20 +418,6 @@ elseif executable('xsel')
     nnoremap yf :!echo -n %c:p | xsel --input --primary %i &&
                 \ echo -n %c:p | xsel --clipboard --input %i<cr>
 endif
-
-" Mappings for faster renaming
-nnoremap I cw<c-a>
-nnoremap cc cw<c-u>
-nnoremap A cw
-
-" Open console in current directory
-nnoremap ,t :!xterm &<cr>
-
-" Open editor to edit vifmrc and apply settings after returning to vifm
-nnoremap ,c :write | edit $MYVIFMRC | restart<cr>
-
-" Toggle wrap setting on ,w key
-nnoremap ,w :set wrap!<cr>
 
 " Example of standard two-panel file managers mappings
 nnoremap <f3> :!less %f<cr>
