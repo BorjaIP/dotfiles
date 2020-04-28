@@ -16,162 +16,124 @@ local globalkeys = awful.util.table.join(
     -- =========================================
     --              Awesome Keys
     -- =========================================
+    -- Ctrl
     awful.key({ modkey, "Control" }, "r",       awesome.restart,
-              {description = "reload awesome",  group = "awesome"}),
+              {description = "Reload awesome",  group = "awesome"}),
+    -- Shift
     awful.key({ modkey, "Shift"   }, "q",       awesome.quit,
-              {description = "quit awesome",    group = "awesome"}),
-    awful.key({ modkey,           }, "s",       hotkeys_popup.show_help,
-              {description = "show help",       group = "awesome"}),
-    awful.key({ modkey,           }, "w",       function () awful.util.mymainmenu:show() end,
-              {description = "show main menu",  group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "x",       function () awful.spawn(string.format("prompt 'Shutdown computer?' 'sudo -A shutdown -h now'")) end,
-              {description = "Shutdown computer",group = "awesome"}),
+              {description = "Quit awesome",    group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "r",       function () awful.spawn(string.format("prompt 'Reboot computer?' 'sudo -A reboot'")) end,
+              {description = "Reload computer", group = "awesome"}),
+    awful.key({ modkey, "shift"   }, "x",       function () awful.spawn(string.format("prompt 'shutdown computer?' 'sudo -a shutdown -h now'")) end,
               {description = "Shutdown computer",group = "awesome"}),
-    awful.key({ modkey,           }, "y",       function () awful.spawn(string.format("light-locker-command -l")) end,
-              {description = "lock screen",     group = "awesome"}),
+    -- Super
     awful.key({ modkey,           }, "b",
               function ()
                   for s in screen do
                       s.mywibox.visible = not s.mywibox.visible
                   end
               end,
-              {description = "toggle wibox",    group = "awesome"}),
-
-    -- =========================================
-    --                  Screen
-    -- =========================================
-    awful.key({ modkey, "Control" }, "j",       function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "screen"}),
-    awful.key({ modkey, "Control" }, "k",       function () awful.screen.focus_relative(-1) end,
-              {description = "focus the previous screen", group = "screen"}),
-
-    -- =========================================
-    --                  Tags
-    -- =========================================
-    -- Tag browsing
-    awful.key({ modkey,           }, "j",       awful.tag.viewprev,
-              {description = "view previous",   group = "tag"}),
-    awful.key({ modkey,           }, "k",       awful.tag.viewnext,
-              {description = "view next",       group = "tag"}),
-    awful.key({ modkey,           }, "Tab",     awful.tag.history.restore,
-              {description = "go back",         group = "tag"}),
-
-    -- Non-empty tag browsing
-    awful.key({ modkey,           }, "Left",    function () lain.util.tag_view_nonempty(-1) end,
-              {description = "view  previous nonempty", group = "tag"}),
-    awful.key({ modkey,           }, "Right",   function () lain.util.tag_view_nonempty(1) end,
-              {description = "view  previous nonempty", group = "tag"}),
-
-    -- =========================================
-    --                  Layout
-    -- =========================================
-    -- Resize
-    awful.key({ altkey, "Shift"   }, "l",       function () awful.tag.incmwfact( 0.05) end,
-              {description = "increase layout width factor", group = "layout"}),
-    awful.key({ altkey, "Shift"   }, "h",       function () awful.tag.incmwfact(-0.05) end,
-              {description = "decrease layout width factor", group = "layout"}),
-    awful.key({ altkey, "Control" }, "l",       function () awful.tag.incnmaster(-1, nil, true) end,
-              {description = "decrease the number of master clients", group = "layout"}),
-    awful.key({ altkey, "Control" }, "h",       function () awful.tag.incnmaster( 1, nil, true) end,
-              {description = "increase the number of master clients", group = "layout"}),
-
-
-    awful.key({ altkey,           }, "space",   function () awful.layout.inc( 1) end,
-              {description = "select next",     group = "layout"}),
-    awful.key({ altkey, "Shift"   }, "space",   function () awful.layout.inc(-1) end,
-              {description = "select previous", group = "layout"}),
-
-    -- =========================================
-    --                  Launcher
-    -- =========================================
-    -- Terminal
-    awful.key({ modkey,           }, "Return",  function () awful.spawn(terminal) end,
-              {description = "open a terminal", group = "launcher"}),
-    -- Dmenu
-    awful.key({ modkey,           }, "space",   function () awful.spawn(string.format("dmenu_run")) end,
-              {description = "show dmenu",      group = "launcher"}),
-    -- Prompt
-    awful.key({ modkey,           }, "r",       function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt",      group = "launcher"}),
-    -- Settings
-    awful.key({ modkey,           }, "a",       function () awful.spawn(string.format("xfce4-settings-manager")) end,
-              {description = "run xfce4-settings",      group = "launcher"}),
+              {description = "Toggle wibox",    group = "awesome"}),
+    awful.key({ modkey,           }, "s",       hotkeys_popup.show_help,
+              {description = "Show help",       group = "awesome"}),
+    awful.key({ modkey,           }, "w",       function () awful.util.mymainmenu:show() end,
+              {description = "Show main menu",  group = "awesome"}),
+    awful.key({ modkey,           }, "y",       function () awful.spawn(string.format("light-locker-command -l")) end,
+              {description = "Lock screen",     group = "awesome"}),
 
     -- =========================================
     --                  Hotkeys
     -- =========================================
-    -- Copy primary to clipboard (terminals to gtk)
-    awful.key({ modkey            }, "c",       function () awful.spawn.with_shell("xsel | xsel -i -b") end,
-              {description = "Copy terminal to gtk", group = "hotkeys"}),
-    -- Copy clipboard to primary (gtk to terminals)
-    awful.key({ modkey            }, "v",       function () awful.spawn.with_shell("xsel -b | xsel") end,
-              {description = "Copy gtk to terminal", group = "hotkeys"}),
-
-    -- Take a screenshot
-    awful.key({ altkey,           }, "p",       function() awful.spawn(string.format("flameshot gui")) end,
-              {description = "Take a screenshot", group = "hotkeys"}),
-
-    --Dmenu config
-    awful.key({ modkey, "Shift"   }, "c",       function () awful.spawn(string.format("dmenu-config")) end,
-              {description = "Show config files",group = "awesome"}),
-
-    -- Brightness
-    awful.key({ }, "XF86MonBrightnessUp",       function () os.execute("xbacklight -inc 10") end,
-              {description = "+10%",            group = "hotkeys"}),
-    awful.key({ }, "XF86MonBrightnessDown",     function () os.execute("xbacklight -dec 10") end,
-              {description = "-10%",            group = "hotkeys"}),
-
     -- ALSA volume control
     awful.key({ altkey,           }, "Up",
               function ()
                   os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
                   beautiful.volume.update()
               end,
-              {description = "volume up",       group = "hotkeys"}),
+              {description = "Volume up",       group = "hotkeys"}),
     awful.key({ altkey,           }, "Down",
               function ()
                   os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
                   beautiful.volume.update()
               end,
-              {description = "volume down",     group = "hotkeys"}),
+              {description = "Volume down",     group = "hotkeys"}),
     awful.key({ altkey,           }, "m",
               function ()
                   os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
                   beautiful.volume.update()
               end,
-              {description = "toggle mute",
+              {description = "Toggle mute",
               group = "hotkeys"}),
+    -- Take a screenshot
+    awful.key({ altkey,           }, "p",       function() awful.spawn(string.format("flameshot gui")) end,
+              {description = "Take a screenshot", group = "hotkeys"}),
+    -- Dmenu config
+    awful.key({ modkey, "Shift"   }, "c",       function () awful.spawn(string.format("dmenu-config")) end,
+              {description = "Show config files",group = "hotkeys"}),
 
+    -- =========================================
+    --                  Launcher
+    -- =========================================
+    -- Settings
+    awful.key({ modkey,           }, "a",       function () awful.spawn(string.format("xfce4-settings-manager")) end,
+              {description = "Run xfce4-settings",      group = "launcher"}),
+    -- Terminal
+    awful.key({ modkey,           }, "Return",  function () awful.spawn(terminal) end,
+              {description = "Open a terminal", group = "launcher"}),
+    -- Prompt
+    awful.key({ modkey,           }, "r",       function () awful.screen.focused().mypromptbox:run() end,
+              {description = "Run prompt",      group = "launcher"}),
+    -- Dmenu
+    awful.key({ modkey,           }, "space",   function () awful.spawn(string.format("dmenu_run")) end,
+              {description = "Show dmenu",      group = "launcher"}),
+
+    -- =========================================
+    --                  Layout
+    -- =========================================
+    -- Change layout display
+    awful.key({ altkey, "Control" }, "l",       function () awful.tag.incnmaster(-1, nil, true) end,
+              {description = "Select next layout display", group = "layout"}),
+    awful.key({ altkey, "Control" }, "h",       function () awful.tag.incnmaster( 1, nil, true) end,
+              {description = "Select previous layout display", group = "layout"}),
+    -- Resize layout
+    awful.key({ altkey, "Shift"   }, "l",       function () awful.tag.incmwfact( 0.05) end,
+              {description = "Increase layout size", group = "layout"}),
+    awful.key({ altkey, "Shift"   }, "h",       function () awful.tag.incmwfact(-0.05) end,
+              {description = "Decrease layout size", group = "layout"}),
+    -- Change layoutbox
+    awful.key({ altkey,           }, "space",   function () awful.layout.inc( 1) end,
+              {description = "Select next",     group = "layout"}),
+    awful.key({ altkey, "Shift"   }, "space",   function () awful.layout.inc(-1) end,
+              {description = "Select previous", group = "layout"}),
+
+    -- =========================================
+    --                  Screen
+    -- =========================================
+    awful.key({ modkey, "Control" }, "j",       function () awful.screen.focus_relative( 1) end,
+              {description = "Focus the next screen", group = "screen"}),
+    awful.key({ modkey, "Control" }, "k",       function () awful.screen.focus_relative(-1) end,
+              {description = "Focus the previous screen", group = "screen"}),
+
+    -- =========================================
+    --                  Tags
+    -- =========================================
+    -- Non-empty tag browsing
+    awful.key({ modkey,           }, "Left",    function () lain.util.tag_view_nonempty(-1) end,
+              {description = "View  previous nonempty", group = "tag"}),
+    awful.key({ modkey,           }, "Right",   function () lain.util.tag_view_nonempty(1) end,
+              {description = "View  previous nonempty", group = "tag"}),
+    -- Tag browsing
+    awful.key({ modkey,           }, "j",       awful.tag.viewprev,
+              {description = "View previous",   group = "tag"}),
+    awful.key({ modkey,           }, "k",       awful.tag.viewnext,
+              {description = "View next",       group = "tag"}),
+    awful.key({ modkey,           }, "Tab",     awful.tag.history.restore,
+              {description = "Go back",         group = "tag"}),
 
     -- =========================================
     --                  Widgets
     -- =========================================
     -- MPD control
-    awful.key({ altkey, "Control" }, "Up",
-              function ()
-                  os.execute("mpc toggle")
-                  beautiful.mpd.update()
-              end,
-              {description = "mpc toggle",      group = "widgets"}),
-    awful.key({ altkey, "Control" }, "Down",
-              function ()
-                  os.execute("mpc stop")
-                  beautiful.mpd.update()
-              end,
-              {description = "mpc stop",        group = "widgets"}),
-    awful.key({ altkey, "Control" }, "Left",
-              function ()
-                  os.execute("mpc prev")
-                  beautiful.mpd.update()
-              end,
-              {description = "mpc prev",        group = "widgets"}),
-    awful.key({ altkey, "Control" }, "Right",
-              function ()
-                  os.execute("mpc next")
-                  beautiful.mpd.update()
-              end,
-              {description = "mpc next",        group = "widgets"}),
     awful.key({ altkey }, "0",
               function ()
                   local common = { text = "MPD widget ", position = "top_middle", timeout = 2 }
@@ -184,7 +146,31 @@ local globalkeys = awful.util.table.join(
                   end
                   naughty.notify(common)
               end,
-              {description = "mpc on/off",      group = "widgets"})
+              {description = "Mpc on/off",      group = "widgets"}),
+    awful.key({ altkey, "Control" }, "Up",
+              function ()
+                  os.execute("mpc toggle")
+                  beautiful.mpd.update()
+              end,
+              {description = "Mpc toggle",      group = "widgets"}),
+    awful.key({ altkey, "Control" }, "Down",
+              function ()
+                  os.execute("mpc stop")
+                  beautiful.mpd.update()
+              end,
+              {description = "Mpc stop",        group = "widgets"}),
+    awful.key({ altkey, "Control" }, "Left",
+              function ()
+                  os.execute("mpc prev")
+                  beautiful.mpd.update()
+              end,
+              {description = "Mpc prev",        group = "widgets"}),
+    awful.key({ altkey, "Control" }, "Right",
+              function ()
+                  os.execute("mpc next")
+                  beautiful.mpd.update()
+              end,
+              {description = "Mpc next",        group = "widgets"})
 
 )
 
