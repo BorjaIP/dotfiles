@@ -50,8 +50,8 @@ awful.rules.rules = {
     {
         rule = { instance = "thunar" },
         properties = {
-            honor_padding = true,
-            honor_workarea = true,
+            -- honor_padding = true,
+            -- honor_workarea = true,
             x = screen_width * 0.25,
             y = screen_width * 0.15,
             width = screen_width * 0.5,
@@ -98,9 +98,14 @@ awful.rules.rules = {
     },
     --
     {
-        rule = { instance = "gcr-prompter" },
+        rule_any = {
+            class = "gcr-prompter",
+            "File Operation Progress",
+            "Library"
+        },
         properties = {
             floating = true,
+            ontop = true,
             width = screen_width * 0.4,
             height = screen_width * 0.4
         }

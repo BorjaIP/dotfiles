@@ -24,6 +24,10 @@ local globalkeys = awful.util.table.join(
               {description = "show help",       group = "awesome"}),
     awful.key({ modkey,           }, "w",       function () awful.util.mymainmenu:show() end,
               {description = "show main menu",  group = "awesome"}),
+    awful.key({ modkey, "Shift"   }, "x",       function () awful.spawn(string.format("prompt 'Shutdown computer?' 'sudo -A shutdown -h now'")) end,
+              {description = "Shutdown computer",group = "awesome"}),
+    awful.key({ modkey, "Shift"   }, "r",       function () awful.spawn(string.format("prompt 'Reboot computer?' 'sudo -A reboot'")) end,
+              {description = "Shutdown computer",group = "awesome"}),
     awful.key({ modkey,           }, "y",       function () awful.spawn(string.format("light-locker-command -l")) end,
               {description = "lock screen",     group = "awesome"}),
     awful.key({ modkey,           }, "b",
@@ -92,21 +96,25 @@ local globalkeys = awful.util.table.join(
               {description = "run prompt",      group = "launcher"}),
     -- Settings
     awful.key({ modkey,           }, "a",       function () awful.spawn(string.format("xfce4-settings-manager")) end,
-              {description = "run prompt",      group = "launcher"}),
+              {description = "run xfce4-settings",      group = "launcher"}),
 
     -- =========================================
     --                  Hotkeys
     -- =========================================
     -- Copy primary to clipboard (terminals to gtk)
     awful.key({ modkey            }, "c",       function () awful.spawn.with_shell("xsel | xsel -i -b") end,
-              {description = "copy terminal to gtk", group = "hotkeys"}),
+              {description = "Copy terminal to gtk", group = "hotkeys"}),
     -- Copy clipboard to primary (gtk to terminals)
     awful.key({ modkey            }, "v",       function () awful.spawn.with_shell("xsel -b | xsel") end,
-              {description = "copy gtk to terminal", group = "hotkeys"}),
+              {description = "Copy gtk to terminal", group = "hotkeys"}),
 
     -- Take a screenshot
     awful.key({ altkey,           }, "p",       function() awful.spawn(string.format("flameshot gui")) end,
-              {description = "take a screenshot", group = "hotkeys"}),
+              {description = "Take a screenshot", group = "hotkeys"}),
+
+    --Dmenu config
+    awful.key({ modkey, "Shift"   }, "c",       function () awful.spawn(string.format("dmenu-config")) end,
+              {description = "Show config files",group = "awesome"}),
 
     -- Brightness
     awful.key({ }, "XF86MonBrightnessUp",       function () os.execute("xbacklight -inc 10") end,
