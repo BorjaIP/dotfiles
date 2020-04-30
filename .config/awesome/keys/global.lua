@@ -24,7 +24,7 @@ local globalkeys = awful.util.table.join(
               {description = "Quit awesome",    group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "r",       function () awful.spawn(string.format("prompt 'Reboot computer?' 'sudo -A reboot'")) end,
               {description = "Reload computer", group = "awesome"}),
-    awful.key({ modkey, "shift"   }, "x",       function () awful.spawn(string.format("prompt 'shutdown computer?' 'sudo -a shutdown -h now'")) end,
+    awful.key({ modkey, "Shift"   }, "x",       function () awful.spawn(string.format("prompt 'shutdown computer?' 'sudo shutdown -h now'")) end,
               {description = "Shutdown computer",group = "awesome"}),
     -- Super
     awful.key({ modkey,           }, "b",
