@@ -2,12 +2,10 @@
 
 ## run (only once) processes which spawn with the same name
 function run {
-   if (command -v $1 && ! pgrep $1); then
-     $@&
-   fi
+    if (command -v $1 && ! pgrep $1); then
+        $@&
+    fi
 }
-
-## run (only once) processes which spawn with different name
 
 # Keystore
 if (command -v gnome-keyring-daemon && ! pgrep gnome-keyring-d); then
@@ -31,13 +29,12 @@ fi
 
 # Printer
 if (command -v system-config-printer-applet && ! pgrep applet.py ); then
-  system-config-printer-applet &
+    system-config-printer-applet &
 fi
 
 # Mouse control
 if (command -v ratbagd && ! pgrep ratbagd); then
-    ratbagctl "Logitech MX Master 2S" button 6 action set button 3 && \
-    ratbagctl "Logitech MX Master 2S" button 2 action set special ratchet-mode-switch
+    start-ratbagd
 fi
 
 run nm-applet           # Network monitor
