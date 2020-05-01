@@ -15,10 +15,6 @@
 
 [[ -f ~/.zshenv ]] && source ~/.zshenv
 
-# Mouse control
-if (command -v ratbagd && ! pgrep ratbagd); then
-    ratbagctl "Logitech MX Master 2S" button 6 action set button 3 && \
-    ratbagctl "Logitech MX Master 2S" button 2 action set special ratchet-mode-switch
-fi
+start-ratbagd
 
 # For autostart use Awesome autostart script
