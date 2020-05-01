@@ -12,9 +12,6 @@
 #                                   CONFIG
 # -----------------------------------------------------------------------------
 
-# Add colors for tmux and term
-export TERM=xterm-256color
-
 setopt NO_BG_NICE
 setopt NO_HUP
 setopt NO_LIST_BEEP
