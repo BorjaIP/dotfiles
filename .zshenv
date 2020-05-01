@@ -34,6 +34,7 @@ export BROWSER="firefox"
 
 # Others
 export FZF_CTRL_R_COMMAND="-sort --exact"
+export TERM=xterm-256color
 
 # Add color to man pages
 export MANROFFOPT='-c'
