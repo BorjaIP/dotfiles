@@ -14,33 +14,20 @@
 --          Variable Definitions
 -- =========================================
 -- Required libraries
-local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
-local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
+local ipairs, os, type = ipairs, os, type
 
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-local dpi = require("beautiful.xresources").apply_dpi
-local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 require("awful.autofocus")
-require("awful.hotkeys_popup.keys")
-
--- Menu
---local menubar         = require("menubar")
-local freedesktop = require("freedesktop")
 
 -- =========================================
---               Notifications
+--                  Rules
 -- =========================================
 require("module.rules")
-
--- =========================================
---               Notifications
--- =========================================
-require("module.notifications")
 
 -- =========================================
 --                  Buttons
@@ -62,15 +49,15 @@ beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 
--- Autostart windowless processes
--- This function will run once every time Awesome is started
-local function run_once(cmd_arr)
-    for _, cmd in ipairs(cmd_arr) do
-        awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd))
-    end
-end
+-- =========================================
+--               Notifications
+-- =========================================
+require("module.notifications")
 
-awful.util.terminal = terminal
+-- =========================================
+--                  Menu
+-- =========================================
+require("module.menu")
 
 -- =========================================
 --                  Layout
@@ -84,34 +71,6 @@ awful.layout.layouts = {
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle
 }
-
--- =========================================
---                  Menu
--- =========================================
--- Create a launcher widget and a main menu
-local myawesomemenu = {
-    { "hotkeys", function() return false, hotkeys_popup.show_help end },
-    -- { "manual", terminal .. " -e man awesome", menubar.utils.lookup_icon("system-help") },
-    { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end }
-}
-awful.util.mymainmenu = freedesktop.menu.build({
-    icon_size = beautiful.menu_height or dpi(16),
-    before = {
-        { "Awesome", myawesomemenu, beautiful.awesome_icon },
-        -- other triads can be put here
-    },
-    after = {
-        { "Open terminal", terminal },
-        -- other triads can be put here
-    }
-})
-
--- hide menu when mouse leaves it
--- awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function() awful.util.mymainmenu:hide() end)
-
---menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 
 -- =========================================
 --                  Screen
@@ -140,7 +99,6 @@ screen.connect_signal("arrange", function (s)
         end
     end
 end)
-
 
 -- =========================================
 --                  Signals
@@ -223,4 +181,12 @@ end)
 -- =========================================
 -- Autostart applications
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
+
+-- Autostart windowless processes
+-- This function will run once every time Awesome is started
+local function run_once(cmd_arr)
+    for _, cmd in ipairs(cmd_arr) do
+        awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd))
+    end
+end
 

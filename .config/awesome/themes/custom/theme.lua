@@ -1,10 +1,12 @@
 --[[
-             ████████╗██╗  ██╗███████╗███╗   ███╗███████╗
-             ╚══██╔══╝██║  ██║██╔════╝████╗ ████║██╔════╝
-                ██║   ███████║█████╗  ██╔████╔██║█████╗
-                ██║   ██╔══██║██╔══╝  ██║╚██╔╝██║██╔══╝
-                ██║   ██║  ██║███████╗██║ ╚═╝ ██║███████╗
-                ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝
+                 __________ ___  ___  _______   _____ ______   _______
+                |\___   ___\\  \|\  \|\  ___ \ |\   _ \  _   \|\  ___ \
+                \|___ \  \_\ \  \\\  \ \   __/|\ \  \\\__\ \  \ \   __/|
+                     \ \  \ \ \   __  \ \  \_|/_\ \  \\|__| \  \ \  \_|/__
+                      \ \  \ \ \  \ \  \ \  \_|\ \ \  \    \ \  \ \  \_|\ \
+                       \ \__\ \ \__\ \__\ \_______\ \__\    \ \__\ \_______\
+                        \|__|  \|__|\|__|\|_______|\|__|     \|__|\|_______|
+
 --]]
 
 local gears = require("gears")
@@ -57,6 +59,8 @@ local theme = {}
 theme.confdir = os.getenv("HOME") .. "/.config/awesome/themes/custom"
 theme.wallpaper = "/media/data/Wallpapers/pink_universe.jpg"
 theme.font = "Noto Sans Regular 10"
+theme.awesome_icon = icons.awesome
+theme.icon_theme = "Papirus Dark"
 
 -- =========================================
 --                Backgrounds
@@ -77,6 +81,8 @@ theme.border_width = dpi(1)
 theme.border_normal = color.base01
 theme.border_focus = color.base08
 theme.border_marked = color.base02
+-- Rounded corners
+-- theme.border_radius = dpi(6)
 
 -- =========================================
 --                  Taglist
@@ -121,13 +127,23 @@ theme.notification_border_color = theme.border_focus
 -- =========================================
 --                  Menu
 -- =========================================
-theme.menu_height = 20
-theme.menu_width = 140
--- theme.menu_bg_normal                            = "#000000"
--- theme.menu_bg_focus                             = "#000000"
--- theme.menu_border_width                         = 6
-theme.awesome_icon = icons.awesome
-theme.icon_theme = "Papirus Dark"
+theme.menu_height = dpi(20)
+theme.menu_width  = dpi(150)
+theme.menu_bg_normal = color.base01
+theme.menu_bg_focus = theme.bg_focus
+theme.menu_fg_normal= theme.fg_normal
+theme.menu_fg_focus= theme.fg_focus
+theme.menu_border_width = dpi(0)
+theme.menu_border_color = color.base08
+
+-- =========================================
+--                  Tooltips
+-- =========================================
+theme.tooltip_bg = color.base01
+theme.tooltip_border_width = 0
+theme.tooltip_shape = function(cr, w, h)
+    gears.shape.rounded_rect(cr, w, h, dpi(8))
+end
 
 -- =========================================
 --                Title bar
