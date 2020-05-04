@@ -32,11 +32,8 @@ if (command -v system-config-printer-applet && ! pgrep applet.py ); then
     system-config-printer-applet &
 fi
 
-# Mouse control
-if (command -v ratbagd && ! pgrep ratbagd); then
-    start-ratbagd
-fi
 
+start-ratbagd           # Mouse control
 run nm-applet           # Network monitor
 run compton -b          # Blur and transparency
 run light-locker        # Locker for DM
