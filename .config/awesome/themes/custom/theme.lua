@@ -140,7 +140,8 @@ theme.menu_border_color = color.base08
 --                  Tooltips
 -- =========================================
 theme.tooltip_bg = color.base01
-theme.tooltip_border_width = 0
+-- theme.tooltip_border_width = 0
+-- theme.tooltip_shape = awful.tooltip:set_shape (dpi(8))
 theme.tooltip_shape = function(cr, w, h)
     gears.shape.rounded_rect(cr, w, h, dpi(8))
 end
