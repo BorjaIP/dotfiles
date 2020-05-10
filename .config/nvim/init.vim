@@ -36,6 +36,7 @@ set splitbelow splitright       " Fix splitting
 set autoread                    " Autoread files if it changed
 set noswapfile                  " Disable swap files
 set nobackup                    " Disable backup
+set nowritebackup               " Resolve issies with backup files
 set undodir                     " Directory for undo ('$XDG_DATA_HOME/nvim/undo')
 set undofile                    " Saves undo history
 set updatetime=300              " Change time to reload file
@@ -46,6 +47,9 @@ set tabstop=4                   " Tabs are 4 spaces
 set shiftwidth=4                " Default shift width for indents
 set softtabstop=4               " Edit as if the tabs are 4 characters wide
 set shiftround                  " Round indent to a multiple of 'shiftwidth'
+set cmdheight=2                 " Give more space for displaying messages
+set shortmess+=c                " Don't pass messages to 'ins-completion-menu'
+set signcolumn=yes              " Always show the signcolumn
 " set colorcolumn=80              " Show column
 
 " Filetypes
@@ -151,17 +155,34 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " -----------------------------------------------------------------------------
 
 " Keep the sign gutter open at all times
-let g:ale_change_sign_column_color = 0
-let g:ale_sign_column_always = 1
+" let g:ale_change_sign_column_color = 0
+" let g:ale_sign_column_always = 1
 " Change signs for warning and error
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
+" let g:ale_sign_error = '✖'
+" let g:ale_sign_warning = '⚠'
 " Fixers
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-            \   'python': ['yapf', 'isort' ],
-            \   'json': ['prettier']
-            \}
+" let g:ale_fix_on_save = 1
+" let g:ale_fixers = {
+            " \   'python': ['yapf', 'isort' ],
+            " \   'json': ['prettier']
+            " \}
+
+" -----------------------------------------------------------------------------
+"                                    CoC
+" -----------------------------------------------------------------------------
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " -----------------------------------------------------------------------------
 "                                 Startify

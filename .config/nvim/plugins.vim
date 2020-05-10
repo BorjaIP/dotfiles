@@ -64,6 +64,12 @@ Plug 'dense-analysis/ale'
 " Auto pairs completion in brackets
 Plug 'jiangmiao/auto-pairs'
 
+" Syntax highlight and indentation suppor for multiple lenguages
+Plug 'sheerun/vim-polyglot'
+
+" Code completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " Autocomplete code for web
 " Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx']}
 
@@ -72,9 +78,6 @@ Plug 'jiangmiao/auto-pairs'
 
 " Endings for html, xml, etc.
 " Plug 'tpope/vim-ragtag'
-
-" Syntax highlight and indentation suppor for multiple lenguages
-Plug 'sheerun/vim-polyglot'
 
 " Syntax support for md
 " Plug 'tpope/vim-markdown', { 'for': 'markdown' }
