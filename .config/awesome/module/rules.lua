@@ -96,6 +96,33 @@ awful.rules.rules = {
             height = screen_height * 0.6
         }
     },
+
+    -- Discord
+    {
+        rule = { instance = "discord" },
+        properties = {
+            tag = "4",
+            screen = 2,
+            floating = true,
+            -- switchtotag = true, TODO: test
+            width = screen_width * 0.8,
+            height = screen_height * 0.8
+        }
+    },
+
+    -- Spotify
+    {
+        rule = { instance = "spotify" },
+        properties = {
+            tag = "6",
+            screen = 2,
+            floating = true,
+            -- switchtotag = true, TODO: test
+            width = screen_width * 0.8,
+            height = screen_height * 0.8
+        }
+    },
+
     --
     {
         rule_any = {
