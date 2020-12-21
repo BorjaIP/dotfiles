@@ -32,8 +32,13 @@ if (command -v system-config-printer-applet && ! pgrep applet.py ); then
     system-config-printer-applet &
 fi
 
+# Mouse control
+if (command -v ratbagd && ! pgrep ratbagd ); then
+    ratbagctl "Logitech MX Master 2S" button 6 action set button 3
+    ratbagctl "Logitech MX Master 2S" button 2 action set special ratchet-mode-switch
+fi
 
-start-ratbagd           # Mouse control
+# start-ratbagd           # Mouse control
 run nm-applet           # Network monitor
 run compton -b          # Blur and transparency
 run light-locker        # Locker for DM
