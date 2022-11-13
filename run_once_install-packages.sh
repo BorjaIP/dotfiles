@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cd $HOME || return
 
@@ -64,3 +64,37 @@ arch_pacman() {
     fi
 
 }
+
+arch_aur() {
+    # Anything bellow needs to run unprivileged, mostly because of makepkg
+    # [ $UID = 0 ] && return
+
+    aur_packages=( \
+        zsh-autosuggestions-git
+        zsh-syntax-highlighting-git
+        zsh-history-substring-search-git
+        nerd-fonts-inconsolata
+    )
+
+    to_install=()
+    for pack in "${aur_packages[@]}"; do
+        yay -Qq $pack > /dev/null 2>&1 || to_install+=("$pack")
+    done
+
+    if [ "${#to_install}" -gt 0 ]; then
+        msg "Installing AUR packages"
+        yay --noconfirm --needed -S ${to_install[@]}
+    else
+        info "All AUR packages are installed"
+    fi
+}
+
+# Install resources/tools and other config files
+# install_tools
+
+# Install packages
+# arch_pacman
+arch_aur
+
+# Update the system
+#update
