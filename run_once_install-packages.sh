@@ -27,6 +27,16 @@ die() {
 #                               Functions
 # ------------------------------------------------------------------------------
 
+install_tools() {
+    # Add some color to pacman
+    grep "^Color" /etc/pacman.conf >/dev/null || sed -i "s/^#Color$/Color/" /etc/pacman.conf
+    grep "ILoveCandy" /etc/pacman.conf >/dev/null || sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
+
+    # Base16 theme
+    [ -d "$HOME/.config/base16-shell" ] && info "Base16 is already installed" || ( msg "Installing base16" && git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell )
+
+}
+
 arch_pacman() {
     root=''
     [ $UID = 0 ] || root='sudo'
@@ -39,8 +49,6 @@ arch_pacman() {
         go
         alacritty
         neovim
-        flameshot
-	lxappearance
     )
 
     to_install=()
