@@ -1,0 +1,41 @@
+#                 ________  ___       ___  ________  ________  _______   ________
+#                |\   __  \|\  \     |\  \|\   __  \|\   ____\|\  ___ \ |\   ____\
+#                \ \  \|\  \ \  \    \ \  \ \  \|\  \ \  \___|\ \   __/|\ \  \___|_
+#                 \ \   __  \ \  \    \ \  \ \   __  \ \_____  \ \  \_|/_\ \_____  \
+#                  \ \  \ \  \ \  \____\ \  \ \  \ \  \|____|\  \ \  \_|\ \|____|\  \
+#                   \ \__\ \__\ \_______\ \__\ \__\ \__\____\_\  \ \_______\____\_\  \
+#                    \|__|\|__|\|_______|\|__|\|__|\|__|\_________\|_______|\_________\
+#                                                      \|_________|        \|_________|
+
+
+# System custom
+alias p='sudo pacman'
+alias sdn='sudo shutdown now'
+alias pclean='sudo pacman -Rcns $(pacman -Qdtq)'
+alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
+
+# vim
+alias vi="nvim"
+alias vim="nvim"
+
+# Manage config files with git bare repository
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+# Enable color support
+alias ls='ls --color=always --group-directories-first'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Commands files
+alias ..='cd ..'
+alias l="ls -lah"
+alias la="ls -AF"
+alias ll="ls -lFh"
+alias rf="rm -rf"
+
+# Tmux aliases
+alias ta='tmux attach'
+alias tls='tmux ls'
+alias tat='tmux attach -t'
+alias tns='tmux new-session -s'

@@ -1,0 +1,98 @@
+#                 ________  ________  ___  ___
+#                |\_____  \|\   ____\|\  \|\  \
+#                 \|___/  /\ \  \___|\ \  \\\  \
+#                     /  / /\ \_____  \ \   __  \
+#                    /  /_/__\|____|\  \ \  \ \  \
+#                   |\________\____\_\  \ \__\ \__\
+#                    \|_______|\_________\|__|\|__|
+#                             \|_________|
+
+
+# -----------------------------------------------------------------------------
+#                                   CONFIG
+# -----------------------------------------------------------------------------
+
+setopt NO_BG_NICE
+setopt NO_HUP
+setopt NO_LIST_BEEP
+setopt LOCAL_OPTIONS
+setopt LOCAL_TRAPS
+setopt PROMPT_SUBST
+
+# History file configuration
+HISTFILE="$HISTFILE"
+HISTSIZE=10000
+SAVEHIST=10000
+
+# History
+setopt HIST_VERIFY
+setopt EXTENDED_HISTORY
+setopt HIST_REDUCE_BLANKS
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt INC_APPEND_HISTORY
+setopt APPEND_HISTORY
+
+# Aliases
+setopt COMPLETE_ALIASES
+
+# Add ZSH configuration
+for config ($ZDOTDIR/**) source $config
+
+# Initialize autocomplete
+autoload -U compinit add-zsh-hook && compinit
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+
+# Matches case insensitive for lowercase
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Pasting with tabs doesn't perform completion
+zstyle ':completion:*' insert-tab pending
+
+# Default to file completion
+zstyle ':completion:*' completer _expand _complete _files _correct _approximate
+
+# Highlight on tab
+zstyle ':completion:*' menu select
+
+# Keybindings section
+bindkey -e
+bindkey '^[[7~' beginning-of-line                               # Home key
+bindkey '^[[H' beginning-of-line                                # Home key
+if [[ "${terminfo[khome]}" != "" ]]; then
+  bindkey "${terminfo[khome]}" beginning-of-line                # [Home] - Go to beginning of line
+fi
+bindkey '^[[8~' end-of-line                                     # End key
+bindkey '^[[F' end-of-line                                      # End key
+if [[ "${terminfo[kend]}" != "" ]]; then
+  bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
+fi
+bindkey '^[[2~' overwrite-mode                                  # Insert key
+bindkey '^[[3~' delete-char                                     # Delete key
+bindkey '^[[C'  forward-char                                    # Right key
+bindkey '^[[D'  backward-char                                   # Left key
+bindkey '^[[5~' history-beginning-search-backward               # Page up key
+bindkey '^[[6~' history-beginning-search-forward                # Page down key
+
+# Base16 shell setup
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+    eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+# -----------------------------------------------------------------------------
+#                                    PLUGINS
+# -----------------------------------------------------------------------------
+
+# Configure fzf
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
+# Autosuggestion
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Use syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Use history substring search
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
