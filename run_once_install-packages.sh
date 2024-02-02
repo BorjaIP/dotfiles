@@ -28,73 +28,88 @@ die() {
 # ------------------------------------------------------------------------------
 
 install_tools() {
+    # Base16 theme
+    [ -d "$HOME/.config/base16-shell" ] && info "Base16 is already installed" || ( msg "Installing base16" && git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell )
+}
+
+arch_pacman() {
     # Add some color to pacman
     grep "^Color" /etc/pacman.conf >/dev/null || sed -i "s/^#Color$/Color/" /etc/pacman.conf
     grep "ILoveCandy" /etc/pacman.conf >/dev/null || sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
 
-    # Base16 theme
-    [ -d "$HOME/.config/base16-shell" ] && info "Base16 is already installed" || ( msg "Installing base16" && git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell )
-
-}
-
-arch_pacman() {
     root=''
     [ $UID = 0 ] || root='sudo'
 
     packages=( \
-    	yay
+        base-devel
         neofetch
+        git
         fzf
-        vlc
         go
-        alacritty
+        vi
+        vim
+        zsh
         neovim
+        docker
+        docker-compose
+        python
+        python-pip
+        ttf-inconsolata-nerd
     )
 
     to_install=()
     for pack in "${packages[@]}"; do
-        pacman -Qq $pack > /dev/null 2>&1 || to_install+=("$pack")
+        pacman -Qq "$pack" > /dev/null 2>&1 || to_install+=("$pack")
     done
 
     if [ "${#to_install}" -gt 0 ]; then
         msg "Installing packages"
-        $root pacman --noconfirm --needed -S ${to_install[@]}
+        $root pacman --noconfirm --needed --noprogressbar -S "${to_install[@]}"
     else
         info "All official packages are installed"
     fi
 
 }
 
+
 arch_aur() {
     # Anything bellow needs to run unprivileged, mostly because of makepkg
     # [ $UID = 0 ] && return
+
+    # Installing AUR package manager
+    if ! command -v paru &> /dev/null
+    then
+        cd /tmp || exit
+        git clone https://aur.archlinux.org/paru.git
+        cd paru || exit
+        makepkg -si --noconfirm
+        cd .. && rm -rf /tmp/paru
+    fi
 
     aur_packages=( \
         zsh-autosuggestions-git
         zsh-syntax-highlighting-git
         zsh-history-substring-search-git
-        nerd-fonts-inconsolata
+        kubectl
+        tmux
     )
 
     to_install=()
     for pack in "${aur_packages[@]}"; do
-        yay -Qq $pack > /dev/null 2>&1 || to_install+=("$pack")
+        paru -Qq "$pack" > /dev/null 2>&1 || to_install+=("$pack")
     done
 
     if [ "${#to_install}" -gt 0 ]; then
         msg "Installing AUR packages"
-        yay --noconfirm --needed -S ${to_install[@]}
+        paru --noconfirm --needed --noprogressbar -S "${to_install[@]}"
     else
         info "All AUR packages are installed"
     fi
 }
 
 # Install resources/tools and other config files
-# install_tools
+install_tools
 
 # Install packages
-# arch_pacman
+arch_pacman
 arch_aur
-
-# Update the system
-#update
