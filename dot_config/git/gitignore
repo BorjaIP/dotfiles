@@ -1,0 +1,36 @@
+#                 ________  ___  __________                   ___  ________  _________  ________  ________  _______
+#                |\   ____\|\  \|\___   ___\                 |\  \|\   ____\|\   ___  \|\   __  \|\   __  \|\  ___ \
+#                \ \  \___|\ \  \|___ \  \_|                 \ \  \ \  \___|\ \  \\ \  \ \  \|\  \ \  \|\  \ \   __/|
+#                 \ \  \  __\ \  \   \ \  \                   \ \  \ \  \  __\ \  \\ \  \ \  \\\  \ \   _  _\ \  \_|/__
+#                  \ \  \|\  \ \  \   \ \  \                   \ \  \ \  \|\  \ \  \\ \  \ \  \\\  \ \  \\  \\ \  \_|\ \
+#                   \ \_______\ \__\   \ \__\                   \ \__\ \_______\ \__\\ \__\ \_______\ \__\\ _\\ \_______\
+#                    \|_______|\|__|    \|__|                    \|__|\|_______|\|__| \|__|\|_______|\|__|\|__|\|_______|
+
+
+# Apple
+.DS_Store
+Thumbs.db
+*~
+*.swp
+.AppleDouble
+.LSOverride
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# project-specific vim configurations
+.vimrc.local
+
+# typescript command garbage
+tscommand*.txt
+
+# nvm - the Node Version Manager
+.nvmrc
+
+# npm things
+npm-debug.log

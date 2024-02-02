@@ -1,0 +1,68 @@
+;                 ________  ___  __________                   ________  ________  _________  ________ ___  ________
+;                |\   ____\|\  \|\___   ___\                 |\   ____\|\   __  \|\   ___  \|\  _____\\  \|\   ____\
+;                \ \  \___|\ \  \|___ \  \_|                 \ \  \___|\ \  \|\  \ \  \\ \  \ \  \__/\ \  \ \  \___|
+;                 \ \  \  __\ \  \   \ \  \                   \ \  \    \ \  \\\  \ \  \\ \  \ \   __\\ \  \ \  \  ___
+;                  \ \  \|\  \ \  \   \ \  \                   \ \  \____\ \  \\\  \ \  \\ \  \ \  \_| \ \  \ \  \|\  \
+;                   \ \_______\ \__\   \ \__\                   \ \_______\ \_______\ \__\\ \__\ \__\   \ \__\ \_______\
+;                    \|_______|\|__|    \|__|                    \|_______|\|_______|\|__| \|__|\|__|    \|__|\|_______|
+
+
+[user]
+    name = BorjaIP
+    email = borja.irpe@gmail.com
+[github]
+    user = BorjaIP
+[alias]
+    # list all aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+    diff = diff --ignore-space-at-eol -b -w --ignore-blank-lines
+    co = checkout
+    cob = checkout -b
+    ; ss  = "!nl -w2 -s'> ' status -sb"
+    ss  = status -sb
+    cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
+    # rebase the current branch with changes from upstream remote
+    update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
+    # add a file based on status order
+    a = "!f() { git add $(git status -s | awk NR=="$1" | awk '{print $2}'); }; f"
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = auto
+[color "branch"]
+    current = green bold
+    local = green
+    remote = red bold
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red
+[color "sh"]
+    branch = yellow
+[push]
+    # push will only do the current branch, not all branches
+    default = current
+[branch]
+    # set up 'git pull' to rebase instead of merge
+    autosetuprebase = always
+[diff]
+    renames = copies
+    mnemonicprefix = true
+    compactionHeuristic = true
+[difftool]
+    prompt = false
+[apply]
+    # do not warn about missing whitespace at EOF
+    whitespace = nowarn
+[core]
+    excludesfile = ~/.config/git/gitignore
+    pager = less -FXRS -x2
+    editor = nvim
+    whitespace = cr-at-eol
