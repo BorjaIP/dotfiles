@@ -94,6 +94,6 @@ function () {
   else
     # Default
     # color material-darker
-    color ocean-night
+    color ocean
   fi
 }
