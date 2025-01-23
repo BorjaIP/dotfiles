@@ -7,20 +7,18 @@
 #                    \|__|\|__|\|_______|\|__|\|__|\|__|\_________\|_______|\_________\
 #                                                      \|_________|        \|_________|
 
-
 # System custom
 alias p='sudo pacman'
 alias sdn='sudo shutdown now'
+alias cat='bat --theme=base16'
 alias pclean='sudo pacman -Rcns $(pacman -Qdtq)'
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
+alias server='python3 -m http.server'
 alias reload='source "$ZDOTDIR"/.zshrc'
 
 # vim
 alias vi="nvim"
 alias vim="nvim"
-
-# Manage config files with git bare repository
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # Enable color support
 alias ls='ls --color=always --group-directories-first'

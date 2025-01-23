@@ -1,0 +1,810 @@
+: 1707003571:0;activate
+: 1707003587:0;source venv/bin/python
+: 1707003611:0;source venv/bin/activate
+: 1707004102:0;pip install metatrader5
+: 1707006780:0;echo /bin/zsh
+: 1707160109:0;python3.9 -m venv venv2
+: 1707160200:0;source venv2/bin/activate
+: 1707160212:0;pip install -r requirements/requirements.txt
+: 1707160296:0;pip list
+: 1707160300:0;pip install metatrader5
+: 1707161404:0;deactivate
+: 1707161407:0;rm -rf venv
+: 1707161409:0;rm -rf venv2
+: 1709466539:0;echo /bin/zsh
+: 1709466541:0;vim
+: 1714161779:0;p -Sy wget
+: 1714162473:0;wget "https://arxiv.org/pdf/1706.03762.pdf" -O "./attention.pdf"
+: 1714162565:0;python3.11 -m venv venv
+: 1714162581:0;activate
+: 1714162586:0;source venv/bin/activate
+: 1714162689:0;python llama-rag/main.py
+: 1714162700:0;pip install requests
+: 1714162740:0;python llama-rag/main.py
+: 1714207312:0;curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -\
+
+: 1714207495:0;cat /etc/wsl.conf
+: 1714207538:0;sudo vim /etc/wsl.conf
+: 1714208908:0;pip install uv
+: 1714208955:0;p -Sy uv
+: 1714208989:0;uv
+: 1714208997:0;uv venv --help
+: 1714209990:0;cd ..
+: 1714210015:0;git clone git@github.com:BorjaIP/TechDoX.git
+: 1714210022:0;cd TechDoX
+: 1714210023:0;code .
+: 1714210122:0;rm -rf venv
+: 1714210136:0;uv venv --prompt -p python3.11
+: 1714210141:0;uv venv --prompt venv -p python3.11
+: 1714210226:0;rm -rf .venv
+: 1714210232:0;uv venv venv -p python3.11
+: 1714210412:0;uv
+: 1714210424:0;uv pip install requests
+: 1714210520:0;activate
+: 1714210522:0;source venv/bin/activate
+: 1714210525:0;pip list
+: 1714210547:0;uv venv --hel
+: 1714210550:0;uv venv --help
+: 1714210604:0;rf venv
+: 1714210613:0;uv venv venv -p python3.11 --seed
+: 1714210629:0;pip list
+: 1714210634:0;deactivate
+: 1714210637:0;source venv/bin/activate
+: 1714210639:0;pip list
+: 1714210737:0;uv pip install requests
+: 1714211004:0;pip list
+: 1714211114:0;uv pip compile
+: 1714211120:0;uv pip compile --help
+: 1714214849:0;rf venv
+: 1714214853:0;deactivate
+: 1714214882:0;uv venv -p python3.11
+: 1714214902:0;uv pip install hatch
+: 1714214939:0;source .venv/bin/activate
+: 1714214953:0;ls -la
+: 1714215068:0;uv pip install --help
+: 1714215096:0;uv pip compile pyproject.toml -o requirements.txt
+: 1714215203:0;uv
+: 1714215211:0;uv self
+: 1714215215:0;uv
+: 1714215216:0;uv pip
+: 1714215230:0;uv sync
+: 1714215235:0;uv pip sync
+: 1714215245:0;uv pip sync requirements.txt
+: 1714215349:0;uv pip compile pyproject.toml -o requirements.in
+: 1714215396:0;uv pip compile
+: 1714215401:0;uv pip compile --help
+: 1714215533:0;uv pip compile pyproject.toml -o requirements.in
+: 1714215562:0;uv pip compile pyproject.toml -o requirements.txt
+: 1714219902:0;uv install --help
+: 1714219907:0;uv pip install --help
+: 1714219951:0;hatch
+: 1714219959:0;hatch build --help
+: 1714219973:0;hatch build
+: 1714220172:0;hatch run
+: 1714220749:0;uv pip install pyproject.toml
+: 1714220758:0;uv pip install -r pyproject.toml
+: 1714221900:0;python llarag/arxiv.py
+: 1714221951:0;uv pip list
+: 1714221990:0;python llarag/arxiv.py
+: 1714222567:0;python llarag/download.py
+: 1714233513:0;uv pip install beautifulsoup
+: 1714233536:0;uv pip install beautifulsoup4
+: 1714234402:0;python llarag/download.py
+: 1714234607:0;uv pip install pydantic
+: 1714234633:0;python llarag/download.py
+: 1714236525:0;uv pip install llama-parse
+: 1714236866:0;python llarag/llama.py
+: 1714236999:0;python llarag/extract.py
+: 1714237037:0;uv pip install llama-index
+: 1714237055:0;python llarag/extract.py
+: 1714239459:0;/home/borja/projects/llama-rag-pdf/.venv/bin/python
+: 1714239485:0;uv pip install ipykernel
+: 1714239632:0;/home/borja/projects/llama-rag-pdf/.venv/bin/python
+: 1714240399:0;cd /home/borja/projects/llama-rag-pdf/llarag
+: 1714240399:0;/home/borja/projects/llama-rag-pdf/.venv/bin/python /home/borja/projects/llama-rag-pdf/llarag/extract.py
+: 1714240409:0;python llarag/extract.py
+: 1714240495:0;export PYTHONPATH=$PYTHONPATH:`pwd`
+: 1714240496:0;python llarag/extract.py
+: 1714240938:0;python
+: 1714240954:0;python llarag/extract.py
+: 1714242147:0;uv pip install -r pyproject.toml
+: 1714242276:0;nvidia-smi
+: 1714242421:0;uv pip install -r pyproject.toml
+: 1714243098:0;docker compose up -d -f docker/docker-compose.yaml
+: 1714243108:0;docker compose docker/docker-compose.yaml up -d
+: 1714243113:0;docker compose up -d docker/docker-compose.yaml
+: 1714243128:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714243144:0;sudo systemctl docker activate
+: 1714243171:0;docker info
+: 1714243195:0;sudo systemctl activate docker
+: 1714243216:0;sudo systemctl start docker
+: 1714243222:0;sudo systemctl enable docker
+: 1714243226:0;sudo systemctl daemon-reload
+: 1714243231:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714243242:0;docker ps
+: 1714243288:0;sudo usermod -aG docker $USER
+: 1714243291:0;docker ps
+: 1714243296:0;sudo groupadd docker
+: 1714243300:0;docker ps
+: 1714243307:0;sudo usermod -aG docker $USER
+: 1714243327:0;docker ps
+: 1714243340:0;sudo systemctl daemon-reload
+: 1714243354:0;docker ps
+: 1714243382:0;id
+: 1714243390:0;sudo setfacl --modify user:borja:rw /var/run/docker.sock
+: 1714243395:0;docker ps
+: 1714243410:0;source .venv/bin/activate
+: 1714243414:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714243473:0;docker ps
+: 1714244858:0;uv pip install -r pyproject.toml
+: 1714244991:0;uv pip install chromadb
+: 1714245295:0;uv pip install -r pyproject.toml
+: 1714245993:0;uv pip install -e "."
+: 1714248488:0;python llarag/extract.py
+: 1714248500:0;python llaprag/extract.py
+: 1714248516:0;uv pip install -e "."
+: 1714248529:0;python llaprag/extract.py
+: 1714248553:0;export PYTHONPATH=$PYTHONPATH:`pwd`
+: 1714248554:0;python llaprag/extract.py
+: 1714248909:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714248919:0;docker ps
+: 1714248927:0;docker logs docker-redis-1
+: 1714248954:0;docker logs docker-chromadb-1
+: 1714248962:0;python llaprag/extract.py
+: 1714250024:0;nvidia-smi
+: 1714250032:0;python llaprag/extract.py
+: 1714321736:0;source .venv/bin/activate
+: 1714321770:0;python llaprag/extract.py
+: 1714321790:0;uv pip install -e "."
+: 1714321802:0;python llaprag/extract.py
+: 1714321866:0;export PYTHONPATH=$PYTHONPATH:`pwd`
+: 1714321868:0;python llaprag/extract.py
+: 1714321931:0;nvidia-smi
+: 1714321944:0;watch -n 2 nvidia-smi
+: 1714322096:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714322101:0;python llaprag/extract.py
+: 1714325219:0;docker logs docker-chromadb-1
+: 1714325338:0;docker logs docker-redis-1
+: 1714326291:0;python llaprag/extract.py
+: 1714326372:0;docker logs docker-redis-1
+: 1714326375:0;docker logs docker-chromadb-1
+: 1714326787:0;python llaprag/extract.py
+: 1714552337:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714552471:0;source .venv/bin/activate
+: 1714552475:0;python llaprag/extract.py
+: 1714552482:0;export PYTHONPATH=$PYTHONPATH:`pwd`
+: 1714552484:0;python llaprag/extract.py
+: 1714553309:0;docker logs docker-redis-1
+: 1714554526:0;nvidia-smi
+: 1714554532:0;watch -n 2 nvidia-smi
+: 1714554979:0;docker logs docker-redis-1
+: 1714554983:0;docker logs docker-chromadb-1
+: 1714555829:0;python llaprag/extract.py
+: 1714555942:0;nvidia-smi
+: 1714556370:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714556480:0;p -Sy nvidia-container-toolkit
+: 1714556556:0;cat /usr/local/cuda/lib64/libcuda.so
+: 1714556561:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714556571:0;activate
+: 1714556573:0;source .venv/bin/activate
+: 1714556576:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714556600:0;sudo systemctl daemon-reload
+: 1714556607:0;sudo systemctl restart docker
+: 1714556613:0;source .venv/bin/activate
+: 1714556615:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714556625:0;docker exec -it ollama bash
+: 1714556636:0;ex
+: 1714556655:0;export PYTHONPATH=$PYTHONPATH:`pwd`
+: 1714556658:0;source .venv/bin/activate
+: 1714556660:0;python llaprag/extract.py
+: 1714556675:0;docker logs ollama
+: 1714556765:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714556807:0;docker logs ollama
+: 1714556838:0;python llaprag/extract.py
+: 1714556904:0;docker logs ollama
+: 1714556945:0;python llaprag/extract.py
+: 1714557000:0;docker logs ollama
+: 1714557112:0;curl http://localhost:11434/api/generate -d '{\
+  "model": "llama2",\
+  "prompt":"Why is the sky blue?"\
+}'\
+
+: 1714557223:0;curl http://localhost:11434/api/generate -d '{\
+  "model": "llama3",\
+  "prompt":"Why is the sky blue?"\
+}'
+: 1714557238:0;curl http://localhost:11434/api/tags
+: 1714557282:0;curl http://localhost:11434/api/pull -d '{\
+  "name": "llama3"\
+}'
+: 1714557555:0;curl http://localhost:11434/api/tags
+: 1714557574:0;curl http://localhost:11434/api/generate -d '{\
+  "model": "llama3",\
+  "prompt":"Why is the sky blue?"\
+}'
+: 1714557579:0;watch -n 2 nvidia-smi
+: 1714557634:0;top
+: 1714557659:0;curl http://localhost:11434/api/chat -d '{\
+  "model": "llama3",\
+  "messages": [\
+    { "role": "user", "content": "why is the sky blue?" }\
+  ]\
+}'
+: 1714557891:0;python llaprag/extract.py
+: 1714558100:0;docker logs ollama
+: 1714558386:0;curl http://localhost:11434/api/chat -d '{\
+  "model": "llama3",\
+  "messages": [\
+    { "role": "user", "content": "why is the sky blue?" }\
+  ],\
+}'
+: 1714558425:0;curl http://localhost:11434/api/chat -d '{\
+  "model": "llama3",\
+  "messages": [\
+    { "role": "user", "content": "why is the sky blue?" }\
+  ],\
+  "stream": "false"\
+}'
+: 1714558447:0;curl http://localhost:11434/api/chat -d '{\
+  "model": "llama3",\
+  "messages": [\
+    { "role": "user", "content": "why is the sky blue?" }\
+  ],\
+  "stream": false\
+}'
+: 1714558713:0;python
+: 1714558885:0;docker logs ollama -f
+: 1714591098:0;source .venv/bin/activate
+: 1714591250:0;docker ps
+: 1714591252:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714591262:0;export PYTHONPATH=$PYTHONPATH:`pwd`
+: 1714591265:0;python llaprag/extract.py
+: 1714591416:0;docker logs redir
+: 1714591417:0;docker logs redis
+: 1714591438:0;docker logs chromadb
+: 1714591642:0;top
+: 1714592092:0;python
+: 1714592118:0;source .venv/bin/activate
+: 1714592120:0;python
+: 1714592810:0;docker logs ollama -f
+: 1714593336:0;python
+: 1714594076:0;docker logs ollama -f
+: 1714633934:0;source .venv/bin/activate
+: 1714633942:0;hatch --help
+: 1714633949:0;hatch env
+: 1714633978:0;hatch env show
+: 1714633985:0;hatch env find
+: 1714634004:0;hatch projecty
+: 1714634005:0;hatch project
+: 1714634008:0;hatch project metadata
+: 1714634138:0;hatch env show --ascii
+: 1714634370:0;cd
+: 1714634372:0;ls
+: 1714634373:0;ls -la
+: 1714634375:0;cd projects
+: 1714634376:0;ls
+: 1714634376:0;ls -la
+: 1714634384:0;mkdir ejemplo
+: 1714634388:0;pip list
+: 1714637171:0;p -Ss hatch
+: 1714637291:0;p -Ss python-hatch
+: 1714637296:0;p -Sy python-hatch
+: 1714637332:0;p -Sy pipx
+: 1714637442:0;curl -o /dev/null -v www.google.com
+: 1714637466:0;p -Sy pipx
+: 1714637559:0;p -Yc
+: 1714637576:0;p -Sy reflector
+: 1714637619:0;cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bkp
+: 1714637622:0;sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bkp
+: 1714637643:0;sudo reflector --country 'Spain,France' --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+: 1714637652:0;reflector
+: 1714637704:0;p -Ql reflector
+: 1714637739:0;p -Syuu
+: 1714637804:0;p -Sy pipx
+: 1714637905:0;cat /etc/pacman.d/mirrorlist
+: 1714637940:0;sudo vim /etc/pacman.conf
+: 1714638060:0;p -Sy pipx
+: 1714638127:0;sudo reflector --country 'Spain,France' --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+: 1714638138:0;reflector
+: 1714638142:0;which reflector
+: 1714638146:0;reflector --help
+: 1714638362:0;p -Sy reflector
+: 1714638463:0;python reflector
+: 1714638469:0;python Reflector
+: 1714638472:0;pip list
+: 1714638509:0;pacman -Ql reflector
+: 1714638515:0;cat =reflector
+: 1714638603:0;python3 --version
+: 1714638606:0;python --version
+: 1714638650:0;paru -Sy python312
+: 1714638687:0;p -Sy python312
+: 1714638702:0;p -Sy python3
+: 1714638730:0;python --version
+: 1714638735:0;p -Sy python311
+: 1714638759:0;paru -Sy python311
+: 1714638783:0;python3.11
+: 1714638787:0;python3.11 --help
+: 1714638791:0;python3.12 --help
+: 1714638794:0;paru -Sy python311
+: 1714638809:0;reflector
+: 1714638821:0;sudo reflector --country 'Spain,France' --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+: 1714638833:0;cat /etc/pacman.d/mirrorlist
+: 1714638837:0;p -Sy python311
+: 1714638844:0;paru -Sy python311
+: 1714639413:0;python3.11 --help
+: 1714639419:0;python3.10 --help
+: 1714639441:0;p -Sy pipx
+: 1714639463:0;paru -Sy pipx
+: 1714639474:0;pip list
+: 1714639488:0;p -Sy pip
+: 1714639494:0;p -Sy python-pip
+: 1714639502:0;pip list
+: 1714639531:0;p -Syyu
+: 1714639635:0;pip3 list
+: 1714639663:0;p -Syyu
+: 1714639723:0;pip list
+: 1714639755:0;p -Sy python-pipx
+: 1714639771:0;pipx
+: 1714639776:0;pipx install hatch
+: 1714639805:0;pip list
+: 1714639815:0;hatch
+: 1714640113:0;cd ..
+: 1714640114:0;cd ejemplo
+: 1714640119:0;hatch new example
+: 1714640122:0;ls
+: 1714640130:0;rf example
+: 1714640131:0;cd ..
+: 1714640134:0;hatch new example
+: 1714640140:0;ls
+: 1714640144:0;rf ejemplo
+: 1714640145:0;cd example
+: 1714640147:0;ls
+: 1714640147:0;ls -la
+: 1714640154:0;cd src
+: 1714640154:0;ls
+: 1714640155:0;ls -la
+: 1714640156:0;cd example
+: 1714640156:0;ls
+: 1714640157:0;ls -la
+: 1714640164:0;cat __init__.py
+: 1714640176:0;cat __about__.py
+: 1714640179:0;cd ..
+: 1714640179:0;ls
+: 1714640180:0;cd ..
+: 1714640181:0;ls
+: 1714640182:0;ls -la
+: 1714640184:0;cat README.md
+: 1714640217:0;ls
+: 1714640220:0;cat pyproject.toml
+: 1714640434:0;ls
+: 1714640437:0;cat LICENSE.txt
+: 1714640463:0;ls -la
+: 1714640533:0;hatch version
+: 1714640568:0;cat src/example/__about__.py
+: 1714640614:0;hatch version
+: 1714640679:0;hatch config
+: 1714640697:0;hatch config show
+: 1714640719:0;ls
+: 1714640722:0;hatch config show
+: 1714640776:0;hatch dep show requiremtns
+: 1714640783:0;hatch dep show requirements
+: 1714640790:0;hatch dep show table
+: 1714640820:0;hatch run pip list
+: 1714640915:0;hatch env
+: 1714640918:0;hatch env find
+: 1714640933:0;hatch env show --ascii
+: 1714640935:0;hatch env show
+: 1714641014:0;deactivate
+: 1714641018:0;hatch env show
+: 1714641040:0;rf .venv
+: 1714641057:0;hatch env --help
+: 1714641064:0;hatch env create --help
+: 1714641075:0;hatch env create
+: 1714641360:0;uv
+: 1714641366:0;hatch env
+: 1714641368:0;hatch env find
+: 1714641401:0;hatch env show
+: 1714641470:0;uv --version
+: 1714641476:0;pip list
+: 1714641483:0;hatch pip list
+: 1714641486:0;uv pip list
+: 1714641585:0;hatch env find
+: 1714641600:0;hatch shell
+: 1714641600:0;source "/home/borja/.local/share/hatch/env/virtual/llarag/UstG6uCD/llarag/bin/activate"
+: 1714641614:0;pip list
+: 1714641720:0;uv venv --help
+: 1714641739:0;hatch
+: 1714641748:0;hatch build
+: 1714641770:0;which uv
+: 1714641782:0;uv --version
+: 1714642283:0;hatch dep
+: 1714642287:0;hatch dep show
+: 1714642289:0;hatch dep show requirements
+: 1714642301:0;hatch dep show table
+: 1714642750:0;hatch env find
+: 1714642755:0;hatch env create
+: 1714642762:0;hatch env
+: 1714642772:0;hatch env show
+: 1714642832:0;cat %USERPROFILE%/AppData/Local/hatch/config.toml
+: 1714642840:0;hatch config show
+: 1714642845:0;hatch config
+: 1714642852:0;hatch config explore
+: 1714642863:0;hatch config find
+: 1714642877:0;vim /home/borja/.config/hatch/config.toml
+: 1714642946:0;hatch env show
+: 1714642950:0;hatch create
+: 1714642955:0;hatch env create
+: 1714643006:0;ls -la
+: 1714643019:0;hatch env show
+: 1714643024:0;hatch env find
+: 1714643046:0;hatch env show
+: 1714643049:0;hatch env find
+: 1714643188:0;hatch env show
+: 1714643192:0;hatch env find
+: 1714643217:0;p -Sy python-uv
+: 1714643254:0;p -Qqtd python-uv
+: 1714643270:0;p -Rns python-uv
+: 1714643302:0;pacman -Qqe | grep python
+: 1714643310:0;paru -Qqe | grep python
+: 1714643315:0;paru
+: 1714643366:0;pacman -Rns python-uv
+: 1714643369:0;sudo pacman -Rns python-uv
+: 1714643377:0;which uv
+: 1714643418:0;pacman -S uv
+: 1714643422:0;sudo pacman -S uv
+: 1714643440:0;sudo pacman -Rns uv
+: 1714643469:0;hatch env create
+: 1714643501:0;uv pip list
+: 1714643544:0;hatch env show
+: 1714643551:0;hatch env
+: 1714643553:0;hatch env find
+: 1714643562:0;hatch env show
+: 1714643570:0;hatch env show --ascii
+: 1714643581:0;hatch dep show
+: 1714643583:0;hatch dep show table
+: 1714643587:0;hatch dep show requirements
+: 1714643594:0;hatch dep
+: 1714643601:0;hatch
+: 1714643615:0;hatch env prune
+: 1714643621:0;hatch env create
+: 1714643646:0;hatch dep show requirements
+: 1714643651:0;hatch dep show
+: 1714643654:0;hatch env show
+: 1714643658:0;hatch env find
+: 1714643665:0;uv pip list
+: 1714643740:0;hatch shell
+: 1714643740:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714643749:0;deactivate
+: 1714643756:0;source .venv/bin/activate
+: 1714643871:0;pip list
+: 1714643879:0;which pip
+: 1714643886:0;pip list
+: 1714643901:0;hatch list
+: 1714643903:0;hatch
+: 1714643907:0;hatch status
+: 1714643932:0;hatch self
+: 1714643942:0;hatch project
+: 1714643944:0;hatch project metadata
+: 1714643950:0;hatch
+: 1714643954:0;hatch clean
+: 1714643962:0;hatch build
+: 1714643997:0;hatch python
+: 1714644000:0;hatch python find
+: 1714644008:0;hatch python find -h
+: 1714644015:0;hatch python show
+: 1714644033:0;hatch
+: 1714644046:0;hatch dep
+: 1714644057:0;hatch shell
+: 1714644057:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714644061:0;pip list
+: 1714644070:0;uv pip list
+: 1714644127:0;echo $HATCH_UV
+: 1714644258:0;hatch env
+: 1714644262:0;hatch env find
+: 1714644269:0;hatch env show
+: 1714644411:0;rm -rf llarag
+: 1714644438:0;hatch env
+: 1714644442:0;hatch env remove
+: 1714644448:0;hatch env prune
+: 1714644466:0;vim /home/borja/.config/hatch/config.toml
+: 1714645378:0;hatch env prune
+: 1714645382:0;hatch env show]
+: 1714645385:0;hatch env show
+: 1714645405:0;cd ..
+: 1714645406:0;ls
+: 1714645410:0;rf example
+: 1714645412:0;cd
+: 1714645419:0;hatch env show
+: 1714645429:0;hatch env
+: 1714645433:0;hatch remove
+: 1714645438:0;hatch env remove
+: 1714645444:0;hatch env show
+: 1714645451:0;hatch env remove example
+: 1714645453:0;hatch env show
+: 1714645458:0;hatch env show --help
+: 1714645464:0;hatch env show -i
+: 1714645487:0;hatch env show --help
+: 1714645493:0;hatch env create -h
+: 1714645500:0;hatch env create venv
+: 1714645505:0;hatch env create
+: 1714645543:0;hatch env show
+: 1714645553:0;pip
+: 1714645561:0;hatch install
+: 1714645564:0;hatch dep
+: 1714645567:0;hatch dep install
+: 1714645575:0;pip list
+: 1714645582:0;hatch shell
+: 1714645582:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714645584:0;pip listy
+: 1714645586:0;pip list
+: 1714645590:0;uv pip list
+: 1714645609:0;deactivate
+: 1714645611:0;uv pip list
+: 1714645629:0;uv
+: 1714645633:0;uv venv
+: 1714645647:0;hatch env show
+: 1714645658:0;uv venv --help
+: 1714645675:0;p -Rns uv
+: 1714645680:0;uv
+: 1714645688:0;rf .venv
+: 1714645692:0;hatch env show
+: 1714645697:0;hatch shell
+: 1714645698:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714645706:0;pip list
+: 1714645714:0;uv
+: 1714645763:0;uv --version
+: 1714645770:0;uv venv --help
+: 1714645777:0;uv
+: 1714645780:0;uv pip list
+: 1714645834:0;python llaprag/extract.py
+: 1714645887:0;pip
+: 1714645890:0;pip list
+: 1714645995:0;hatch shell
+: 1714646002:0;hatch shell uv
+: 1714646003:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714646007:0;pip
+: 1714646010:0;pip list
+: 1714646046:0;hatch env show
+: 1714646071:0;hatch env
+: 1714646078:0;hatch env find
+: 1714646089:0;ls -la
+: 1714646097:0;hatch shell
+: 1714646100:0;hatch shell --help
+: 1714646111:0;hatch shell
+: 1714646118:0;hatch shell pip
+: 1714646118:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714646120:0;pip list
+: 1714646126:0;deactivate
+: 1714646131:0;hatch shell uv
+: 1714646132:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714646133:0;uv
+: 1714646138:0;uv pip list
+: 1714646143:0;pip list
+: 1714646164:0;uv
+: 1714646176:0;hatch shell pip
+: 1714646176:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714646186:0;uv
+: 1714646189:0;pip list
+: 1714646196:0;uv
+: 1714646271:0;echo $HATCH_UV
+: 1714646294:0;hatch env prune
+: 1714646297:0;deactivate
+: 1714646298:0;hatch env prune
+: 1714646319:0;hatch create
+: 1714646322:0;hatch env create
+: 1714646589:0;hatch env prune
+: 1714646600:0;hatch env show
+: 1714646607:0;uv
+: 1714646614:0;hatch env find
+: 1714646621:0;hatch env create
+: 1714646632:0;hatch env prune
+: 1714646637:0;hatch env create
+: 1714646918:0;hatch shell
+: 1714646921:0;hatch shell uv
+: 1714646921:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714646923:0;pip list
+: 1714646961:0;source .venv/bin/activate
+: 1714646964:0;pip list
+: 1714647023:0;hatch
+: 1714647031:0;hatch dep
+: 1714647034:0;hatch dep show
+: 1714647039:0;hatch dep show table
+: 1714647054:0;hatch dep show requirements
+: 1714647060:0;hatch shell uv
+: 1714647060:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714647063:0;hatch dep show requirements
+: 1714647068:0;hatch dep show table
+: 1714647315:0;vim /home/borja/.config/hatch/config.toml
+: 1714648707:0;pip --help
+: 1714648719:0;which pip
+: 1714648812:0;uv
+: 1714648818:0;uv pip
+: 1714649018:0;hatch env prune
+: 1714649023:0;deactivate
+: 1714649033:0;hatch env
+: 1714649036:0;hatch env find
+: 1714649044:0;hatch env create
+: 1714649293:0;hatch shell uv
+: 1714649296:0;hatch shell
+: 1714649308:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714649311:0;ls -la
+: 1714649340:0;python
+: 1714649923:0;deactivate
+: 1714649930:0;hatch env prune
+: 1714649940:0;hatch env create
+: 1714649945:0;hatch shell
+: 1714649945:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714649947:0;pip list
+: 1714649965:0;python
+: 1714650315:0;deactivate
+: 1714650318:0;hatch shell
+: 1714650365:0;hatch shell --name uv
+: 1714650370:0;hatch shell -h
+: 1714650387:0;hatch shell uv
+: 1714650387:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714650392:0;pip
+: 1714650409:0;pip install pandas
+: 1714650436:0;hatch shell uv
+: 1714650437:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714650439:0;pip install pandas
+: 1714650442:0;uv pip install pandas
+: 1714650448:0;pip list
+: 1714650456:0;uv pip list
+: 1714650472:0;echo $HATCH_UV
+: 1714650753:0;de
+: 1714650756:0;deactivate
+: 1714650761:0;hatch shell
+: 1714650776:0;hatch shell uv
+: 1714650776:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714650784:0;uv
+: 1714650785:0;pip
+: 1714650796:0;pip --help
+: 1714650801:0;pip install pandas
+: 1714650820:0;which pip
+: 1714650883:0;hatch shell uv
+: 1714650883:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714650886:0;which pip
+: 1714650888:0;pip
+: 1714650891:0;uv pip
+: 1714650894:0;uv pip list
+: 1714650928:0;hatch shell uv
+: 1714650928:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714650931:0;uv pip list
+: 1714650933:0;pip list
+: 1714650940:0;which pip
+: 1714651119:0;hatch shell uv
+: 1714651119:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714651122:0;pip
+: 1714651124:0;pip list
+: 1714651127:0;which pip
+: 1714651147:0;hatch pip
+: 1714651151:0;hatch pip list
+: 1714651222:0;echo $HATCH_UV
+: 1714651228:0;which uv
+: 1714651245:0;/home/borja/.local/share/pipx/venvs/hatch/bin/uv pip list
+: 1714651310:0;hatch shell uv
+: 1714651310:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714651315:0;uv pip list
+: 1714651318:0;pip list
+: 1714651343:0;hatch uv
+: 1714651368:0;hatch
+: 1714651402:0;hatch fmt
+: 1714651474:0;hatch pip
+: 1714651537:0;pip
+: 1714651563:0;hatch shell uv
+: 1714651563:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714651568:0;which pip
+: 1714651572:0;deactivate
+: 1714651576:0;hatch env prune
+: 1714651588:0;hatch env create
+: 1714651603:0;hatch shell uv
+: 1714651604:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714651605:0;pip
+: 1714651610:0;which pip
+: 1714651629:0;pip list
+: 1714651638:0;pip install pandas
+: 1714651650:0;uv pip list
+: 1714651655:0;uv pip install pandas
+: 1714652093:0;deactivate
+: 1714652103:0;hatch env prune
+: 1714652107:0;rf .venv
+: 1714652113:0;hatch env show
+: 1714652127:0;hatch env create uv
+: 1714652153:0;hatch shell
+: 1714652160:0;pip list
+: 1714652167:0;hatch shell
+: 1714652171:0;hatch shell uv
+: 1714652171:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714652179:0;pip list
+: 1714652186:0;pip -h
+: 1714652193:0;which pip
+: 1714652203:0;echo $HATCH_UV
+: 1714652228:0;which uv
+: 1714652237:0;export HATCH_UV='/home/borja/projects/llama-rag-pdf/.venv/bin/uv'
+: 1714652239:0;uv
+: 1714652244:0;pip -h
+: 1714652251:0;pip install pandas
+: 1714652256:0;uv pip install pandas
+: 1714652292:0;pip install pandas
+: 1714652297:0;pip -h
+: 1714652300:0;uv pip -h
+: 1714652461:0;deactivate
+: 1714652466:0;hatch env prune
+: 1714652481:0;hatch env create
+: 1714652527:0;hatch --version
+: 1714652693:0;hatch
+: 1714652697:0;hatch version
+: 1714652722:0;hatch self
+: 1714652725:0;hatch self update
+: 1714667156:0;git status
+: 1714667211:0;hatch env create
+: 1714667249:0;hatch env show
+: 1714667262:0;hatch env
+: 1714667265:0;hatch env find
+: 1714667278:0;hatch env show uv
+: 1714667285:0;hatch env show pip
+: 1714667288:0;hatch env show uv
+: 1714667299:0;hatch shell
+: 1714667302:0;hatch shell uv
+: 1714667302:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714667304:0;pip
+: 1714667307:0;pip -h
+: 1714667416:0;hatch run pip
+: 1714667418:0;hatch run pip -h
+: 1714667437:0;hatch run pip
+: 1714667588:0;hatch run python llaprag/extract.py
+: 1714667607:0;pip list
+: 1714667612:0;uv pip list
+: 1714667622:0;hatch run pip
+: 1714667626:0;pip
+: 1714667630:0;pip -h
+: 1714667636:0;which hatch run pip
+: 1714667661:0;hatch run pip
+: 1714667894:0;hatch env prune
+: 1714667901:0;hatch env create
+: 1714667928:0;hatch run pip
+: 1714667951:0;hatch shell
+: 1714667951:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714667953:0;uv
+: 1714667989:0;uv pip
+: 1714668307:0;uv pip compile requirements/requirements.in -o requirements/requirements.txt
+: 1714668378:0;uv pip sync
+: 1714668486:0;uv pip sync requirements/requirements.txt
+: 1714668595:0;pip list
+: 1714668620:0;uv pip list
+: 1714668627:0;uv
+: 1714668671:0;deactivate
+: 1714668679:0;hatch env prune
+: 1714668692:0;hatch env create
+: 1714668699:0;hatch shell
+: 1714668699:0;source "/home/borja/projects/llama-rag-pdf/.venv/bin/activate"
+: 1714668701:0;pip list
+: 1714668704:0;uv
+: 1714668707:0;uv pip list
+: 1714671050:0;python llaprag/extract.py
+: 1714671637:0;docker compose -f docker/docker-compose.yaml up -d
+: 1714671643:0;python llaprag/extract.py
+: 1714672186:0;uv pip compile requirements/requirements.in -o requirements/requirements.txt && uv pip install -r requirements/requirements.txt
+: 1714672367:0;python llaprag/extract.py
+: 1714673451:0;git remote add origin git@github.com:BorjaIP/llaprag.git
+: 1714673465:0;git init
+: 1714673471:0;git status
+: 1714673778:0;hatch clean
+: 1714673797:0;hatch build
+: 1714673919:0;git add .
+: 1714673933:0;git commit -m "Initial commit"
+: 1714673938:0;git branch -M main
+: 1714673943:0;git remote add origin git@github.com:BorjaIP/llaprag.git
+: 1714673947:0;git push -u origin main
+: 1714673978:0;git status
+: 1714674014:0;git add .
+: 1714674019:0;git commit -m "Initial commit"
+: 1714674021:0;git push -u origin main
+: 1714811539:0;git ss
+: 1714811542:0;git status
+: 1714811544:0;git reset --hard HEAD~1
+: 1714811548:0;git reset --hard HEAD
+: 1714811570:0;git revert
+: 1714811623:0;git push origin HEAD --force
+: 1714811642:0;git branch -D main
+: 1714811675:0;git checkout --orphan latest_branch

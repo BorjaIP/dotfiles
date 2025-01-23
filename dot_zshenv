@@ -36,7 +36,12 @@ export TERMINAL="alacritty"
 export BROWSER="firefox"
 
 # Others
-export FZF_CTRL_R_COMMAND="-sort --exact"
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git" 
+export FZF_CTRL_R_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git" 
+# Use ripgrep for recursively searches directories for a regex pattern 
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export TERM=xterm-256color
 
 # Add color to man pages

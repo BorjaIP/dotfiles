@@ -26,12 +26,16 @@ SAVEHIST=10000
 
 # History
 setopt HIST_VERIFY
-setopt EXTENDED_HISTORY
-setopt HIST_REDUCE_BLANKS
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
-setopt INC_APPEND_HISTORY
 setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_FIND_NO_DUPS
 
 # Aliases
 setopt COMPLETE_ALIASES
@@ -45,6 +49,9 @@ compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 # Matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Add colors to completion
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # Pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
@@ -84,7 +91,8 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 #                                    PLUGINS
 # -----------------------------------------------------------------------------
 
-# Configure fzf
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
