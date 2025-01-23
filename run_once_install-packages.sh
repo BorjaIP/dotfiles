@@ -49,6 +49,7 @@ arch_pacman() {
         vi
         vim
         zsh
+        bat
         neovim
         docker
         docker-compose
