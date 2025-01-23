@@ -8,6 +8,17 @@ return {
 		-- lua functions that many plugins use
 		"nvim-lua/plenary.nvim",
 	},
+	defaults = {
+		-- stablish hard boundaries
+		scroll_strategy = "limit",
+		file_ignore_patterns = { ".git/[^h]" },
+	},
+	pickers = {
+		-- show hidden files
+		find_files = {
+			hidden = true,
+		},
+	},
 	config = function()
 		-- select colors
 		local colors = require("base16-colorscheme").colors
