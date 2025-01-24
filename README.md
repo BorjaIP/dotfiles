@@ -1,6 +1,6 @@
 # ☄️ Dotfiles 🖥
 
-Each line of configuration is simple, stripping away the unnecessary to leave only what matters. Minimalistic yet powerful, these dotfiles are without using too many plugins/frameworks in all the tools and try to make it simple. It's not about adding more; it's about needing less.
+Each line of configuration is simple, stripping away the unnecessary to leave only what matters. Minimalistic and essential, these dotfiles are without using too many plugins/frameworks in all the tools and try to make it simple. It's not about adding more; it's about needing less.
 
 ## Manage
 
