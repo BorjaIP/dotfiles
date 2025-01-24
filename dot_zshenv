@@ -35,13 +35,22 @@ export GUI_EDITOR="vscodium"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 
-# Others
+# Fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git" 
-export FZF_CTRL_R_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git" 
+
+export FZF_DEFAULT_OPTS="--height 50% --layout=default --border" 
+export FZF_TMUX_OPTS="-p90%,70%" 
+
+# Previous using bat
+export FZF_CTRL_T_OPTS="--preview 'bat --theme=base16 --color=always --style=numbers --line-range=:500 {}'" 
+
 # Use ripgrep for recursively searches directories for a regex pattern 
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Others
 export TERM=xterm-256color
 
 # Add color to man pages
