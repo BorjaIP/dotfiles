@@ -15,8 +15,13 @@ alias pclean='sudo pacman -Rcns $(pacman -Qdtq)'
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
 alias server='python3 -m http.server'
 alias reload='source "$ZDOTDIR"/.zshrc'
+alias fabric='fabric-ai'
+
+# kubernetes
+alias k='kubectl'
 
 # vim
+alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 
