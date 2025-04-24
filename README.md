@@ -17,6 +17,20 @@ This config repo is designed for any Linux Distribution, I personally use Arch L
 - [Neovim](https://wiki.archlinux.org/index.php/Neovim) as Editor.
 - [Tmux](https://wiki.archlinux.org/index.php/Tmux) as Terminal Multiplexer.
 
+### My Developer Environment
+
+| 🧠 Toolset      | 🔧 Config / Plugins / Tools                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **📝 Neovim**   | - Plugin Manager: [Lazy.nvim](https://github.com/folke/lazy.nvim)  <br> - Colorscheme: [Base16](https://github.com/chriskempson/base16) <br> - LSP: [Built-in LSP](https://neovim.io/doc/user/lsp.html) <br> - LSP Manager: [Mason](https://github.com/williamboman/mason.nvim) <br> - Formatter: [conform.nvim](https://github.com/stevearc/conform.nvim) <br> - Statusline: [Lualine](https://github.com/nvim-lualine/lualine.nvim) <br> - Fuzzy Finder: [Telescope](https://github.com/nvim-telescope/telescope.nvim) <br> - Syntax Highlighting: [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter) |
+| **🐚 ZSH**      | - Prompt: [Pure](https://github.com/sindresorhus/pure) <br> - [fzf](https://github.com/junegunn/fzf)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **🖥 Terminal** | - [bat](https://github.com/sharkdp/bat) – better `cat` <br> - [eza](https://github.com/eza-community/eza) – better `ls` <br> - [tldr](https://github.com/tldr-pages/tldr) – simplified man pages <br> - [zoxide](https://github.com/ajeetdsouza/zoxide) – smarter `cd`                                                                                                                                                                                                                                                                                                                                                |
+
+Example command:
+
+```bash
+fzf --preview 'bat --style=numbers --color=always {}'
+```
+
 ## Installation
 
 >[!important]
@@ -55,7 +69,6 @@ chezmoi git -- push
 
 ## Credits
 
-- ZSH inspiration [Pure](https://github.com/sindresorhus/pure)
 - Base16 theme [Chris Kempson](https://github.com/chriskempson/base16)
 - Script color [Wincent](https://github.com/wincent/wincent)
 - Tmux and other configuration [Nicknisi](https://github.com/nicknisi/dotfiles)
