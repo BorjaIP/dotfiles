@@ -1,14 +1,12 @@
 # ☄️ Dotfiles 🖥
 
-Each line of configuration is simple, stripping away the unnecessary to leave only what matters. Minimalistic and essential, these dotfiles are without using too many plugins/frameworks in all the tools and try to make it simple. It's not about adding more; it's about needing less.
+Every line of config is simple—just what’s needed, nothing more. These dotfiles are minimal and essential, avoiding heavy plugins or bloated frameworks across all tools. It’s not about adding more, it’s about needing less.
 
-## Manage
+![terminal](https://github.com/user-attachments/assets/16a1f8c7-5fcc-41eb-be54-10279750adc4)
 
-I use [chezmoi](https://www.chezmoi.io/) for managing my dotfiles. Follow these [instructions](https://jerrynsh.com/how-to-manage-dotfiles-with-chezmoi/) for add or changing any configuration.
+![vscode](https://github.com/user-attachments/assets/f8a44e04-230a-4c6d-afbc-6a7ceb3d8c8f)
 
-I followed the instructions from [XDG_Base_Directory](https://wiki.archlinux.org/index.php/XDG_Base_Directory) for clean my dotfiles and manage config directories.
-
-## Contents
+## Features
 <!-- https://github.com/inttter/md-badges -->
 
 [![Zsh](https://img.shields.io/badge/Zsh-F15A24?style=for-the-badge&logo=zsh&logoColor=fff)](#) [![Neovim](https://img.shields.io/badge/Neovim-57A143?style=for-the-badge&logo=neovim&logoColor=fff)](#) [![Vim](https://img.shields.io/badge/Vim-%2311AB00.svg?style=for-the-badge&logo=vim&logoColor=white)](#) [![tmux](https://img.shields.io/badge/tmux-1BB91F?style=for-the-badge&logo=tmux&logoColor=fff)](#) [![Visual Studio Code](https://custom-icon-badges.demolab.com/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=vsc&logoColor=white)](#)
@@ -21,8 +19,37 @@ This config repo is designed for any Linux Distribution, I personally use Arch L
 
 ## Installation
 
+>[!important]
+>
+> This command will install software and apply all the configurations.
+> ```bash
+> sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply BorjaIP
+>```
+
+This will create your repository in `~/.local/share/chezmoi`.
+
+## Manage
+
+I use [chezmoi](https://www.chezmoi.io/) for managing my dotfiles. Follow these [instructions](https://jerrynsh.com/how-to-manage-dotfiles-with-chezmoi/) for add or changing any configuration.
+
+I followed the instructions from [XDG_Base_Directory](https://wiki.archlinux.org/index.php/XDG_Base_Directory) for clean my dotfiles and manage config directories.
+
+### Basic usage
+
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply BorjaIP
+# edit source file
+chezmoi edit .config/zsh/.zshrc
+
+# apply changes to your original file
+chezmoi -v apply
+
+# see diferences between tracker and local
+chezmoi diff
+
+# update new files
+chezmoi git -- add .
+chezmoi git -- commit -m "Update zsh config"
+chezmoi git -- push
 ```
 
 ## Credits
