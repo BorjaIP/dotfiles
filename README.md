@@ -20,13 +20,14 @@ This config repo is designed for any Linux Distribution, I personally use Arch L
 ## Installation
 
 >[!important]
->
-> This command will install software and apply all the configurations.
-> ```bash
-> sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply BorjaIP
->```
+> 
+> Only compatible currently with `Arch Linux`
 
-This will create your repository in `~/.local/share/chezmoi`.
+This command will install software and apply all the configurations in `~/.local/share/chezmoi`.
+
+```bash
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply BorjaIP
+```
 
 ## Manage
 
