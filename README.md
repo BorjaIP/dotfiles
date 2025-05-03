@@ -6,6 +6,8 @@ Every line of config is simple—just what’s needed, nothing more. These dotfi
 
 ![vscode](https://github.com/user-attachments/assets/f8a44e04-230a-4c6d-afbc-6a7ceb3d8c8f)
 
+![base16-ocean](https://github.com/user-attachments/assets/3dfdbeb7-aba3-4ecd-bcde-ce4202d9b930)
+
 ## Features
 <!-- https://github.com/inttter/md-badges -->
 
