@@ -10,26 +10,10 @@
 # System custom
 alias p='sudo pacman'
 alias sdn='sudo shutdown now'
-alias cat='bat --theme=base16'
 alias pclean='sudo pacman -Rcns $(pacman -Qdtq)'
-alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
+alias cat='bat --theme=base16'
 alias server='python3 -m http.server'
 alias reload='source "$ZDOTDIR"/.zshrc'
-alias fabric='fabric-ai'
-
-# kubernetes
-alias k='kubectl'
-
-# vim
-alias v="nvim"
-alias vi="nvim"
-alias vim="nvim"
-
-# Enable color support
-alias ls='ls --color=always --group-directories-first'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 
 # Commands files
 alias ..='cd ..'
@@ -38,8 +22,42 @@ alias la="ls -AF"
 alias ll="ls -lFh"
 alias rf="rm -rf"
 
+# Enable color support
+alias ls='ls --color=always --group-directories-first'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# vim
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+
 # Tmux aliases
 alias ta='tmux attach'
 alias tls='tmux ls'
 alias tat='tmux attach -t'
 alias tns='tmux new-session -s'
+
+# Chezmoi
+alias chcd="chezmoi cd"
+alias cha="chezmoi -v apply"
+alias chd="chezmoi diff"
+
+# Tools
+alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
+alias fabric='fabric-ai'
+
+# Kubernetes
+alias k='kubectl'
+alias kp='kubectl get pods'
+alias ka='kubectl apply -f'
+alias kns='kubectl get namespaces'
+alias kdns='kubectl describe namespace'
+alias kd='kubectl get deployments'
+alias kdd='kubectl describe deployment'
+alias ks='kubectl get services'
+alias kds='kubectl describe service'
+alias kp='kubectl get pods'
+alias kpd='kubectl describe pod'
+alias kl='kubectl logs'
