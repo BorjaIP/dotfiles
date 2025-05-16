@@ -50,6 +50,7 @@ arch_pacman() {
         vim
         zsh
         bat
+        tealdeer
         neovim
         docker
         docker-compose
