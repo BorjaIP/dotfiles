@@ -1,0 +1,13 @@
+# OS
+{{ if eq .chezmoi.os "linux" -}}
+alias p='sudo pacman'
+alias sdn='sudo shutdown now'
+alias pclean='sudo pacman -Rcns $(pacman -Qdtq)'
+{{ else if eq .chezmoi.os "darwin" -}}
+alias bupdate='brew bundle dump --no-vscode -f'
+alias brewtop='brew leaves -r'
+alias brewuses='brew uses --installed'
+alias brewdeps='brew deps --tree'
+alias showdot='defaults write com.apple.finder AppleShowAllFiles TRUE'  # show dot files in Finder
+alias hidedot='defaults write com.apple.finder AppleShowAllFiles FALSE' # hide dot files in Finder
+{{ end -}}
