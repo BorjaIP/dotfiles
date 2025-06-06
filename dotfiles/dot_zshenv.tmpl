@@ -9,7 +9,7 @@
 
 
 {{- if eq .chezmoi.os "darwin" -}}
-{{-   include ".zshenv_mac" -}}
+{{-   include "dotfiles/.zshenv_mac" -}}
 {{- else if eq .chezmoi.os "linux" -}}
-{{-   include ".zshenv_linux" -}}
+{{-   include "dotfiles/.zshenv_linux" -}}
 {{- end -}}
