@@ -72,8 +72,6 @@ alias dlogs='docker logs -tf --tail="50" '
 alias dexec='sudo docker exec -it '
 # List all images sorted by name
 alias dpss='sudo docker ps -a --format "table {{.Names}}\t{{.State}}\t{{.Status}}\t{{.Image}}" | (sed -u 1q; sort)'
-# Display IP addresses of all containers
-# alias dips='sudo docker ps -q | xargs -n 1 docker inspect --format "{{json .}}" | jq -rs "map(.Name,.NetworkSettings.Networks[].IPAddress) | .[]"'
 
 # Kubernetes
 alias k='kubectl'
