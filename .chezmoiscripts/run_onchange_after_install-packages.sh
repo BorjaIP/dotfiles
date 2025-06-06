@@ -64,7 +64,7 @@ verify_supported_os() {
 
 macos_brew_packages() {
     # local brewfile_path="$HOME/.config/brew/Brewfile"
-    local brewfile_path="$HOME/.local/share/chezmoi/dotfiles/dot_config/brew/Brewfile"
+    local brewfile_path="$HOME/.local/share/chezmoi/dot_config/brew/Brewfile"
     brew update
     
     if [ -f "$brewfile_path" ]; then
