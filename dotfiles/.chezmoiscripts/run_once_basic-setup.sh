@@ -52,9 +52,6 @@ verify_supported_os() {
             info "Detected Arch Linux - supported"
             return 0
             ;;
-        "linux-unknown")
-            die "Unsupported Linux distribution. Only Arch Linux is supported at this moment."
-            ;;
         "unknown")
             die "Unsupported operating system. Only macOS and Arch Linux are supported."
             ;;
@@ -66,87 +63,9 @@ verify_supported_os() {
 # ------------------------------------------------------------------------------
 
 install_tools() {
+    msg "Installing common tools"
     # Base16 theme
     [ -d "$HOME/.config/base16-shell" ] && info "Base16 is already installed" || ( msg "Installing base16" && git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell )
-}
-
-# ------------------------------------------------------------------------------
-#                           Arch Linux Functions
-# ------------------------------------------------------------------------------
-
-arch_pacman() {
-    # Add some color to pacman
-    grep "^Color" /etc/pacman.conf >/dev/null || sed -i "s/^#Color$/Color/" /etc/pacman.conf
-    grep "ILoveCandy" /etc/pacman.conf >/dev/null || sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
-
-    root=''
-    [ $UID = 0 ] || root='sudo'
-
-    packages=( \
-        base-devel
-        neofetch
-        git
-        fzf
-        go
-        vi
-        vim
-        zsh
-        bat
-        tealdeer
-        neovim
-        docker
-        docker-compose
-        python
-        python-pip
-        ttf-inconsolata-nerd
-    )
-
-    to_install=()
-    for pack in "${packages[@]}"; do
-        pacman -Qq "$pack" > /dev/null 2>&1 || to_install+=("$pack")
-    done
-
-    if [ "${#to_install}" -gt 0 ]; then
-        msg "Installing packages"
-        $root pacman --noconfirm --needed --noprogressbar -S "${to_install[@]}"
-    else
-        info "All official packages are installed"
-    fi
-}
-
-arch_aur() {
-    # Anything bellow needs to run unprivileged, mostly because of makepkg
-    # [ $UID = 0 ] && return
-
-    # Installing AUR package manager
-    if ! command -v paru &> /dev/null
-    then
-        cd /tmp || exit
-        git clone https://aur.archlinux.org/paru.git
-        cd paru || exit
-        makepkg -si --noconfirm
-        cd .. && rm -rf /tmp/paru
-    fi
-
-    aur_packages=( \
-        zsh-autosuggestions-git
-        zsh-syntax-highlighting-git
-        zsh-history-substring-search-git
-        kubectl
-        tmux
-    )
-
-    to_install=()
-    for pack in "${aur_packages[@]}"; do
-        paru -Qq "$pack" > /dev/null 2>&1 || to_install+=("$pack")
-    done
-
-    if [ "${#to_install}" -gt 0 ]; then
-        msg "Installing AUR packages"
-        paru --noconfirm --needed --noprogressbar -S "${to_install[@]}"
-    else
-        info "All AUR packages are installed"
-    fi
 }
 
 # ------------------------------------------------------------------------------
@@ -171,19 +90,24 @@ macos_check_homebrew() {
     fi
 }
 
-macos_brew_packages() {
-    macos_check_homebrew
+# ------------------------------------------------------------------------------
+#                           Arch Linux Functions
+# ------------------------------------------------------------------------------
 
-    local brewfile_path="$HOME/.config/brew/Brewfile"
-    
-    if [ -f "$brewfile_path" ]; then
-        msg "Installing packages from Brewfile"
-        brew bundle install --file="$brewfile_path"
+arch_check_paru() {
+    # Installing AUR package manager
+    if ! command -v paru &> /dev/null; then
+        msg "Installing paru (AUR helper)"
+        cd /tmp || exit
+        git clone https://aur.archlinux.org/paru.git
+        cd paru || exit
+        makepkg -si --noconfirm
+        cd - || exit
+        rm -rf /tmp/paru
     else
-        error "Brewfile not found at $brewfile_path"
-        info "Installing basic packages manually"
-      fi
-}
+        info "Paru is already installed"
+    fi
+}    
 
 # ------------------------------------------------------------------------------
 #                              Main Logic
@@ -195,17 +119,18 @@ verify_supported_os
 # Install common tools
 install_tools
 
-# Install OS-specific packages
+# Basic OS-specific setup (before file copying)
 case $(detect_os) in
     "macos")
-        msg "Setting up macOS environment"
-        macos_brew_packages
+        msg "Basic macOS setup"
+        macos_check_homebrew
+        info "Homebrew setup completed. Package installation will happen after file copying."
         ;;
     "arch")
-        msg "Setting up Arch Linux environment"
-        arch_pacman
-        arch_aur
+        msg "Basic Arch Linux setup"
+        arch_check_paru
+        info "Arch package installation will happen after file copying."
         ;;
 esac
 
-msg "Installation completed successfully!"
+msg "Basic setup completed successfully!" 
