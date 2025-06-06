@@ -8,19 +8,30 @@
 #                                                      \|_________|        \|_________|
 
 # System custom
-alias p='sudo pacman'
-alias sdn='sudo shutdown now'
-alias pclean='sudo pacman -Rcns $(pacman -Qdtq)'
 alias cat='bat --theme=base16'
 alias server='python3 -m http.server'
 alias reload='source "$ZDOTDIR"/.zshrc'
 
+# OS
+{{ if eq .chezmoi.os "linux" -}}
+alias p='sudo pacman'
+alias sdn='sudo shutdown now'
+alias pclean='sudo pacman -Rcns $(pacman -Qdtq)'
+{{ else if eq .chezmoi.os "darwin" -}}
+alias bupdate='brew bundle dump --no-vscode -f'
+alias brewtop='brew leaves -r'
+alias brewuses='brew uses --installed'
+alias brewdeps='brew deps --tree'
+alias showdot='defaults write com.apple.finder AppleShowAllFiles TRUE'  # show dot files in Finder
+alias hidedot='defaults write com.apple.finder AppleShowAllFiles FALSE' # hide dot files in Finder
+{{ end -}}
+
 # Commands files
 alias ..='cd ..'
-alias l="ls -lah"
-alias la="ls -AF"
-alias ll="ls -lFh"
-alias rf="rm -rf"
+alias l='ls -lah'
+alias la='ls -AF'
+alias ll='ls -lFh'
+alias rf='rm -rf'
 
 # Enable color support
 alias ls='ls --color=always --group-directories-first'
@@ -29,9 +40,9 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # vim
-alias v="nvim"
-alias vi="nvim"
-alias vim="nvim"
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
 
 # Tmux aliases
 alias ta='tmux attach'
@@ -40,13 +51,29 @@ alias tat='tmux attach -t'
 alias tns='tmux new-session -s'
 
 # Chezmoi
-alias chcd="chezmoi cd"
-alias cha="chezmoi -v apply"
-alias chd="chezmoi diff"
+alias chcd='chezmoi cd'
+alias cha='chezmoi -v apply'
+alias chd='chezmoi diff'
 
 # Tools
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
 alias fabric='fabric-ai'
+
+# Docker
+alias dstopall='sudo docker stop $(sudo docker ps -aq)'
+alias dprunevol='sudo docker volume prune'
+alias dprunesys='sudo docker system prune -a'
+alias ddelimages='sudo docker rmi $(docker images -q)'
+# Prune all images, volumes, and system
+alias dprune='ddelimages ; dprunevol ; dprunesys'
+alias dps='docker ps -a'
+alias ddf='docker system df'
+alias dlogs='docker logs -tf --tail="50" '
+alias dexec='sudo docker exec -it '
+# List all images sorted by name
+alias dpss='sudo docker ps -a --format "table {{.Names}}\t{{.State}}\t{{.Status}}\t{{.Image}}" | (sed -u 1q; sort)'
+# Display IP addresses of all containers
+alias dips='sudo docker ps -q | xargs -n 1 docker inspect --format "{{json .}}" | jq -rs "map(.Name,.NetworkSettings.Networks[].IPAddress) | .[]"'
 
 # Kubernetes
 alias k='kubectl'

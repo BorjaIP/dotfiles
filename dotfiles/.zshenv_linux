@@ -1,0 +1,55 @@
+# Adding path directory for custom scripts
+PATH="$HOME/.local/bin${PATH:+:${PATH}}"
+
+# XDG Base Directory
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_CACHE_HOME="$HOME"/.cache
+
+# Config paths
+export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
+export HISTFILE="$XDG_DATA_HOME"/zsh/history
+export HISTFILE="$XDG_CACHE_HOME"/zsh/.zcompdump
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export MYVIMRC="$XDG_CONFIG_HOME"/nvim/init.lua
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export KREW_ROOT=${KREW_ROOT:-$HOME/.krew}/bin:$PATH
+
+# Default programs
+export EDITOR="nvim"
+export GIT_EDITOR="nvim"
+export GUI_EDITOR="vscodium"
+export TERMINAL="alacritty"
+export BROWSER="firefox"
+
+# Fzf
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git" 
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git" 
+
+export FZF_DEFAULT_OPTS="--height 50% --layout=default --border" 
+export FZF_TMUX_OPTS="-p90%,70%" 
+
+# Previous using bat
+export FZF_CTRL_T_OPTS="--preview 'bat --theme=base16 --color=always --style=numbers --line-range=:500 {}'" 
+
+# Use ripgrep for recursively searches directories for a regex pattern 
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Others
+export TERM=xterm-256color
+
+# Add color to man pages
+export MANROFFOPT='-c'
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 2)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3)
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 1)
+export LESS_TERMCAP_ue=$(tput sgr0)
+export LESS_TERMCAP_me=$(tput sgr0)
