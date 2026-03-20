@@ -93,10 +93,10 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+{{ if eq .chezmoi.os "linux" -}}
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
-{{ if eq .chezmoi.os "linux" -}}
 # Autosuggestion
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -107,13 +107,16 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 {{ else if eq .chezmoi.os "darwin" -}}
+source "$HOMEBREW_PREFIX"/Cellar/fzf/0.67.0/shell/completion.zsh
+source "$HOMEBREW_PREFIX"/Cellar/fzf/0.67.0/shell/key-bindings.zsh
+
 # Autosuggestion
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$HOMEBREW_PREFIX"/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Use syntax highlighting
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Use history substring search
-source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source "$HOMEBREW_PREFIX"/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 {{ end -}}

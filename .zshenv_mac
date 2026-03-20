@@ -1,10 +1,26 @@
+
+
 # Adding path directory for custom scripts
 PATH="$HOME/.local/bin${PATH:+:${PATH}}"
 
+# XDG specification
+XDG_CONFIG_HOME="$HOME/.config"
+XDG_DATA_HOME="$HOME/.local/share"
+XDG_CACHE_HOME="$HOME/.local/state"
+
 # Config paths
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
+export ZSH_COMPDUMP="$XDG_CACHE_HOME"/zsh/.zcompdump
 export HISTFILE="$XDG_DATA_HOME"/zsh/history
-export HISTFILE="$XDG_CACHE_HOME"/zsh/.zcompdump
+export PYTHON_HISTORY="$XDG_DATA_HOME"/python/history
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+export MYVIMRC="$XDG_CONFIG_HOME"/nvim/init.lua
+
+# Tools
+export COLIMA_HOME="$XDG_CONFIG_HOME"/colima
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export MINIKUBE_HOME="$XDG_CONFIG_HOME"/minikube
+export DOCKER_MCP_IN_CONTAINER=1
 
 # Default programs
 export EDITOR="nvim"

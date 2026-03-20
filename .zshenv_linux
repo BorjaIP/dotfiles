@@ -1,3 +1,5 @@
+
+
 # Adding path directory for custom scripts
 PATH="$HOME/.local/bin${PATH:+:${PATH}}"
 

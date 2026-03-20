@@ -39,6 +39,7 @@ alias tns='tmux new-session -s'
 # Chezmoi
 alias chcd='chezmoi cd'
 alias cha='chezmoi -v apply'
+alias chu='chezmoi update'
 alias chd='chezmoi diff'
 
 # Tools
