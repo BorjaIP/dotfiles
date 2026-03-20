@@ -3,6 +3,9 @@
 # Adding path directory for custom scripts
 PATH="$HOME/.local/bin${PATH:+:${PATH}}"
 
+# Obsidian CLI
+PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+
 # XDG specification
 XDG_CONFIG_HOME="$HOME/.config"
 XDG_DATA_HOME="$HOME/.local/share"
