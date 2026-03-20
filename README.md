@@ -13,7 +13,7 @@ Every line of config is simple—just what’s needed, nothing more. These dotfi
 
 [![Zsh](https://img.shields.io/badge/Zsh-F15A24?style=for-the-badge&logo=zsh&logoColor=fff)](#) [![Neovim](https://img.shields.io/badge/Neovim-57A143?style=for-the-badge&logo=neovim&logoColor=fff)](#) [![Vim](https://img.shields.io/badge/Vim-%2311AB00.svg?style=for-the-badge&logo=vim&logoColor=white)](#) [![tmux](https://img.shields.io/badge/tmux-1BB91F?style=for-the-badge&logo=tmux&logoColor=fff)](#) [![Visual Studio Code](https://custom-icon-badges.demolab.com/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=vsc&logoColor=white)](#)
 
-This config repo is designed for any Linux Distribution, I personally use Arch Linux. 
+This config repo is designed for Arch Linux and macOS.
 
 - [ZSH](https://wiki.archlinux.org/index.php/Zsh) as Shell.
 - [Neovim](https://wiki.archlinux.org/index.php/Neovim) as Editor.
@@ -36,8 +36,8 @@ fzf --preview 'bat --style=numbers --color=always {}'
 ## Installation
 
 >[!important]
-> 
-> Only compatible currently with `Arch Linux`
+>
+> Only compatible with `Arch Linux` and `macOS`
 
 This command will install software and apply all the configurations in `~/.local/share/chezmoi`.
 
