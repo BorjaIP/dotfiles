@@ -1,4 +1,3 @@
-{{- if ne .chezmoi.os "windows" -}}
 #!/bin/bash
 
 cd $HOME || return
@@ -176,4 +175,3 @@ case $(detect_os) in
 esac
 
 msg "Basic setup completed successfully!"
-{{- end -}}

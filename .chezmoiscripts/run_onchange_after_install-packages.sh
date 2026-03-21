@@ -1,4 +1,3 @@
-{{- if ne .chezmoi.os "windows" -}}
 #!/bin/bash
 
 cd $HOME || return
@@ -166,4 +165,3 @@ case $(detect_os) in
 esac
 
 msg "Package installation completed successfully!"
-{{- end -}}
