@@ -42,7 +42,7 @@ fzf --preview 'bat --style=numbers --color=always {}'
 This command will install software and apply all the configurations in `~/.local/share/chezmoi`.
 
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply BorjaIP
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin" init --apply BorjaIP
 ```
 
 ## XDG Base Directory
@@ -55,6 +55,8 @@ All configuration follows the [XDG Base Directory Specification](https://specifi
 | `XDG_DATA_HOME` | `~/.local/share` | Persistent data |
 | `XDG_STATE_HOME` | `~/.local/state` | Shell history, logs |
 | `XDG_CACHE_HOME` | `~/.cache` | Non-essential cached data |
+
+`~/.local/bin` is in `PATH` and is the standard location for user-installed binaries.
 
 Environment variables are declared in `.zshenv` and organised by purpose:
 
