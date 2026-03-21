@@ -72,6 +72,7 @@ create_xdg_dirs() {
     mkdir -p "$HOME/.local/state/python"
     mkdir -p "$HOME/.local/state/less"
     mkdir -p "$HOME/.cache/zsh"
+    mkdir -p "$HOME/.cache/kube"
     info "XDG directories ready"
 }
 

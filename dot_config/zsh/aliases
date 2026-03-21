@@ -63,6 +63,7 @@ alias dpss='sudo docker ps -a --format "table {{.Names}}\t{{.State}}\t{{.Status}
 alias dips='sudo docker ps -q | xargs -n 1 docker inspect --format "{{json .}}" | jq -rs "map(.Name,.NetworkSettings.Networks[].IPAddress) | .[]"'
 
 # Kubernetes
+alias kubectl='kubectl --cache-dir "${XDG_CACHE_HOME:-$HOME/.cache}/kube"'
 alias k='kubectl'
 alias kp='kubectl get pods'
 alias ka='kubectl apply -f'
@@ -72,6 +73,5 @@ alias kd='kubectl get deployments'
 alias kdd='kubectl describe deployment'
 alias ks='kubectl get services'
 alias kds='kubectl describe service'
-alias kp='kubectl get pods'
 alias kpd='kubectl describe pod'
 alias kl='kubectl logs'
