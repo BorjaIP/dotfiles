@@ -17,6 +17,10 @@ dot_config/brew
 .config/brew
 {{ end }}
 
+{{ if ne .chezmoi.os "windows" }}
+.chezmoiscripts/windows-setup.ps1
+{{ end }}
+
 {{ if eq .chezmoi.os "windows" }}
 dot_config/zsh
 dot_config/tmux
