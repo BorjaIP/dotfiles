@@ -21,6 +21,7 @@ README.md
 # ─── Windows only ──────────────────────────────────────────────────
 {{ if ne .chezmoi.os "windows" }}
 .config/powershell
+.config/startship
 .chezmoiscripts/windows-setup.ps1
 {{ end }}
 
