@@ -62,6 +62,14 @@ verify_supported_os() {
 #                           Common Functions
 # ------------------------------------------------------------------------------
 
+create_xdg_dirs() {
+    msg "Creating XDG base directories"
+    mkdir -p "$HOME/.local/share"
+    mkdir -p "$HOME/.local/state"
+    mkdir -p "$HOME/.cache"
+    info "XDG directories ready"
+}
+
 install_tools() {
     msg "Installing common tools"
     # Base16 theme
@@ -115,6 +123,9 @@ arch_check_paru() {
 
 # Verify OS support first
 verify_supported_os
+
+# Create XDG base directories
+create_xdg_dirs
 
 # Install common tools
 install_tools
