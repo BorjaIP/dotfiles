@@ -18,6 +18,7 @@ README.md
 
 {{ if ne .chezmoi.os "windows" }}
 .chezmoiscripts/windows-setup.ps1
+.config/powershell/profile.ps1
 {{ end }}
 
 {{ if eq .chezmoi.os "windows" }}
