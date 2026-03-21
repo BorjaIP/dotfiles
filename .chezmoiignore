@@ -23,6 +23,8 @@ dot_config/tmux
 dot_config/alacritty
 dot_config/colima
 dot_zshenv.tmpl
+.chezmoiscripts/basic-setup.sh
+.chezmoiscripts/install-packages.sh
 {{ end }}
 
 # Claude Code — only track config, not runtime/session data
