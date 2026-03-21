@@ -5,15 +5,14 @@ README.md
 .config/zsh/private
 
 # Colima runtime files
-dot_config/colima/**/_lima
-dot_config/colima/**/_store
-dot_config/colima/**/_templates
-dot_config/colima/**/docker.sock
-dot_config/colima/**/containerd.sock
-dot_config/colima/**/ssh_config
+.config/colima/**/_lima
+.config/colima/**/_store
+.config/colima/**/_templates
+.config/colima/**/docker.sock
+.config/colima/**/containerd.sock
+.config/colima/**/ssh_config
 
 {{ if ne .chezmoi.os "darwin" }}
-dot_config/brew
 .config/brew
 {{ end }}
 
@@ -22,35 +21,35 @@ dot_config/brew
 {{ end }}
 
 {{ if eq .chezmoi.os "windows" }}
-dot_config/zsh
-dot_config/tmux
-dot_config/alacritty
-dot_config/colima
-dot_zshenv.tmpl
+.config/zsh
+.config/tmux
+.config/alacritty
+.config/colima
+.zshenv
 .chezmoiscripts/basic-setup.sh
 .chezmoiscripts/install-packages.sh
 {{ end }}
 
 # Claude Code — only track config, not runtime/session data
-dot_claude/backups
-dot_claude/cache
-dot_claude/debug
-dot_claude/downloads
-dot_claude/file-history
-dot_claude/history.jsonl
-dot_claude/mcp-needs-auth-cache.json
-dot_claude/paste-cache
-dot_claude/plan
-dot_claude/plans
-dot_claude/plugins
-dot_claude/policy-limits.json
-dot_claude/projects
-dot_claude/remote-settings.json
-dot_claude/session-env
-dot_claude/sessions
-dot_claude/shell-snapshots
-dot_claude/stats-cache.json
-dot_claude/tasks
-dot_claude/telemetry
-dot_claude/todos
-dot_claude/memory
+.claude/backups
+.claude/cache
+.claude/debug
+.claude/downloads
+.claude/file-history
+.claude/history.jsonl
+.claude/mcp-needs-auth-cache.json
+.claude/paste-cache
+.claude/plan
+.claude/plans
+.claude/plugins
+.claude/policy-limits.json
+.claude/projects
+.claude/remote-settings.json
+.claude/session-env
+.claude/sessions
+.claude/shell-snapshots
+.claude/stats-cache.json
+.claude/tasks
+.claude/telemetry
+.claude/todos
+.claude/memory
