@@ -17,6 +17,14 @@ dot_config/brew
 .config/brew
 {{ end }}
 
+{{ if eq .chezmoi.os "windows" }}
+dot_config/zsh
+dot_config/tmux
+dot_config/alacritty
+dot_config/colima
+dot_zshenv.tmpl
+{{ end }}
+
 # Claude Code — only track config, not runtime/session data
 dot_claude/backups
 dot_claude/cache
