@@ -67,6 +67,11 @@ create_xdg_dirs() {
     mkdir -p "$HOME/.local/share"
     mkdir -p "$HOME/.local/state"
     mkdir -p "$HOME/.cache"
+    # Subdirectories required by tools
+    mkdir -p "$HOME/.local/state/zsh"
+    mkdir -p "$HOME/.local/state/python"
+    mkdir -p "$HOME/.local/state/less"
+    mkdir -p "$HOME/.cache/zsh"
     info "XDG directories ready"
 }
 
