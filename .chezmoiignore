@@ -1,6 +1,9 @@
 .DS_Store
 README.md
 
+# Private env vars — machine-specific, not tracked
+.config/zsh/private
+
 # Colima runtime files
 dot_config/colima/**/_lima
 dot_config/colima/**/_store
