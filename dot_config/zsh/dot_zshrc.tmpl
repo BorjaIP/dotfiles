@@ -20,7 +20,7 @@ setopt LOCAL_TRAPS
 setopt PROMPT_SUBST
 
 # History file configuration
-HISTFILE="$HISTFILE"
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -44,8 +44,8 @@ setopt COMPLETE_ALIASES
 for config ($ZDOTDIR/**) source $config
 
 # Initialize autocomplete
-autoload -U compinit add-zsh-hook && compinit
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+autoload -U compinit add-zsh-hook
+compinit -d "$ZSH_COMPDUMP"
 
 # Matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
