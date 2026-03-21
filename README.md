@@ -45,6 +45,25 @@ This command will install software and apply all the configurations in `~/.local
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply BorjaIP
 ```
 
+## XDG Base Directory
+
+All configuration follows the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir/latest/), keeping `$HOME` clean.
+
+| Directory | Path | Purpose |
+| --------- | ---- | ------- |
+| `XDG_CONFIG_HOME` | `~/.config` | Configuration files |
+| `XDG_DATA_HOME` | `~/.local/share` | Persistent data |
+| `XDG_STATE_HOME` | `~/.local/state` | Shell history, logs |
+| `XDG_CACHE_HOME` | `~/.cache` | Non-essential cached data |
+
+Environment variables are declared in `.zshenv` and organised by purpose:
+
+| Zsh file | When it runs | What goes here |
+| -------- | ------------ | -------------- |
+| `.zshenv` | Always (every shell) | XDG vars, tool env vars (`KUBECONFIG`, `GOPATH`…) |
+| `.zprofile` | Login shells only | `PATH`, Homebrew setup |
+| `.zshrc` | Interactive shells | Aliases, plugins, prompt, `HISTFILE` |
+
 ## Manage
 
 I use [chezmoi](https://www.chezmoi.io/) for managing my dotfiles. Follow these [instructions](https://jerrynsh.com/how-to-manage-dotfiles-with-chezmoi/) for add or changing any configuration.

@@ -1,51 +1,54 @@
 
-
-
-# XDG specification
+# XDG Base Directory
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-# Config paths
-export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
-export ZSH_COMPDUMP="$XDG_CACHE_HOME"/zsh/.zcompdump
-export HISTFILE="$XDG_STATE_HOME"/zsh/history
-export PYTHON_HISTORY="$XDG_STATE_HOME"/python/history
-export LESSHISTFILE="$XDG_STATE_HOME"/less/history
-export MYVIMRC="$XDG_CONFIG_HOME"/nvim/init.lua
+# Shell
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 
-# Tools
-export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
+# Editors
+export EDITOR="nvim"
+export MYVIMRC="$XDG_CONFIG_HOME/nvim/init.lua"
+
+# Languages
+export PYTHON_HISTORY="$XDG_STATE_HOME/python/history"
+export GOPATH="$XDG_DATA_HOME/go"
+export GOBIN="$HOME/.local/bin"
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+
+# Cloud & Infra
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
-export COLIMA_HOME="$XDG_CONFIG_HOME"/colima
-export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
-export MINIKUBE_HOME="$XDG_CONFIG_HOME"/minikube
-export DOCKER_MCP_IN_CONTAINER=1
+export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
+export TF_CLI_CONFIG_FILE="$XDG_CONFIG_HOME/terraform/terraformrc"
+export TF_PLUGIN_CACHE_DIR="$XDG_CACHE_HOME/terraform"
 
-# Default programs
-export EDITOR="nvim"
+# Containers
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export DOCKER_MCP_IN_CONTAINER=1
+export COLIMA_HOME="$XDG_CONFIG_HOME/colima"
+export MINIKUBE_HOME="$XDG_CONFIG_HOME/minikube"
+
+# Tools
+export MPLCONFIGDIR="$XDG_CACHE_HOME/matplotlib"
 
 # Fzf
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git" 
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git" 
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_OPTS="--height 50% --layout=default --border"
+export FZF_TMUX_OPTS="-p90%,70%"
+export FZF_CTRL_T_OPTS="--preview 'bat --theme=base16 --color=always --style=numbers --line-range=:500 {}'"
 
-export FZF_DEFAULT_OPTS="--height 50% --layout=default --border" 
-export FZF_TMUX_OPTS="-p90%,70%" 
-
-# Previous using bat
-export FZF_CTRL_T_OPTS="--preview 'bat --theme=base16 --color=always --style=numbers --line-range=:500 {}'" 
-
-# Use ripgrep for recursively searches directories for a regex pattern 
-# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-# Others
+# Terminal
 export TERM=xterm-256color
-
-# Add color to man pages
 export MANROFFOPT='-c'
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
 export LESS_TERMCAP_md=$(tput bold; tput setaf 2)

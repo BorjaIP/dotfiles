@@ -1,57 +1,58 @@
 
-
-# Adding path directory for custom scripts
-PATH="$HOME/.local/bin${PATH:+:${PATH}}"
-
 # XDG Base Directory
-export XDG_CONFIG_HOME="$HOME"/.config
-export XDG_DATA_HOME="$HOME"/.local/share
-export XDG_STATE_HOME="$HOME"/.local/state
-export XDG_CACHE_HOME="$HOME"/.cache
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
 
-# Config paths
-export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
-export ZSH_COMPDUMP="$XDG_CACHE_HOME"/zsh/.zcompdump
-export HISTFILE="$XDG_STATE_HOME"/zsh/history
-export PYTHON_HISTORY="$XDG_STATE_HOME"/python/history
-export LESSHISTFILE="$XDG_STATE_HOME"/less/history
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-export MYVIMRC="$XDG_CONFIG_HOME"/nvim/init.lua
-export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
-export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
-export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
-export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
-export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
-export KREW_ROOT="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+# Shell
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 
-# Default programs
+# Editors
 export EDITOR="nvim"
 export GIT_EDITOR="nvim"
 export GUI_EDITOR="vscodium"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
+export MYVIMRC="$XDG_CONFIG_HOME/nvim/init.lua"
+
+# Languages
+export PYTHON_HISTORY="$XDG_STATE_HOME/python/history"
+export GOPATH="$XDG_DATA_HOME/go"
+export GOBIN="$HOME/.local/bin"
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+
+# Cloud & Infra
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
+export TF_CLI_CONFIG_FILE="$XDG_CONFIG_HOME/terraform/terraformrc"
+export TF_PLUGIN_CACHE_DIR="$XDG_CACHE_HOME/terraform"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export KREW_ROOT="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# Containers
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+
+# Tools
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+export MPLCONFIGDIR="$XDG_CACHE_HOME/matplotlib"
 
 # Fzf
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git" 
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git" 
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_OPTS="--height 50% --layout=default --border"
+export FZF_TMUX_OPTS="-p90%,70%"
+export FZF_CTRL_T_OPTS="--preview 'bat --theme=base16 --color=always --style=numbers --line-range=:500 {}'"
 
-export FZF_DEFAULT_OPTS="--height 50% --layout=default --border" 
-export FZF_TMUX_OPTS="-p90%,70%" 
-
-# Previous using bat
-export FZF_CTRL_T_OPTS="--preview 'bat --theme=base16 --color=always --style=numbers --line-range=:500 {}'" 
-
-# Use ripgrep for recursively searches directories for a regex pattern 
-# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-# Others
+# Terminal
 export TERM=xterm-256color
-
-# Add color to man pages
 export MANROFFOPT='-c'
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
 export LESS_TERMCAP_md=$(tput bold; tput setaf 2)
