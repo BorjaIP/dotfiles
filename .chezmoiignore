@@ -12,26 +12,29 @@ README.md
 .config/colima/**/containerd.sock
 .config/colima/**/ssh_config
 
+# ─── macOS only ────────────────────────────────────────────────────
 {{ if ne .chezmoi.os "darwin" }}
 .config/brew
-{{ end }}
-
-{{ if ne .chezmoi.os "windows" }}
-.chezmoiscripts/windows-setup.ps1
-.config/powershell/profile.ps1
-{{ end }}
-
-{{ if eq .chezmoi.os "windows" }}
-.config/zsh
-.config/tmux
-.config/alacritty
 .config/colima
+{{ end }}
+
+# ─── Windows only ──────────────────────────────────────────────────
+{{ if ne .chezmoi.os "windows" }}
+.config/powershell
+.chezmoiscripts/windows-setup.ps1
+{{ end }}
+
+# ─── Linux / macOS (not Windows) ───────────────────────────────────
+{{ if eq .chezmoi.os "windows" }}
+.config/alacritty
+.config/tmux
+.config/zsh
 .zshenv
 .chezmoiscripts/basic-setup.sh
 .chezmoiscripts/install-packages.sh
 {{ end }}
 
-# Claude Code — only track config, not runtime/session data
+# ─── Claude Code (runtime/session data, not tracked) ───────────────
 .claude/backups
 .claude/cache
 .claude/debug
