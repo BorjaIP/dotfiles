@@ -1,0 +1,2 @@
+# Custom scripts and user binaries
+PATH="$HOME/.local/bin${PATH:+:${PATH}}"
