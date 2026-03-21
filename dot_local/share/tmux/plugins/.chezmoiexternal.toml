@@ -1,0 +1,4 @@
+[tmux-resurrect]
+    type = "git-repo"
+    url = "https://github.com/tmux-plugins/tmux-resurrect.git"
+    refreshPeriod = "168h"
