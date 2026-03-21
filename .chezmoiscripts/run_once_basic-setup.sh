@@ -86,6 +86,29 @@ install_tools() {
 #                             macOS Functions
 # ------------------------------------------------------------------------------
 
+macos_xdg_symlinks() {
+    msg "Creating macOS XDG symlinks"
+    # AWS CLI hardcodes ~/.aws for cache — symlink to XDG location
+    if [ ! -L "$HOME/.aws" ]; then
+        mkdir -p "$HOME/.config/aws"
+        [ -d "$HOME/.aws" ] && mv "$HOME/.aws"/* "$HOME/.config/aws/" 2>/dev/null && rm -rf "$HOME/.aws"
+        ln -sf "$HOME/.config/aws" "$HOME/.aws"
+        info "~/.aws -> ~/.config/aws"
+    else
+        info "~/.aws symlink already exists"
+    fi
+
+    # Terraform hardcodes ~/.terraform.d for checkpoint files — symlink to XDG location
+    if [ ! -L "$HOME/.terraform.d" ]; then
+        mkdir -p "$HOME/.config/terraform"
+        [ -d "$HOME/.terraform.d" ] && mv "$HOME/.terraform.d"/* "$HOME/.config/terraform/" 2>/dev/null && rm -rf "$HOME/.terraform.d"
+        ln -sf "$HOME/.config/terraform" "$HOME/.terraform.d"
+        info "~/.terraform.d -> ~/.config/terraform"
+    else
+        info "~/.terraform.d symlink already exists"
+    fi
+}
+
 macos_check_homebrew() {
     if ! command -v brew &> /dev/null; then
         msg "Installing Homebrew"
@@ -141,6 +164,7 @@ case $(detect_os) in
     "macos")
         msg "Basic macOS setup"
         macos_check_homebrew
+        macos_xdg_symlinks
         info "Homebrew setup completed. Package installation will happen after file copying."
         ;;
     "arch")
