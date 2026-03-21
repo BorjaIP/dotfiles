@@ -1,7 +1,4 @@
 #!/bin/bash
-{{ if eq .chezmoi.os "windows" -}}
-exit 0
-{{- end }}
 
 cd $HOME || return
 
