@@ -66,6 +66,28 @@ Environment variables are declared in `.zshenv` and organised by purpose:
 | `.zprofile` | Login shells only | `PATH`, Homebrew setup |
 | `.zshrc` | Interactive shells | Aliases, plugins, prompt, `HISTFILE` |
 
+
+## macOS — Homebrew paths
+
+On Apple Silicon, Homebrew installs everything under `/opt/homebrew`. Key paths:
+
+| Path | Content |
+| ---- | ------- |
+| `/opt/homebrew/bin` | CLI binaries (`git`, `nvim`, `fzf`…) |
+| `/opt/homebrew/lib` | Libraries |
+| `/opt/homebrew/Cellar` | Versioned formula installations |
+| `/opt/homebrew/Caskroom` | GUI apps installed via `brew install --cask` |
+| `/opt/homebrew/share` | Shared data (zsh plugins, man pages…) |
+| `~/.local/bin` | User binaries — custom scripts and non-Homebrew tools |
+
+> On Intel Macs, the prefix is `/usr/local` instead of `/opt/homebrew`.
+
+Packages are managed via a `Brewfile` at `~/.config/brew/Brewfile`. To update it after installing something new:
+
+```bash
+bupdate   # alias for: brew bundle dump --no-vscode -f
+```
+
 ## Manage
 
 I use [chezmoi](https://www.chezmoi.io/) for managing my dotfiles. Follow these [instructions](https://jerrynsh.com/how-to-manage-dotfiles-with-chezmoi/) for add or changing any configuration.
