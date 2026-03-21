@@ -1,0 +1,4 @@
+{{ if eq .chezmoi.os "windows" }}
+.chezmoiscripts/run_once_basic-setup.sh
+.chezmoiscripts/run_onchange_after_install-packages.sh
+{{ end }}

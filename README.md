@@ -50,7 +50,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin" init --apply Borja
 **Windows** (PowerShell)
 
 ```powershell
-(irm get.chezmoi.io/ps1) | powershell -c - init --apply BorjaIP
+iex "&{$(irm get.chezmoi.io/ps1)} init --apply BorjaIP"
 ```
 
 ## XDG Base Directory
