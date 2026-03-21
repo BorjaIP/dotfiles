@@ -1,0 +1,16 @@
+{
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cwd=$(pwd); folder=$(basename \"$cwd\"); dir=\"$HOME/.claude/plan/$folder\"; mkdir -p \"$dir\"; echo \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"Plans for this session must be stored in: $dir — never create a plans/ folder in the current working directory.\\\"}}\"",
+            "statusMessage": "Setting up plan directory..."
+          }
+        ]
+      }
+    ]
+  }
+}

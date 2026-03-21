@@ -16,3 +16,27 @@ dot_config/colima/**/ssh_config
 dot_config/brew
 .config/brew
 {{ end }}
+
+# Claude Code — only track config, not runtime/session data
+dot_claude/backups
+dot_claude/cache
+dot_claude/debug
+dot_claude/downloads
+dot_claude/file-history
+dot_claude/history.jsonl
+dot_claude/mcp-needs-auth-cache.json
+dot_claude/paste-cache
+dot_claude/plan
+dot_claude/plans
+dot_claude/plugins
+dot_claude/policy-limits.json
+dot_claude/projects
+dot_claude/remote-settings.json
+dot_claude/session-env
+dot_claude/sessions
+dot_claude/shell-snapshots
+dot_claude/stats-cache.json
+dot_claude/tasks
+dot_claude/telemetry
+dot_claude/todos
+dot_claude/memory
