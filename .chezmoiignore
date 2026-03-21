@@ -1,6 +1,14 @@
 .DS_Store
 README.md
 
+# Colima runtime files
+dot_config/colima/**/_lima
+dot_config/colima/**/_store
+dot_config/colima/**/_templates
+dot_config/colima/**/docker.sock
+dot_config/colima/**/containerd.sock
+dot_config/colima/**/ssh_config
+
 {{ if ne .chezmoi.os "darwin" }}
 dot_config/brew
 .config/brew
