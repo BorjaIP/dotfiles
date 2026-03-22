@@ -1,0 +1,1 @@
+CreateObject("WScript.Shell").Run "cmd /c liquidctl --match ""Smart Device"" initialize && liquidctl --match ""Smart Device"" set fan1 speed 40 && liquidctl --match ""Smart Device"" set fan2 speed 40 && liquidctl --match ""Smart Device"" set fan3 speed 40", 0, False

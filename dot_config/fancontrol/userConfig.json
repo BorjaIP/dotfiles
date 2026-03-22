@@ -1,0 +1,584 @@
+{
+  "__VERSION__": "262",
+  "FanControl": {
+    "Controls": [
+      {
+        "NickName": "AMD CPU",
+        "Identifier": "/lpc/it8688e/control/0",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": {
+          "Name": "CPU Temp"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "/lpc/it8688e/fan/0"
+        },
+        "SelectedStart": 19,
+        "SelectedStop": 16,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 0,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            10,
+            0
+          ],
+          [
+            20,
+            410
+          ],
+          [
+            30,
+            831
+          ],
+          [
+            40,
+            1221
+          ],
+          [
+            50,
+            1572
+          ],
+          [
+            60,
+            1918
+          ],
+          [
+            70,
+            2215
+          ],
+          [
+            80,
+            2493
+          ],
+          [
+            90,
+            2755
+          ],
+          [
+            100,
+            3000
+          ]
+        ]
+      },
+      {
+        "NickName": "Power",
+        "Identifier": "/lpc/it8688e/control/3",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": {
+          "Name": "Mix"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "/lpc/it8688e/fan/3"
+        },
+        "SelectedStart": 22,
+        "SelectedStop": 16,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 0,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            10,
+            0
+          ],
+          [
+            20,
+            1807
+          ],
+          [
+            30,
+            2435
+          ],
+          [
+            40,
+            3010
+          ],
+          [
+            50,
+            3475
+          ],
+          [
+            60,
+            3907
+          ],
+          [
+            70,
+            4272
+          ],
+          [
+            80,
+            4631
+          ],
+          [
+            90,
+            4927
+          ],
+          [
+            100,
+            5153
+          ]
+        ]
+      },
+      {
+        "NickName": "Fan #2",
+        "Identifier": "/lpc/it8688e/control/1",
+        "IsHidden": true,
+        "Enable": false,
+        "SelectedFanCurve": {
+          "Name": "CPU Temp"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 0,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": []
+      },
+      {
+        "NickName": "Fan #3",
+        "Identifier": "/lpc/it8688e/control/2",
+        "IsHidden": true,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 0,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": []
+      },
+      {
+        "NickName": "Fan #5",
+        "Identifier": "/lpc/it8688e/control/4",
+        "IsHidden": true,
+        "Enable": false,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "PairedFanSensor": null,
+        "SelectedStart": 0,
+        "SelectedStop": 0,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 0,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": []
+      },
+      {
+        "NickName": "Control 1 - NVIDIA GeForce GTX 1650 SUPER",
+        "Identifier": "NVApiWrapper/0-TU116-A/control/0",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": {
+          "Name": "GPU Temp"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "NVApiWrapper/0-TU116-A/fan/0"
+        },
+        "SelectedStart": 29,
+        "SelectedStop": 26,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 100,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            20,
+            0
+          ],
+          [
+            30,
+            995
+          ],
+          [
+            40,
+            1322
+          ],
+          [
+            50,
+            1653
+          ],
+          [
+            60,
+            1978
+          ],
+          [
+            70,
+            2312
+          ],
+          [
+            80,
+            2639
+          ],
+          [
+            90,
+            2969
+          ],
+          [
+            100,
+            3244
+          ]
+        ]
+      },
+      {
+        "NickName": "Control 2 - NVIDIA GeForce GTX 1650 SUPER",
+        "Identifier": "NVApiWrapper/0-TU116-A/control/1",
+        "IsHidden": false,
+        "Enable": true,
+        "SelectedFanCurve": {
+          "Name": "GPU Temp"
+        },
+        "SelectedOffset": 0,
+        "PairedFanSensor": {
+          "Identifier": "NVApiWrapper/0-TU116-A/fan/1"
+        },
+        "SelectedStart": 29,
+        "SelectedStop": 26,
+        "MinimumPercent": 0,
+        "SelectedCommandStepUp": 8,
+        "SelectedCommandStepDown": 8,
+        "ManualControlValue": 0,
+        "ManualControl": false,
+        "ForceApply": false,
+        "Calibration": [
+          [
+            20,
+            0
+          ],
+          [
+            30,
+            984
+          ],
+          [
+            40,
+            1322
+          ],
+          [
+            50,
+            1653
+          ],
+          [
+            60,
+            1986
+          ],
+          [
+            70,
+            2315
+          ],
+          [
+            80,
+            2638
+          ],
+          [
+            90,
+            2967
+          ],
+          [
+            100,
+            3287
+          ]
+        ]
+      }
+    ],
+    "CustomSensors": [],
+    "FanCurves": [
+      {
+        "Name": "CPU Temp",
+        "IsHidden": false,
+        "CommandMode": 0,
+        "SelectedTempSource": {
+          "Identifier": "/amdcpu/0/temperature/2"
+        },
+        "Points": [
+          "20,28.4",
+          "29.7625082136487,27.8951111111111",
+          "39.399856065584,28.9617777777778",
+          "51.4152507900748,31.0951111111111",
+          "58.7,37.2",
+          "63.3054851528521,50.0284444444444",
+          "67.1854563659689,59.3617777777778",
+          "71.1905879407991,70.0284444444444",
+          "74.4699177070622,77.2284444444444",
+          "79.3260114521731,90.8284444444444",
+          "83.8317844738571,100"
+        ],
+        "MaximumTemperature": 100,
+        "MinimumTemperature": 20,
+        "MaximumCommand": 100,
+        "HysteresisConfig": {
+          "ResponseTimeUp": 1,
+          "ResponseTimeDown": 1,
+          "HysteresisValueUp": 2,
+          "HysteresisValueDown": 2,
+          "IgnoreHysteresisAtLimits": true
+        }
+      },
+      {
+        "Name": "GPU Temp",
+        "IsHidden": false,
+        "CommandMode": 0,
+        "SelectedTempSource": {
+          "Identifier": "NVApiWrapper/0-TU116-A/sensor/0"
+        },
+        "Points": [
+          "20,32.4284444444445",
+          "30.5760505647861,33.7617777777778",
+          "42.169029068494,34.2951111111111",
+          "48.8807534653775,36.4284444444445",
+          "52.9,50.8",
+          "62.8,79.0951111111111",
+          "80,100"
+        ],
+        "MaximumTemperature": 85,
+        "MinimumTemperature": 20,
+        "MaximumCommand": 100,
+        "HysteresisConfig": {
+          "ResponseTimeUp": 1,
+          "ResponseTimeDown": 1,
+          "HysteresisValueUp": 2,
+          "HysteresisValueDown": 2,
+          "IgnoreHysteresisAtLimits": true
+        }
+      },
+      {
+        "Name": "Mix",
+        "IsHidden": false,
+        "CommandMode": 0,
+        "SelectedFanCurves": [
+          {
+            "Name": "CPU Temp"
+          },
+          {
+            "Name": "GPU Temp"
+          }
+        ],
+        "SelectedMixFunction": 0
+      }
+    ],
+    "FanSensors": [
+      {
+        "Identifier": "/lpc/it8688e/fan/0",
+        "IsHidden": false,
+        "NickName": "AMD CPU"
+      },
+      {
+        "Identifier": "/lpc/it8688e/fan/1",
+        "IsHidden": false,
+        "NickName": "Fan #2"
+      },
+      {
+        "Identifier": "/lpc/it8688e/fan/2",
+        "IsHidden": false,
+        "NickName": "Fan #3"
+      },
+      {
+        "Identifier": "/lpc/it8688e/fan/3",
+        "IsHidden": false,
+        "NickName": "Power"
+      },
+      {
+        "Identifier": "/lpc/it8688e/fan/4",
+        "IsHidden": false,
+        "NickName": "Fan #5"
+      },
+      {
+        "Identifier": "NVApiWrapper/0-TU116-A/fan/0",
+        "IsHidden": false,
+        "NickName": "Control 1 - NVIDIA GeForce GTX 1650 SUPER"
+      },
+      {
+        "Identifier": "NVApiWrapper/0-TU116-A/fan/1",
+        "IsHidden": false,
+        "NickName": "Control 2 - NVIDIA GeForce GTX 1650 SUPER"
+      }
+    ],
+    "TemperatureSensors": [
+      {
+        "Identifier": "/amdcpu/0/temperature/2",
+        "IsHidden": false,
+        "NickName": "Core (Tctl/Tdie)"
+      },
+      {
+        "Identifier": "/amdcpu/0/temperature/4",
+        "IsHidden": false,
+        "NickName": "CCD1 (Tdie)"
+      },
+      {
+        "Identifier": "/amdcpu/0/temperature/3",
+        "IsHidden": false,
+        "NickName": "SoC"
+      },
+      {
+        "Identifier": "/memory/dimm/2/temperature/0",
+        "IsHidden": false,
+        "NickName": "DIMM #2"
+      },
+      {
+        "Identifier": "/memory/dimm/2/temperature/1",
+        "IsHidden": false,
+        "NickName": "Temperature Sensor Resolution"
+      },
+      {
+        "Identifier": "/memory/dimm/2/temperature/2",
+        "IsHidden": false,
+        "NickName": "Thermal Sensor Low Limit"
+      },
+      {
+        "Identifier": "/memory/dimm/2/temperature/3",
+        "IsHidden": false,
+        "NickName": "Thermal Sensor High Limit"
+      },
+      {
+        "Identifier": "/memory/dimm/2/temperature/4",
+        "IsHidden": false,
+        "NickName": "Thermal Sensor Critical Limit"
+      },
+      {
+        "Identifier": "/memory/dimm/3/temperature/0",
+        "IsHidden": false,
+        "NickName": "DIMM #3"
+      },
+      {
+        "Identifier": "/memory/dimm/3/temperature/1",
+        "IsHidden": false,
+        "NickName": "Temperature Sensor Resolution"
+      },
+      {
+        "Identifier": "/memory/dimm/3/temperature/2",
+        "IsHidden": false,
+        "NickName": "Thermal Sensor Low Limit"
+      },
+      {
+        "Identifier": "/memory/dimm/3/temperature/3",
+        "IsHidden": false,
+        "NickName": "Thermal Sensor High Limit"
+      },
+      {
+        "Identifier": "/memory/dimm/3/temperature/4",
+        "IsHidden": false,
+        "NickName": "Thermal Sensor Critical Limit"
+      },
+      {
+        "Identifier": "/nvme/2/temperature/0",
+        "IsHidden": false,
+        "NickName": "Composite Temperature"
+      },
+      {
+        "Identifier": "/nvme/2/temperature/10",
+        "IsHidden": false,
+        "NickName": "Warning Temperature"
+      },
+      {
+        "Identifier": "/nvme/2/temperature/11",
+        "IsHidden": false,
+        "NickName": "Critical Temperature"
+      },
+      {
+        "Identifier": "/hdd/1/temperature/0",
+        "IsHidden": false,
+        "NickName": "Temperature"
+      },
+      {
+        "Identifier": "/hdd/0/temperature/0",
+        "IsHidden": false,
+        "NickName": "Temperature"
+      },
+      {
+        "Identifier": "/lpc/it8688e/temperature/0",
+        "IsHidden": false,
+        "NickName": "Temperature #1"
+      },
+      {
+        "Identifier": "/lpc/it8688e/temperature/1",
+        "IsHidden": false,
+        "NickName": "Temperature #2"
+      },
+      {
+        "Identifier": "/lpc/it8688e/temperature/2",
+        "IsHidden": false,
+        "NickName": "Temperature #3"
+      },
+      {
+        "Identifier": "/lpc/it8688e/temperature/3",
+        "IsHidden": false,
+        "NickName": "Temperature #4"
+      },
+      {
+        "Identifier": "/lpc/it8688e/temperature/4",
+        "IsHidden": false,
+        "NickName": "Temperature #5"
+      },
+      {
+        "Identifier": "/lpc/it8688e/temperature/5",
+        "IsHidden": false,
+        "NickName": "Temperature #6"
+      },
+      {
+        "Identifier": "NVApiWrapper/0-TU116-A/sensor/0",
+        "IsHidden": false,
+        "NickName": "GPU"
+      }
+    ]
+  },
+  "Sensors": {
+    "AdlxWrapperSettings": {
+      "Enabled": false
+    },
+    "DisabledPlugins": [],
+    "DisableStorageSensors": false,
+    "LibreHardwareMonitorSettings": {
+      "Controller": true,
+      "CPU": true,
+      "EmbeddedEC": true,
+      "GPU": true,
+      "Memory": true,
+      "Motherboard": true,
+      "PowerMonitor": true,
+      "PSU": true,
+      "Storage": true,
+      "StorageUpdateInterval": "00:01:00",
+      "ZeroRPMOverride": false
+    },
+    "NvAPIWrapperSettings": {
+      "Enabled": true,
+      "ZeroRPMOverride": false
+    }
+  },
+  "MainWindow": {
+    "Fahrenheit": false,
+    "HideCalibration": false,
+    "HideFanSpeedCards": true,
+    "HorizontalUIOrientation": false,
+    "PrimaryColor": "#FF607D8B",
+    "SecondaryColor": "#FFAEEA00",
+    "SelectedTheme": "Dark",
+    "ShowHiddenCards": false,
+    "SyncThemeWithWindows": false,
+    "SyncTrayIconColorWithWindows": false,
+    "TrayIconColor": "#FF000000",
+    "TrayIcons": []
+  }
+}

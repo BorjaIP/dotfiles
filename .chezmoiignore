@@ -22,6 +22,8 @@ README.md
 {{ if ne .chezmoi.os "windows" }}
 .config/powershell
 .config/startship
+.config/fancontrol
+.config/openrgb
 .chezmoiscripts/windows-setup.ps1
 {{ end }}
 
