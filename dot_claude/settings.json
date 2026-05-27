@@ -1,9 +1,43 @@
 {
-  "skipDangerousModePermissionPrompt": true,
-  "attribution": {
-    "commit": "",
-    "pr": ""
+  "env": {
+    "ENABLE_TOOL_SEARCH": "false",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "EDITOR": "/Users/borja.irigoyen@feverup.com/.local/bin/claude-editor",
+    "VISUAL": "/Users/borja.irigoyen@feverup.com/.local/bin/claude-editor",
+    "DISABLE_EXTRA_USAGE_COMMAND": "1",
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_DISABLE_1M_CONTEXT": "1",
+    "CLAUDE_CODE_ATTRIBUTION_HEADER": "1",
+    "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1"
   },
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "deniedMcpServers": [
+    {
+      "serverUrl": "https://data-ai-mcp.gw.feverdata.com/*"
+    },
+    {
+      "serverUrl": "https://data-search.apigw.feverup.com/*"
+    },
+    {
+      "serverUrl": "https://mcp.slack.com/*"
+    },
+    {
+      "serverUrl": "https://mcp.hubspot.com/*"
+    },
+    {
+      "serverUrl": "https://mcp.canva.com/*"
+    },
+    {
+      "serverUrl": "https://gcal.mcp.claude.com/*"
+    },
+    {
+      "serverUrl": "https://gmail.mcp.claude.com/*"
+    }
+  ],
   "hooks": {
     "SessionStart": [
       {
@@ -15,6 +49,53 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "INPUT=$(cat); FILE=$(echo \"$INPUT\" | jq -r '.tool_input.file_path // empty'); if [ -f \"$FILE\" ]; then LINES=$(wc -l < \"$FILE\"); if [ \"$LINES\" -gt 2000 ]; then echo \"{\\\"decision\\\": \\\"block\\\", \\\"reason\\\": \\\"File has $LINES lines. Use offset/limit to read specific sections, or use Grep to find what you need.\\\"}\"; fi; fi"
+          }
+        ]
+      }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash -c 'cols=$(stty size </dev/tty 2>/dev/null | awk '\"'\"'{print $2}'\"'\"'); export COLUMNS=$(( ${cols:-120} > 4 ? ${cols:-120} - 4 : 1 )); plugin_dir=$(ls -d \"${CLAUDE_CONFIG_DIR:-$HOME/.claude}\"/plugins/cache/*/claude-hud/*/ 2>/dev/null | awk -F/ '\"'\"'{ print $(NF-1) \"\\t\" $(0) }'\"'\"' | grep -E '\"'\"'^[0-9]+\\.[0-9]+\\.[0-9]+\\t'\"'\"' | sort -t. -k1,1n -k2,2n -k3,3n -k4,4n | tail -1 | cut -f2-); exec \"/opt/homebrew/bin/node\" \"${plugin_dir}dist/index.js\"'"
+  },
+  "enabledPlugins": {
+    "example-skills@anthropic-agent-skills": true,
+    "understand-anything@understand-anything": true,
+    "claude-hud@claude-hud": true
+  },
+  "extraKnownMarketplaces": {
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills"
+      }
+    },
+    "understand-anything": {
+      "source": {
+        "source": "github",
+        "repo": "Lum1104/Understand-Anything"
+      }
+    },
+    "claude-hud": {
+      "source": {
+        "source": "github",
+        "repo": "jarrodwatts/claude-hud"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
+  "claudeMdExcludes": [
+    "**/pkm/notes/Claude.md"
+  ],
+  "theme": "dark-ansi"
 }

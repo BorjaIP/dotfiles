@@ -7,3 +7,7 @@ Always store plan files in `~/.claude/plan/{folder_name}/` where `{folder_name}`
 - **Never** create a `plans/` folder in the current working directory.
 - The exact path is injected at session start via the SessionStart hook.
 - Example: working in `/home/user/myproject` → plans go to `~/.claude/plan/myproject/`
+
+## Code Style
+
+- **No module-level docstrings.** Never add `"""..."""` comment blocks at the top of Python files. Start directly with imports.
