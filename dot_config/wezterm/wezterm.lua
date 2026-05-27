@@ -50,6 +50,9 @@ config.keys = {
   { key = "8", mods = "LEADER",       action = wezterm.action.SendString("\x1ba8") },
   { key = "9", mods = "LEADER",       action = wezterm.action.SendString("\x1ba9") },
 
+  -- Cmd+P → Telescope find files (sends F9 to Neovim)
+  { key = "p", mods = "CMD", action = wezterm.action.SendString("\x1b[80~") },
+
   -- ── TMUX — WINDOWS ────────────────────────────────────
   -- Cmd+T → new tmux window  (prefix + c)
   { key = "t", mods = "CMD", action = wezterm.action.SendString("\x1bac") },
