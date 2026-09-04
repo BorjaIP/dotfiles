@@ -45,7 +45,14 @@ alias chd='chezmoi diff'
 # Tools
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
 alias fabric='fabric-ai'
-alias cc='claude --dangerously-skip-permissions --teammate-mode tmux --enable-auto-mode'
+cc() {
+    claude \
+        --settings "$HOME/.config/claude/settings.private.json" \
+        --dangerously-skip-permissions \
+        --teammate-mode tmux \
+        --enable-auto-mode \
+        "$@"
+}
 
 # Docker
 alias dstopall='sudo docker stop $(sudo docker ps -aq)'
