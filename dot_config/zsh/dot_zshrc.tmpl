@@ -107,9 +107,6 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 {{ else if eq .chezmoi.os "darwin" -}}
-source "$HOMEBREW_PREFIX"/Cellar/fzf/0.67.0/shell/completion.zsh
-source "$HOMEBREW_PREFIX"/Cellar/fzf/0.67.0/shell/key-bindings.zsh
-
 # Autosuggestion
 source "$HOMEBREW_PREFIX"/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
