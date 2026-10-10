@@ -7,7 +7,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 # Shell
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
+export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump-${ZSH_VERSION}"
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 

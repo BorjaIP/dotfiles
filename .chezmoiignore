@@ -60,3 +60,5 @@ README.md
 .claude/telemetry
 .claude/todos
 .claude/memory
+.claude/CLAUDE.md
+.claude/settings.json
