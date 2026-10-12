@@ -2,7 +2,7 @@ return {
 	-- Highly extendable fuzzy finder over lists
 	-- https://github.com/nvim-telescope/telescope.nvim
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.5",
+	branch = "master",
 
 	dependencies = {
 		-- lua functions that many plugins use
