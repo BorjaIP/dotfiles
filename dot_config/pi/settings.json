@@ -1,0 +1,25 @@
+{
+  "lastChangelogVersion": "1.1.0",
+  "defaultProvider": "openrouter",
+  "defaultModel": "moonshotai/kimi-k2.6",
+  "hideThinkingBlock": true,
+  "theme": "base16-ocean",
+  "packages": [
+    "npm:pi-cache-optimizer",
+    "npm:pi-subagents",
+    "npm:pi-web-access",
+    {
+      "source": "npm:gentle-pi",
+      "extensions": [
+        "extensions/*.ts",
+        "!extensions/gentle-shell.ts",
+        "!extensions/pi-pretty.ts",
+        "!extensions/startup-banner.ts",
+        "!extensions/gentle-todo.ts",
+        "!extensions/gentle-stats.ts",
+        "!extensions/nan-provider.ts"
+      ]
+    }
+  ],
+  "tuiMode": "fullscreen"
+}

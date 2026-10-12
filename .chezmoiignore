@@ -1,5 +1,22 @@
 .DS_Store
 README.md
+GENTLE-PI-FEATURES.md
+
+# ─── Pi coding agent (only settings/themes/extensions are tracked) ──
+.config/pi/auth.json
+.config/pi/bin
+.config/pi/install
+.config/pi/npm
+.config/pi/sessions
+.config/pi/models-store.json
+.config/pi/crashes.json
+.config/pi/agents
+.config/pi/chains
+.config/pi/gentle-ai
+.config/pi/gentle-agents
+.config/pi/pi-pretty
+.config/pi/pi-subagents
+.config/pi/pi-cache-optimizer-stats.d
 
 # Private env vars — machine-specific, not tracked
 .config/zsh/private
@@ -36,6 +53,25 @@ README.md
 .chezmoiscripts/basic-setup.sh
 .chezmoiscripts/install-packages.sh
 {{ end }}
+
+# ─── Pi coding agent (managed install + runtime data, not tracked) ───
+# The managed binary lives under .config/pi/install and .config/pi/bin;
+# only the human-editable config (settings, themes, extensions, agents,
+# chains, support) is tracked.
+.config/pi/auth.json
+.config/pi/crashes.json
+.config/pi/models-store.json
+.config/pi/baseline.json
+.config/pi/bin
+.config/pi/install
+.config/pi/npm
+.config/pi/gentle-agents
+.config/pi/gentle-ai/managed-assets.json
+.config/pi/pi-cache-optimizer-stats.d
+.config/pi/pi-pretty
+.config/pi/pi-subagents
+.config/pi/skills
+.config/pi/sessions
 
 # ─── Claude Code (runtime/session data, not tracked) ───────────────
 .claude/backups
