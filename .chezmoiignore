@@ -101,3 +101,12 @@ GENTLE-PI-FEATURES.md
 .claude/memory
 .claude/CLAUDE.md
 .claude/settings.json
+
+# ─── Herdr workspace manager (only config.toml is tracked) ─────────
+# Runtime/session data is per-machine and must never travel.
+.config/herdr/*.log
+.config/herdr/*.sock
+.config/herdr/.plugins.lock
+.config/herdr/release-notes.json
+.config/herdr/session.json
+.config/herdr/session-snapshots

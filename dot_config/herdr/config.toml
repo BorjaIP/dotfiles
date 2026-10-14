@@ -1,0 +1,32 @@
+onboarding = false
+
+[theme]
+name = "rose-pine-dawn"
+auto_switch = false
+[theme.custom]
+sidebar_bg = "#2b303b"
+active_row_bg = "#4f5b66"
+selection_bg = "#444c59"
+panel_bg = "#343d46"
+text = "#c0c5ce"
+accent = "#b48ead"
+red = "#bf616a"
+green = "#a3be8c"
+
+[keys]
+prefix = "alt+a"
+reload_config = "prefix+r"
+split_horizontal = "prefix+-"
+split_vertical = "prefix+|"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+previous_tab = "alt+h"
+next_tab = "alt+l"
+help = "prefix+?"
+new_tab = "prefix+c"
+close_tab = "prefix+shift+x"
+close_pane = "prefix+x"
+previous_workspace = "prefix+("
+next_workspace = "prefix+)"
