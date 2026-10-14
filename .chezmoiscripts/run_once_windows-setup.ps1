@@ -100,6 +100,9 @@ $packages = @(
     @{ Id = "7zip.7zip";                 Name = "7-Zip"             },
     @{ Id = "ShareX.ShareX";             Name = "ShareX"            },
 
+    # --- Hardware ---
+    @{ Id = "FlipperDevicesInc.qFlipper"; Name = "qFlipper"          },
+
     # --- Anthropic ---
     @{ Id = "Anthropic.ClaudeCode";      Name = "Claude Code"       },
     @{ Id = "Anthropic.Claude";          Name = "Claude"            }
