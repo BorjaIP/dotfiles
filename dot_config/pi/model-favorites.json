@@ -4,7 +4,7 @@
 		{
 			"name": "Fast / Cheap",
 			"models": [
-				{ "label": "DeepSeek V4 Flash", "id": "deepseek/deepseek-v4-flash", "effort": "low" },
+				{ "label": "DeepSeek V4.1 Flash", "id": "deepseek/deepseek-v4.1-flash", "effort": "low" },
 				{ "label": "GLM 5.3 Flash", "id": "z-ai/glm-5.3-flash", "effort": "low" },
 				{ "label": "Qwen 3.7 Flash", "id": "qwen/qwen3.7-flash", "effort": "low" },
 				{ "label": "Claude Haiku 5.5", "id": "anthropic/claude-haiku-5.5", "effort": "low" },
