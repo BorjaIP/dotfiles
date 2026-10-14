@@ -1,6 +1,5 @@
 .DS_Store
 README.md
-GENTLE-PI-FEATURES.md
 
 # ─── Pi coding agent (only settings/themes/extensions are tracked) ──
 .config/pi/auth.json
