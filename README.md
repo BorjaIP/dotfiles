@@ -74,6 +74,12 @@ Environment variables are declared in `.zshenv` and organised by purpose:
 | `.zprofile` | Login shells only | `PATH`, Homebrew setup |
 | `.zshrc` | Interactive shells | Aliases, plugins, prompt, `HISTFILE` |
 
+> [!NOTE]
+> **Windows** has no `.zshenv`. Tool env vars are set at the user level by
+> `.chezmoiscripts/run_onchange_after_set-pi-env.ps1` and mirrored in
+> `~/.config/powershell/profile.ps1`, so XDG-style tools (e.g. the Pi coding
+> agent's `PI_CODING_AGENT_DIR`) read their config from `~/.config` there too.
+
 
 ## macOS — Homebrew paths
 

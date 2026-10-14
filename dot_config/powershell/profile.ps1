@@ -5,6 +5,10 @@ Set-Alias l ls
 Set-Alias grep findstr
 Set-Alias less 'C:\Program Files\Git\usr\bin\less.exe'
 
+# Pi coding agent (chezmoi-managed config, mirrors .zshenv_linux/.zshenv_mac)
+$env:PI_CODING_AGENT_DIR = "$HOME\.config\pi"
+$env:PI_CODING_AGENT_SESSION_DIR = "$HOME\.local\state\pi"
+
 # Terminal icons
 Import-Module -Name Terminal-Icons
 
