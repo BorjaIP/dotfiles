@@ -42,6 +42,7 @@ GENTLE-PI-FEATURES.md
 .config/fancontrol
 .config/openrgb
 .chezmoiscripts/windows-setup.ps1
+.chezmoiscripts/install-pi.ps1
 .local/bin/flipper-wsl.ps1
 .local/bin/usb-wsl.ps1
 {{ end }}
