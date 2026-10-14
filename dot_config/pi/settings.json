@@ -2,6 +2,31 @@
   "lastChangelogVersion": "1.2.0",
   "defaultProvider": "openrouter",
   "defaultModel": "deepseek/deepseek-v4.1-flash",
+  "subagents": {
+    "agentOverrides": {
+      "jd-judge-a": {
+        "tools": ["read", "grep", "find", "bash"]
+      },
+      "jd-judge-b": {
+        "tools": ["read", "grep", "find", "bash"]
+      },
+      "review-readability": {
+        "tools": ["read", "grep", "find", "gentle_review_scope"]
+      },
+      "review-reliability": {
+        "tools": ["read", "grep", "find", "gentle_review_scope"]
+      },
+      "review-resilience": {
+        "tools": ["read", "grep", "find", "gentle_review_scope"]
+      },
+      "review-risk": {
+        "tools": ["read", "grep", "find", "gentle_review_scope"]
+      },
+      "gentle-ai-worker": {
+        "tools": ["read", "grep", "find", "edit", "write", "bash"]
+      }
+    }
+  },
   "hideThinkingBlock": true,
   "theme": "base16-ocean",
   "packages": [
