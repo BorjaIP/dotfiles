@@ -1,6 +1,9 @@
 .DS_Store
 README.md
 
+# ODD task documents — repository-only, never applied to $HOME
+odd
+
 # ─── Pi coding agent (only settings/themes/extensions are tracked) ──
 .config/pi/auth.json
 .config/pi/bin
@@ -75,6 +78,10 @@ README.md
 .config/pi/pi-subagents
 .config/pi/skills
 .config/pi/sessions
+
+# herdr installs and rewrites its own Pi integration; adding it to chezmoi
+# would recreate the drift we just removed.
+.config/pi/extensions/herdr-agent-state.ts
 
 # ─── Claude Code (runtime/session data, not tracked) ───────────────
 .claude/backups

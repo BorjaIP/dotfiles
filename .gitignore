@@ -1,0 +1,4 @@
+# ODD task documents: local planning artifacts, kept out of git and out of $HOME.
+# The .chezmoiignore entry named "odd" keeps chezmoi from applying them; this
+# entry keeps them out of git status.
+odd/
