@@ -10,7 +10,10 @@
  *   - getExtensionStatuses() -> statuses from other extensions, including
  *                               `pi-cache-stats` from pi-cache-optimizer
  *
- * Layout (one full-width line, π mark first):
+ * Layout (the subagent box only while children run, then the bar, then the editor):
+ *   ╭─ subagents ─────────────────────╮
+ *   │ 󰀀󰀀 review-risk, worker   0.042  │
+ *   ╰─────────────────────────────────╯
  *   π  cwd  branch ±n ·  model ·  effort · ▰▰▰▱▱ 48% ·  80% ·  0.013
  *
  * Colors use the active theme's semantic tokens (base16-ocean).
@@ -24,6 +27,7 @@ import {
 } from "@earendil-works/pi-coding-agent";
 import type { TUI } from "@earendil-works/pi-tui";
 import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
+import { ROWS_EVENT, layoutRows, type SubagentRow } from "../lib/subagent-rows.ts";
 
 /** Nerd Font glyphs (the terminal uses Inconsolata Nerd Font Mono). */
 const ICONS = {
@@ -33,6 +37,28 @@ const ICONS = {
 	cache: "\uF0E7", // bolt
 	cost: "\uF155", // dollar
 	session: "\uF02E", // bookmark
+};
+
+/**
+ * Status key the sibling `subagent-status.ts` extension publishes under.
+ *
+ * That indicator is drawn as its own box above this bar instead of inline with the
+ * other extension statuses. A separate widget of its own could not be trusted to
+ * land above the bar: Pi renders extension widgets in insertion order and
+ * `setExtensionWidget` deletes and re-inserts on every call, so the order would
+ * depend on which extension loaded first. Drawing it inside this component makes the
+ * vertical order box -> bar -> editor hold by construction.
+ */
+const SUBAGENT_STATUS_KEY = "subagents";
+
+/** Box-drawing glyphs for the subagent indicator. */
+const BOX = {
+	topLeft: "\u256D",
+	topRight: "\u256E",
+	bottomLeft: "\u2570",
+	bottomRight: "\u256F",
+	horizontal: "\u2500",
+	vertical: "\u2502",
 };
 
 type UsageLike = {
@@ -175,6 +201,8 @@ function buildBar(
 	if (statuses) {
 		for (const [key, text] of statuses) {
 			if (key === "pi-cache-stats") continue;
+			// Drawn as its own box above this line, not inline here.
+			if (key === SUBAGENT_STATUS_KEY) continue;
 			segments.push(theme.fg("dim", text.replace(/^·\s*/, "")));
 		}
 	}
@@ -197,12 +225,68 @@ function buildBar(
 	return `${bg}${l}${" ".repeat(gap)}${r}`;
 }
 
+/**
+ * One bordered box for the subagent indicator published by `subagent-status.ts`.
+ *
+ * Returns no lines when there is nothing to report, so the widget takes no extra
+ * vertical space while no child is running.
+ *
+ * Drawn without a background on purpose: the bar applies its own background ANSI once
+ * per line, and a second background block here would need to be reset correctly on
+ * every line. Borders are `dim`, the title `accent`, the content `mdCode`.
+ */
+function padTo(text: string, width: number): string {
+	return text + " ".repeat(Math.max(0, width - visibleWidth(text)));
+}
+
+/**
+ * The subagent box: one table row per child when the sibling extension sent rows, and the
+ * one-line text as a fallback when it only published a status. Returns no lines when there
+ * is nothing to show, so an idle indicator takes no vertical space.
+ */
+function buildSubagentBox(
+	rows: SubagentRow[],
+	text: string | undefined,
+	theme: Theme,
+	width: number,
+): string[] {
+	if (width < 16) return [];
+
+	const inner = width - 4; // "│ " + inner + " │"
+	const content =
+		rows.length > 0
+			? layoutRows(rows, inner)
+			: text
+				? [padTo(truncateToWidth(text, inner, ""), inner)]
+				: [];
+	if (content.length === 0) return [];
+
+	const title = " subagents ";
+	const fill = Math.max(0, width - 3 - visibleWidth(title)); // ╭─ + title + fill + ╮
+	const top =
+		theme.fg("dim", BOX.topLeft + BOX.horizontal) +
+		theme.fg("accent", title) +
+		theme.fg("dim", BOX.horizontal.repeat(fill) + BOX.topRight);
+	const middle = content.map(
+		(line) =>
+			theme.fg("dim", `${BOX.vertical} `) +
+			theme.fg("mdCode", line) +
+			theme.fg("dim", ` ${BOX.vertical}`),
+	);
+	const bottom = theme.fg("dim", BOX.bottomLeft + BOX.horizontal.repeat(width - 2) + BOX.bottomRight);
+
+	return [top, ...middle, bottom];
+}
+
 export default function (pi: ExtensionAPI) {
 	let activeTui: TUI | undefined;
 	let activeCwd: string | undefined;
 	let enabled = false;
 	let gitDirty: GitDirty;
 	let footerData: ReadonlyFooterDataProvider | undefined;
+	/** Rows published by subagent-status.ts; drawn as the table inside the box. */
+	let subagentRows: SubagentRow[] = [];
+	let offRows: (() => void) | undefined;
 
 	const refreshGit = async (cwd: string) => {
 		const result = await pi
@@ -226,6 +310,15 @@ export default function (pi: ExtensionAPI) {
 	function install(ctx: ExtensionContext) {
 		enabled = true;
 
+		// Rows published by subagent-status.ts, drawn as the table inside the box. The
+		// subscription lives across bar toggles so a re-enabled bar shows the current state.
+		offRows?.();
+		offRows = pi.events?.on(ROWS_EVENT, (payload) => {
+			const rows = (payload as { rows?: SubagentRow[] } | undefined)?.rows;
+			subagentRows = Array.isArray(rows) ? rows : [];
+			activeTui?.requestRender();
+		});
+
 		// Hidden footer: frees the space the built-in footer used and exposes the
 		// FooterDataProvider (native git branch + extension statuses).
 		ctx.ui.setFooter((tui, _theme, data) => {
@@ -241,13 +334,24 @@ export default function (pi: ExtensionAPI) {
 			};
 		});
 
-		// The bar itself, on its own line above the editor.
+		// The box (only while subagents run) and the bar, on their own lines above the
+		// editor. Rendering both in this one component is what fixes their vertical
+		// order; two separate widgets would depend on extension load order.
 		ctx.ui.setWidget(
 			"status-bar",
 			(_tui, theme) => ({
 				invalidate() {},
 				render(width: number): string[] {
-					return [buildBar(pi, ctx, theme, footerData, gitDirty, width)];
+					const statuses = footerData?.getExtensionStatuses();
+					return [
+						...buildSubagentBox(
+							subagentRows,
+							statuses?.get(SUBAGENT_STATUS_KEY),
+							theme,
+							width,
+						),
+						buildBar(pi, ctx, theme, footerData, gitDirty, width),
+					];
 				},
 			}),
 			{ placement: "aboveEditor" },
@@ -292,5 +396,8 @@ export default function (pi: ExtensionAPI) {
 		activeTui = undefined;
 		activeCwd = undefined;
 		footerData = undefined;
+		offRows?.();
+		offRows = undefined;
+		subagentRows = [];
 	});
 }
