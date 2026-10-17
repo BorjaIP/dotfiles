@@ -28,6 +28,7 @@ import {
 import type { TUI } from "@earendil-works/pi-tui";
 import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 import { ROWS_EVENT, layoutRows, type SubagentRow } from "../lib/subagent-rows.ts";
+import { permissionModeFromStatus, yoloBannerClearStep } from "../lib/permission-modes.ts";
 
 /** Nerd Font glyphs (the terminal uses Inconsolata Nerd Font Mono). */
 const ICONS = {
@@ -50,6 +51,25 @@ const ICONS = {
  * vertical order box -> bar -> editor hold by construction.
  */
 const SUBAGENT_STATUS_KEY = "subagents";
+
+/**
+ * Gentle Shell's own status keys.
+ *
+ * `gentle:mode` carries "Permissions: <MODE>". It is re-rendered here without the colon and
+ * with the mode in red when it is YOLO, because this bar is where the wording is decided.
+ * `gentle:yolo` carries an emoji banner that only repeats that mode, so it is not drawn; its
+ * presence is what tells the render path below to remove Gentle Shell's own banner widget.
+ */
+const PERMISSION_STATUS_KEY = "gentle:mode";
+const YOLO_STATUS_KEY = "gentle:yolo";
+
+/**
+ * Latch for the banner removal in the render path.
+ *
+ * Module level because that path has no per-instance state, and a single latch is all the edge
+ * detection needs: Gentle Shell sets that status only while YOLO is active.
+ */
+let yoloBannerCleared = false;
 
 /** Box-drawing glyphs for the subagent indicator. */
 const BOX = {
@@ -186,6 +206,21 @@ function buildBar(
 	const sep = theme.fg("dim", "·");
 	const statuses = footerData?.getExtensionStatuses();
 
+	// Gentle Shell draws its own banner ("destructive confirmations remain") as a separate widget
+	// above the editor, so it would sit next to this bar as a second, emoji-led line. This bar is
+	// where the wording is decided, so the banner is removed. Widget keys are shared rather than
+	// owned per extension, which is what makes removing it possible at all.
+	const banner = yoloBannerClearStep(yoloBannerCleared, statuses?.get(YOLO_STATUS_KEY));
+	yoloBannerCleared = banner.cleared;
+	if (banner.clear) {
+		// Display-only, but this runs inside a render: a stale context must not break the bar.
+		try {
+			ctx.ui.setWidget(YOLO_STATUS_KEY, undefined);
+		} catch {
+			/* display only */
+		}
+	}
+
 	const segments: string[] = [
 		theme.fg("success", `${ICONS.model} ${model}`),
 		theme.fg("warning", `${ICONS.effort} ${effort}`),
@@ -203,6 +238,20 @@ function buildBar(
 			if (key === "pi-cache-stats") continue;
 			// Drawn as its own box above this line, not inline here.
 			if (key === SUBAGENT_STATUS_KEY) continue;
+			// Emoji banner that only repeats the permission mode below it.
+			if (key === YOLO_STATUS_KEY) continue;
+			if (key === PERMISSION_STATUS_KEY) {
+				const mode = permissionModeFromStatus(text);
+				if (mode) {
+					// "Permissions NORMAL": no colon, and YOLO in red because that is the mode
+					// that changes what gets confirmed.
+					segments.push(
+						theme.fg("dim", "Permissions ") +
+							theme.fg(mode === "yolo" ? "error" : "dim", mode.toUpperCase()),
+					);
+					continue;
+				}
+			}
 			segments.push(theme.fg("dim", text.replace(/^·\s*/, "")));
 		}
 	}

@@ -30,6 +30,7 @@ const BINDINGS: Binding[] = [
 	{ key: "alt+k", description: "Command palette", category: "Extensions" },
 	{ key: "alt+m", description: "Model favorites", category: "Extensions" },
 	{ key: "alt+h", description: "Which-key: show keyboard shortcuts", category: "Extensions" },
+	{ key: "alt+r", description: "Permissions: switch mode (normal/auto/yolo)", category: "Extensions" },
 
 	// ── Editor ───────────────────────────────────────────────────
 	{ key: "enter", description: "Submit prompt / run command", category: "Editor" },
